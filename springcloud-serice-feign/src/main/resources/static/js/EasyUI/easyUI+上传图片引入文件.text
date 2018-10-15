@@ -1,0 +1,31 @@
+﻿<!-- 引入EasyUI的样式文件-->
+<link rel="stylesheet"
+                 href="<%=request.getContextPath()%>/js/EasyUI/themes/default/easyui.css" type="text/css"/>
+
+<!-- 引入EasyUI的图标样式文件-->
+<link rel="stylesheet"
+                 href="<%=request.getContextPath()%>/js/EasyUI/themes/icon.css" type="text/css"/>
+
+<!-- uploadify -->
+<link rel="stylesheet"
+                 href="<%=request.getContextPath()%>/js/uploadify/uploadify.css" type="text/css"/>
+
+
+
+
+
+<!-- 引入jQuery -->
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.8.0.js"></script>
+
+<!-- 引入EasyUI -->
+<script type="text/javascript"
+                 src="<%=request.getContextPath()%>/js/EasyUI/jquery.easyui.min.js"></script>
+
+<!-- 引入EasyUI的中文国际化js，让EasyUI支持中文 -->
+<script type="text/javascript"
+                 src="<%=request.getContextPath()%>/js/EasyUI/locale/easyui-lang-zh_CN.js"></script>
+
+<!-- uploadify -->
+<script type="text/javascript"
+                 src="<%=request.getContextPath()%>/js/uploadify/jquery.uploadify.min.js"></script>
+

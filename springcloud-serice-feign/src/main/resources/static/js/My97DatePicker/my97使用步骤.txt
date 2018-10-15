@@ -1,0 +1,9 @@
+1.文件夹导入webroot根目录下
+
+2.将js引入页面 
+
+	<script type="text/javascript" src="<%=request.getContextPath()%>/My97DatePicker/WdatePicker.js"></script>
+
+3.在日期文本框添加 class 和 onclick
+
+	class="Wdate" onClick="WdatePicker({el:this,dateFmt:'yyyy-MM-dd'})"

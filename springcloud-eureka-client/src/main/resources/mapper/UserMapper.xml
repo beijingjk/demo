@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.jk.mapper.UserMapper">
+
+<select id="queryTree" resultType="com.jk.model.Tree">
+    select * from t_tree
+</select>
+
+    <select id="queryPetTypePage" resultType="com.jk.model.PetType">
+    select * from t_pet_type
+  </select>
+
+    <delete id="delPet">
+        delete from t_pet_type where ptid=#{ptid}
+    </delete>
+
+    <insert id="savePet">
+        insert into t_pet_type values(#{ptid},#{pttype},#{ptname})
+    </insert>
+
+    <select id="toeditByPid" resultType="com.jk.model.PetType">
+    select * from t_pet_type where ptid=#{ptid}
+  </select>
+
+    <update id="updatePet">
+        update t_pet_type set
+        pttype=#{pttype},
+        ptname=#{ptname}
+        where ptid=#{ptid}
+    </update>
+</mapper>
