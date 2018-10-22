@@ -88,6 +88,11 @@
             <artifactId>fastjson</artifactId>
             <version>1.1.41</version>
         </dependency>
+        <dependency>
+            <groupId>net.sf.json</groupId>
+            <artifactId>json-lib-jdk15</artifactId>
+            <version>2.4</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>

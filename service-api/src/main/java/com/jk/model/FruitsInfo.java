@@ -23,6 +23,10 @@ public class FruitsInfo implements Serializable {
 
     private Integer typeId;
 
+    private Integer auditing;
+
+    private String reason;
+
     /*
      *  薛长欢
      *
@@ -168,6 +172,22 @@ public class FruitsInfo implements Serializable {
 
     public void setAmount(Integer amount) {
         this.amount = amount;
+    }
+
+    public Integer getAuditing() {
+        return auditing;
+    }
+
+    public void setAuditing(Integer auditing) {
+        this.auditing = auditing;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 
     @Override
