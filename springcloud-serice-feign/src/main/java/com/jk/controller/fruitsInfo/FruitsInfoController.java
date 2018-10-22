@@ -68,16 +68,27 @@ public class FruitsInfoController {
     }
 
     /*
-     *  薛长欢
+     *  孙丽景
      *
      *  从redis查询购物车
      */
-    @RequestMapping("queryCartList")
-    public List<FruitsInfo> queryCartList(HttpServletRequest request){
+    @RequestMapping("toShoppingCar")
+    public String queryCartList(HttpServletRequest request,ModelMap map){
         //Login login = (Login) request.getSession().getAttribute(request.getSession().getId());
+        //用户id
         String loginId = "1";
+        //判断购物车是否为空
+        String flag = "";
         List<FruitsInfo> fruitsInfo = fruitsInfoServie.queryCartList(loginId);
-        return fruitsInfo;
+
+        if(fruitsInfo == null){
+            flag = "";
+        }else{
+            flag = "fruitsInfo";
+        }
+        map.put("flag",flag);
+        map.put("fruitsInfo",fruitsInfo);
+        return "shopping/shopping";
     }
 
     /*
