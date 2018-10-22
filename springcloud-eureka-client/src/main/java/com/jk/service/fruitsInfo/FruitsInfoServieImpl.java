@@ -142,7 +142,7 @@ public class FruitsInfoServieImpl implements FruitsInfoServieApi {
         String cacheKey = ConstantConf.REDIS_CART_KEY+":"+loginId+","+fruitsId;
         String fruitsKey = redisTemplate.opsForValue().get(cacheKey);
         FruitsInfo fruitsInfo = JsonUtils.jsonToPojo(fruitsKey, FruitsInfo.class);
-        fruitsInfo.setNum(num);
+        fruitsInfo.setAmount(num);
         redisTemplate.opsForValue().set(cacheKey,JsonUtils.objectToJson(fruitsInfo));
     }
 

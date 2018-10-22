@@ -68,16 +68,27 @@ public class FruitsInfoController {
     }
 
     /*
-     *  薛长欢
+     *  孙丽景
      *
      *  从redis查询购物车
      */
-    @RequestMapping("queryCartList")
-    public List<FruitsInfo> queryCartList(HttpServletRequest request){
+    @RequestMapping("toShoppingCar")
+    public String queryCartList(HttpServletRequest request,ModelMap map){
         //Login login = (Login) request.getSession().getAttribute(request.getSession().getId());
+        //用户id
         String loginId = "1";
+        //判断购物车是否为空
+        String flag = "";
         List<FruitsInfo> fruitsInfo = fruitsInfoServie.queryCartList(loginId);
-        return fruitsInfo;
+
+        if(fruitsInfo.size() == 0){
+            flag = "";
+        }else{
+            flag = "fruitsInfo";
+        }
+        map.put("flag",flag);
+        map.put("fruitsInfo",fruitsInfo);
+        return "shopping/shopping";
     }
 
     /*
@@ -86,6 +97,7 @@ public class FruitsInfoController {
      *  删除购物车商品
      */
     @RequestMapping("deleteCart")
+    @ResponseBody
     public Boolean deleteCart(Integer fruitsId,HttpServletRequest request){
         try{
             //Login login = (Login) request.getSession().getAttribute(request.getSession().getId());
@@ -104,6 +116,7 @@ public class FruitsInfoController {
      *  清空购物车 根据登录id
      */
     @RequestMapping("deleteAllCart")
+    @ResponseBody
     public Boolean deleteAllCart(){
         try{
             //Login login = (Login) request.getSession().getAttribute(request.getSession().getId());
@@ -122,6 +135,7 @@ public class FruitsInfoController {
      *  修改购物车
      */
     @RequestMapping("updateCart")
+    @ResponseBody
     public Boolean updateCart(Integer fruitsId,Integer num){
         try{
             //Login login = (Login) request.getSession().getAttribute(request.getSession().getId());

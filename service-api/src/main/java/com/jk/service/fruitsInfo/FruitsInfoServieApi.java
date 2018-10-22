@@ -55,7 +55,7 @@ public interface FruitsInfoServieApi {
      *
      *  删除购物车商品
      */
-    @RequestMapping("deleteCart")
+    @RequestMapping("fruitsInfo/deleteCart")
     void deleteCart(@RequestParam("loginId") String loginId, @RequestParam("fruitsId") Integer fruitsId);
 
     /*
@@ -63,7 +63,7 @@ public interface FruitsInfoServieApi {
      *
      *  清空购物车 根据登录id
      */
-    @RequestMapping("deleteAllCart")
+    @RequestMapping("fruitsInfo/deleteAllCart")
     void deleteAllCart(@RequestParam("loginId")String loginId);
 
     /*
@@ -71,6 +71,6 @@ public interface FruitsInfoServieApi {
      *
      *  修改购物车
      */
-    @RequestMapping("updateCart")
+    @RequestMapping("fruitsInfo/updateCart")
     void updateCart(@RequestParam(value = "loginId")String loginId, @RequestParam(value = "fruitsId")Integer fruitsId, @RequestParam(value = "num")Integer num);
 }

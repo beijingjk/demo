@@ -1,15 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>购物车</title>
 
+
+
+
     <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <link href="../shopping/shopping/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
-    <link href="../shopping/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <!--购物车的css-->
+    <link rel="stylesheet" href="../shopping/shoppingcar/css/style.css"/>
+
     <link href="../shopping/styles.css" type="text/css" rel="stylesheet"/>
     <link href="../shopping/styles(1).css" type="text/css" rel="stylesheet"/>
     <script src="../shopping/jquery-1.7.1.min.js"></script>
+    <!--购物车的js-->
+    <script src="../shopping/shoppingcar/js/demo.js"></script>
     <script src="../shopping/jquery-ui-1.8.10.custom.min.js"></script>
     <script src="../shopping/axQuery.js"></script>
     <script src="../shopping/globals.js"></script>
@@ -43,11 +49,14 @@
     <script src="../shopping/legacy.js"></script>
     <script src="../shopping/viewer.js"></script>
     <script src="../shopping/math.js"></script>
+
+
     <script type="text/javascript">
         $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
         $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
         $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
     </script>
+
     <style>
         .gw_num{border: 1px solid #dbdbdb;width: 110px;line-height: 26px;overflow: hidden;}
         .gw_num em{display: block;height: 26px;width: 26px;float: left;color: #7A7979;border-right: 1px solid #dbdbdb;text-align: center;cursor: pointer;}
@@ -66,23 +75,7 @@
         <div id="u2091_state0" class="panel_state" data-label="全">
             <div id="u2091_state0_content" class="panel_state_content">
 
-                <!-- Unnamed (矩形) -->
-                <div id="u2092" class="ax_default label">
-                    <div id="u2092_div" class=""></div>
-                    <!-- Unnamed () -->
-                    <div id="u2093" class="text" style="visibility: visible;">
-                        <p><span>欢迎来到果鲜生！</span></p>
-                    </div>
-                </div>
 
-                <!-- Unnamed (矩形) -->
-                <div id="u2094" class="ax_default label">
-                    <div id="u2094_div" class=""></div>
-                    <!-- Unnamed () -->
-                    <div id="u2095" class="text" style="visibility: visible;">
-                        <p><span>手机下载</span></p>
-                    </div>
-                </div>
 
                 <!-- Unnamed (矩形) -->
                 <div id="u2096" class="ax_default label">
@@ -206,27 +199,7 @@
 
 
 
-                <!-- 地址 (组合) -->
-                <div id="u2127" class="ax_default" data-label="地址" style="cursor: pointer;">
 
-                    <!-- Unnamed (矩形) -->
-                    <div id="u2128" class="ax_default label">
-                        <div id="u2128_div" class="" tabindex="0"></div>
-                        <!-- Unnamed () -->
-                        <div id="u2129" class="text" style="visibility: visible;">
-                            <p><span>地址</span></p>
-                        </div>
-                    </div>
-
-                    <!-- Unnamed (形状) -->
-                    <div id="u2130" class="ax_default icon">
-                        <img id="u2130_img" class="img " src="../shopping/u618.png"/>
-                        <!-- Unnamed () -->
-                        <div id="u2131" class="text" style="display: none; visibility: hidden">
-                            <p><span></span></p>
-                        </div>
-                    </div>
-                </div>
 
                 <!-- Unnamed (矩形) -->
                 <div id="u2132" class="ax_default label">
@@ -359,91 +332,101 @@
                 <!-- <span>暂无商品</span> -->
                 <!-- 付款区 -->
                 <div style="margin-left:-4px;width:100%;height:100%;margin-top: 10px;margin-bottom: -8px">
-                    <table >
-                        <tr>
-                            <td width="60px"><input type="checkbox"/></td>
-                            <td width="100px"><img class="img " src="../shopping/u2168.png"/></td>
-                            <td width="280px" align="left">希腊绿奇异果6个85g以上/个</td>
-                            <td width="200px">1kg/份</td>
-                            <td width="200px">￥<span id="money">33.9 </span><del>￥40</del></td>
-                            <td width="150px">
-                                <div class="gw_num">
-                                    <em class="jian">-</em>
-                                    <input type="text" value="1" class="num"/>
-                                    <em class="add">+</em>
-                                </div>
-                            </td>
-                            <td width="130px"><font color="red"><b>￥<span id="oneMoney">33.9</span></b></font></td>
-                            <td width="120px">删除</td>
-                        </tr>
-                        <tr>
-                            <td colspan="8"><img src="../shopping/u2191.png"/></td>
-                        </tr>
-                    </table>
 
-                </div>
-                <!-- 按钮 -->
-                <div style="margin-top:0px;border:solid 1px rgba(215, 215, 215, 1);height:46px;background:inherit;background-color:rgba(242, 242, 242, 1)" class="">
-                    <table style="margin-left:-4px;width:100%;height:100%;">
-                        <tr>
-                            <td width="150px">清空</td>
-                            <td width="100px">删除选中商品</td>
-                            <td width="650px"></td>
-                            <td width="180px"><p style="font-size:18px;"><span style="font-family:&#39;Arial Normal&#39;, &#39;Arial&#39;;font-weight:400;font-size:14px;">共计：</span><span style="font-family:&#39;Arial Negreta&#39;, &#39;Arial Normal&#39;, &#39;Arial&#39;;font-weight:700;color:#FF0000;">￥<span id="total">110</span></span></p></td>
-                            <td width="100px">
-                                <div style="cursor: pointer;padding-top:5px;visibility: visible;width:78px;height:29px;background:inherit;background-color:rgba(255, 255, 255, 1);box-sizing:border-box;border-width:1px;border-style:solid;border-color:rgba(121, 121, 121, 1);border-radius:5px;">
-                                    <p><span>前往支付</span></p>
+                    <!--/*@thymesVar id="put" type=""*/-->
+                    <div th:style="${flag}!=''?'display: none':''" >
+                        <table width="100%" height="200px" >
+                            <tr>
+                                <td><font color="#c0c0c0" size="5px" face="宋体"><b>暂无商品</b></font></td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                    <div th:style="${flag}!=''?'':'display: none'">
+
+
+
+
+
+                        <table style="margin-left: 3px;width:100.2%;margin-top: -40px" id="cartTable">
+                            <thead bgcolor="#e9e9e9">
+                            <tr height="30px">
+                                <th align="right" width="70px"><label><input class="check-all check" type="checkbox"/>&nbsp;全选</label></th>
+                                <th><span>商品信息</span></th>
+                                <th align="left">规格</th>
+                                <th align="left">单价</th>
+                                <th>数量</th>
+                                <th>小计</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="test:${fruitsInfo}" style="border-bottom: 1px solid #d3d3d3">
+                                <td height="80px" class="checkbox"><center><input class="check-one check" type="checkbox"/></center></td>
+                                <td class="goods" style="width: 420px">
+                                    <img style="width: 80px;height: 60px" th:src="${test.img1}" alt=""/>
+                                    <span th:text="${test.title}"></span>
+
+                                </td>
+                                <td th:text="${test.norms}" align="left" >
+                                </td>
+                                <td class="price" th:text="${test.price}" align="left">
+                                </td>
+                                <td class="count">
+                                    <span class="reduce">-</span>
+                                    <input class="count-input" type="text" th:value="${test.amount}"/>
+                                    <span class="add" >+</span>
+                                </td>
+                                <td class="subtotal" align="center" th:text="${#numbers.formatDecimal(test.amount*test.price,2,2)}">
+                                </td>
+                                <td class="operation">
+                                    <input class="stock" type="hidden" th:value="${test.num}"/>
+                                    <a th:onclick="'javascript:delOne('+${test.id}+')'">删除</a>
+                                    <input class="id" type="hidden" th:value="${test.id}"/>
+                                </td>
+                         </tr>
+
+                            </tbody>
+                        </table>
+
+                        <div class="foot" id="foot" style="margin-left: 3px;margin-top: 0px;width: 1145px">
+
+                            <label class="fl select-all" style="margin-left: -10px">
+                                <a  href="javascript:delAll()" style="margin-left: 25px">清空购物车</a>
+                            </label>
+                            <div class="fr closing">结 算</div>
+                            <div class="fr total">合计：￥<span id="priceTotal">0.00</span></div>
+                            <div class="fr selected" id="selected">已选商品<span id="selectedTotal">0</span>件<span class="arrow up">︽</span><span class="arrow down">︾</span></div>
+                            <div class="selected-view">
+                                <div id="selectedViewList" class="clearfix">
+                                    <div><img src="../shopping/shoppingcar/images/1.jpg"><span>取消选择</span></div>
                                 </div>
-                            </td>
-                        </tr>
-                    </table>
+                                <span class="arrow">◆<span>◆</span></span>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
 
                 <!-- 大家都在看 -->
-                <div style="margin-top:-8px;height:46px;" class="">
+                <div style="margin-top:-8px;height:55px;" class="">
 
-                    <table style="margin-top:20px;margin-left:-4px;width:100%;height:100%;">
-                        <tr>
+                    <table style="margin-top:8px;margin-left:0px;width:100%;height:100%;border-top: 1px solid #d3d3d3" >
+
+                        <tr style="border-bottom: 1px solid #d3d3d3">
                             <td width="170px"><font face="微软雅黑" size="4px"><b>大家都在看</b></font></td>
                             <td width="820px"></td>
-                            <td><font size="3px">换一批</font></td>
+                            <td><div style="cursor: pointer;"><font size="3px" id="next">换一批</font></div></td>
                         </tr>
-                        <tr>
-                            <td colspan="3"><img src="../shopping/u2191.png"/></td>
-                        </tr>
+
                     </table>
 
 
                     <!-- 商品 -->
-                    <div style="width:100%" >
-                        <div style="float:left;width:10%;height:100%;margin-top: 5px;margin-left: 42px">
-                            <img  src="../shopping/u2271.png"/>
-                            <p><span>￥33.9</span></p>
-                        </div>
-                        <div style="float:left;width:10%;height:100%;margin-top: 5px;margin-left: 42px">
-                            <img  src="../shopping/u2271.png"/>
-                            <p><span>￥33.9</span></p>
-                        </div>
-                        <div style="float:left;width:10%;height:100%;margin-top: 5px;margin-left: 42px">
-                            <img  src="../shopping/u2271.png"/>
-                            <p><span>￥33.9</span></p>
-                        </div>
-                        <div style="float:left;width:10%;height:100%;margin-top: 5px;margin-left: 42px">
-                            <img  src="../shopping/u2271.png"/>
-                            <p><span>￥33.9</span></p>
-                        </div>
-                        <div style="float:left;width:10%;height:100%;margin-top: 5px;margin-left: 42px">
-                            <img  src="../shopping/u2271.png"/>
-                            <p><span>￥33.9</span></p>
-                        </div>
-                        <div style="float:left;width:10%;height:100%;margin-top: 5px;margin-left: 42px">
-                            <img  src="../shopping/u2271.png"/>
-                            <p><span>￥33.9</span></p>
-                        </div>
-                        <div style="float:left;width:10%;height:100%;margin-top: 5px;margin-left: 42px">
-                            <img  src="../shopping/u2271.png"/>
-                            <p><span>￥33.9</span></p>
-                        </div>
+                    <div style="width:100%;margin-top: 16px" id="commodity">
+
                     </div>
                 </div>
                 <!-- 底部 -->
@@ -457,19 +440,188 @@
         </div>
     </div>
 
+    <script  type="text/javascript">
 
-    <script type="text/javascript">
+
+
+
+
+
+
+
+
+
+            //单个删除
+            function delOne(id){
+                var con = confirm('确定删除商品吗？');
+                if(con){
+                    $.ajax({
+                        url:'../fruitsInfo/deleteCart',
+                        type:'post',
+                        data:{fruitsId:id},
+                        success:function(result){
+                            if(result){
+                                location.href = "../fruitsInfo/toShoppingCar";
+                            }
+                        }
+                    })
+                }
+            }
+
+            //清空购物车
+            function delAll(){
+                var con = confirm('确定删除商品吗？');
+                if(con) {
+                    $.ajax({
+                        url: '../fruitsInfo/deleteAllCart',
+                        type: 'post',
+                        data: {},
+                        success: function (result) {
+                            if (result) {
+                                location.href = "../fruitsInfo/toShoppingCar";
+                            }
+                        }
+                    })
+                }
+            }
+
+            /*var html2 = 0 ;
+
+            function table(){
+                $.ajax({
+                    url:'../shopping/queryTable',
+                    data:{},
+                    type:'post',
+                    success:function(result){
+                        var html = "";
+
+
+                        result.forEach(function(i){
+                            html2 += parseFloat((parseFloat(i.onePrice)*parseFloat(i.count)).toFixed(2));
+
+                            var total = (parseFloat(i.onePrice)*parseFloat(i.count)).toFixed(2);
+                            html += '<table >' +
+                                '<tr>' +
+                                '<td width="60px"><input type="checkbox" value="'+total+'" name="check" class="checkOne" onclick="clickOne('+i.userId+','+i.userSex+')" checked="checked"/></td>' +
+                                '<td width="100px"><img width="65px" height="50px" class="img " src="'+i.img+'"/></td>' +
+                                '<td width="280px" align="left">' +
+                                ''+i.goodName+'' +
+                                '</td>' +
+                                '<td width="200px">' +
+                                ''+i.spec+'' +
+                                '</td>' +
+                                '<td width="200px">￥<span id="money"> '+parseFloat(i.onePrice).toFixed(2)+' </span><del>￥40</del></td>' +
+                                '<td width="150px">' +
+                                '<div class="gw_num">' +
+                                '<em class="jian" onclick="javascript:jian('+i.onePrice+','+i.count+','+i.id+')">-</em>' +
+                                '<span id="count'+i.id+'">'+i.count+'</span>' +
+                                '<em class="add" onclick="javascript:jia('+i.onePrice+','+i.count+','+i.id+')">+</em>' +
+                                '</div>' +
+                                '</td>' +
+                                '<td width="130px"><font color="red"><b>￥' +
+                                '<span id="total'+i.id+'">'+total+'</span>' +
+                                '</b></font></td>' +
+                                '<td width="120px" style="cursor: pointer;">删除</td>' +
+                                '</tr>' +
+                                '<tr>' +
+                                '<td colspan="8"><img src="../shopping/u2191.png"/></td>' +
+                                '</tr>' +
+                                '</table>';
+
+                        })
+                        $('#tablesssss').html(html);
+                        $('#total').html(html2.toFixed(2));
+                    }
+                })
+            }
+            function jia(onePrice,count,id){
+                var counts = $('#count'+id+'').html();
+                counts++;
+                $('#total'+id+'').html((parseFloat(onePrice)*parseFloat(counts)).toFixed(2));
+                $('#count'+id+'').html(counts);
+
+            }
+
+            function jian(onePrice,count,id){
+
+                var counts = $('#count'+id+'').html();
+
+                counts--;
+                if(counts == 0){
+                    return ;
+                }
+                $('#total'+id+'').html((parseFloat(onePrice)*(parseFloat(counts)+1)-parseFloat(onePrice)).toFixed(2));
+                $('#count'+id+'').html(counts);
+
+
+            }*/
+
+
+            //换一批
+            $('#next').click(function(){
+                Commodity();
+
+            })
+
+
+            $(function(){
+                Commodity();
+                table();
+
+            })
+
+            //商品列表
+            function Commodity(){
+                $.ajax({
+                    url:'../shopping/queryFruitsInfo',
+                    type:"post",
+                    success:function(result){
+                        var html = "";
+                        result.forEach(function(i){
+                            html += ' <div style="float:left;width:10%;height:100%;margin-top: 8px;margin-left: 42px">' +
+                                ' <img style="cursor: pointer;" width="130px" height="130px" src="'+i.img1+'"/>' +
+                                ' <p><span><font color="red"><b>￥'+i.price+'</b></font></span></p>' +
+                                ' </div>';
+                        })
+                        $('#commodity').html(html);
+                    }
+                })
+            }
+
+    </script>
+    <!--大家都在看列表-->
+
+    <!--购物车增减按钮-->
+    <!--<script type="text/javascript">
 
         $('#total').html(parseFloat($('#oneMoney').html()));
 
+        //输入
+        $(".num").change(function(){
+            var num = $('.num').val();
+            var count = 5;
+            if(num>count){
+                $('.num').val(count);
+                $('#oneMoney').html((parseFloat($('#money').html())*count).toFixed(2))
+                $('#total').html(parseFloat($('#oneMoney').html()).toFixed(2));
+                return ;
+            }
+            $('#oneMoney').html((parseFloat($('#money').html())*num).toFixed(2))
+            $('#total').html(parseFloat($('#oneMoney').html()).toFixed(2));
+
+        });
         //加的效果
         $(".add").click(function(){
             var n=$(this).prev().val();
             var num=parseInt(n)+1;
+            var count = 5;
             if(num==0){ return;}
+            if(num>count){
+                return ;
+            }
             $(this).prev().val(num);
             $('#oneMoney').html((parseFloat($('#money').html())*num).toFixed(2))
-            $('#total').html(parseFloat($('#oneMoney').html()));
+            $('#total').html(parseFloat($('#oneMoney').html()).toFixed(2));
         });
         //减的效果
         $(".jian").click(function(){
@@ -481,7 +633,12 @@
             $('#total').html((parseFloat($('#oneMoney').html())+parseFloat($('#money').html())-parseFloat($('#money').html())).toFixed(2))
         });
 
-    </script>
+    </script>-->
+
+
+
+
+
 
 
     <!-- Unnamed (矩形) -->
@@ -495,89 +652,12 @@
 
 
 
-    <!-- Unnamed (组合) -->
-    <div id="u2193" class="ax_default">
-
-        <!-- Unnamed (矩形) -->
-        <div id="u2194" class="ax_default box_2">
-            <div id="u2194_div" class=""></div>
-            <!-- Unnamed () -->
-            <div id="u2195" class="text" style="display: none; visibility: hidden">
-                <p><span></span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (矩形) -->
-        <div id="u2196" class="ax_default label">
-            <div id="u2196_div" class=""></div>
-            <!-- Unnamed () -->
-            <div id="u2197" class="text" style="visibility: visible;">
-                <p><span>商品信息</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (矩形) -->
-        <div id="u2198" class="ax_default label">
-            <div id="u2198_div" class=""></div>
-            <!-- Unnamed () -->
-            <div id="u2199" class="text" style="visibility: visible;">
-                <p><span>规格</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (矩形) -->
-        <div id="u2200" class="ax_default label">
-            <div id="u2200_div" class=""></div>
-            <!-- Unnamed () -->
-            <div id="u2201" class="text" style="visibility: visible;">
-                <p><span>数量</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (矩形) -->
-        <div id="u2202" class="ax_default label">
-            <div id="u2202_div" class=""></div>
-            <!-- Unnamed () -->
-            <div id="u2203" class="text" style="visibility: visible;">
-                <p><span>合计</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (矩形) -->
-        <div id="u2204" class="ax_default label">
-            <div id="u2204_div" class=""></div>
-            <!-- Unnamed () -->
-            <div id="u2205" class="text" style="visibility: visible;">
-                <p><span>操作</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (矩形) -->
-        <div id="u2206" class="ax_default label">
-            <div id="u2206_div" class=""></div>
-            <!-- Unnamed () -->
-            <div id="u2207" class="text" style="visibility: visible;">
-                <p><span>单价</span></p>
-            </div>
-        </div>
-    </div>
 
 
-    <!-- Unnamed (复选框) -->
-    <div id="u2263" class="ax_default checkbox">
-        <label for="u2263_input">
-            <!-- Unnamed () -->
-            <div id="u2264" class="text" style="visibility: visible;">
-                <p><span>全选</span></p>
-            </div>
-        </label>
-        <input id="u2263_input" type="checkbox" value="checkbox"/>
-    </div>
 
 
-    <!-- Unnamed (热区) -->
-    <div id="u2303" class="ax_default" tabindex="0" style="cursor: pointer;">
-    </div>
+
+
 
 
     <!-- 节点 (热区) -->
