@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.jnlp.IntegrationService;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//@Controller
-@RestController
+@Controller
 @RequestMapping("fruitsInfo")
 public class FruitsInfoController {
 
@@ -80,5 +80,57 @@ public class FruitsInfoController {
         return fruitsInfo;
     }
 
+    /*
+     *  薛长欢
+     *
+     *  删除购物车商品
+     */
+    @RequestMapping("deleteCart")
+    public Boolean deleteCart(Integer fruitsId,HttpServletRequest request){
+        try{
+            //Login login = (Login) request.getSession().getAttribute(request.getSession().getId());
+            String loginId = "1";
+            fruitsInfoServie.deleteCart(loginId,fruitsId);
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 
+    /*
+     *  薛长欢
+     *
+     *  清空购物车 根据登录id
+     */
+    @RequestMapping("deleteAllCart")
+    public Boolean deleteAllCart(){
+        try{
+            //Login login = (Login) request.getSession().getAttribute(request.getSession().getId());
+            String loginId = "1";
+            fruitsInfoServie.deleteAllCart(loginId);
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    /*
+     *  薛长欢
+     *
+     *  修改购物车
+     */
+    @RequestMapping("updateCart")
+    public Boolean updateCart(Integer fruitsId,Integer num){
+        try{
+            //Login login = (Login) request.getSession().getAttribute(request.getSession().getId());
+            String loginId = "1";
+            fruitsInfoServie.updateCart(loginId,fruitsId,num);
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 }

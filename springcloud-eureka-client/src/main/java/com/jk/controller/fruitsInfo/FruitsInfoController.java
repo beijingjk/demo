@@ -72,4 +72,34 @@ public class FruitsInfoController {
     public List<FruitsInfo> queryCartList(String loginId){
         return fruitsInfoServie.queryCartList(loginId);
     }
+
+    /*
+     *  薛长欢
+     *
+     *  删除购物车商品
+     */
+    @RequestMapping("deleteCart")
+    public void deleteCart(String loginId,Integer fruitsId){
+        fruitsInfoServie.deleteCart(loginId,fruitsId);
+    }
+
+    /*
+     *  薛长欢
+     *
+     *  清空购物车 根据登录id
+     */
+    @RequestMapping("deleteAllCart")
+    public void deleteAllCart(String loginId){
+        fruitsInfoServie.deleteAllCart(loginId);
+    }
+
+    /*
+     *  薛长欢
+     *
+     *  修改购物车
+     */
+    @RequestMapping("updateCart")
+    public void updateCart(String loginId,Integer fruitsId,Integer num){
+        fruitsInfoServie.updateCart(loginId,fruitsId,num);
+    }
 }

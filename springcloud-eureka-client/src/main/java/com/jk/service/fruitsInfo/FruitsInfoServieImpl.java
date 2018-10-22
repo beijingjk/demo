@@ -88,6 +88,11 @@ public class FruitsInfoServieImpl implements FruitsInfoServieApi {
         return result;
     }
 
+    /*
+     *  薛长欢
+     *
+     *  从redis查询购物车信息
+     */
     @Override
     public List<FruitsInfo> queryCartList(String loginId) {
         //定义缓存key  由常量key+用户id+商品id组成
@@ -101,5 +106,45 @@ public class FruitsInfoServieImpl implements FruitsInfoServieApi {
         }
         return fruitsInfos;
     }
+
+    /*
+     *  薛长欢
+     *
+     *  删除购物车商品
+     */
+    @Override
+    public void deleteCart(String loginId, Integer fruitsId) {
+        //定义缓存key  由常量key+用户id+商品id组成
+        String cacheKey = ConstantConf.REDIS_CART_KEY+":"+loginId+","+fruitsId;
+        redisTemplate.delete(cacheKey);
+    }
+
+    /*
+     *  薛长欢
+     *
+     *  清空购物车 根据登录id
+     */
+    @Override
+    public void deleteAllCart(String loginId) {
+        String cacheKey = ConstantConf.REDIS_CART_KEY+":"+loginId;
+        Set<String> keys = redisTemplate.keys(cacheKey + "*");
+        redisTemplate.delete(keys);
+    }
+
+    /*
+     *  薛长欢
+     *
+     *  修改购物车
+     */
+    @Override
+    public void updateCart(String loginId, Integer fruitsId, Integer num) {
+        //定义缓存key  由常量key+用户id+商品id组成
+        String cacheKey = ConstantConf.REDIS_CART_KEY+":"+loginId+","+fruitsId;
+        String fruitsKey = redisTemplate.opsForValue().get(cacheKey);
+        FruitsInfo fruitsInfo = JsonUtils.jsonToPojo(fruitsKey, FruitsInfo.class);
+        fruitsInfo.setNum(num);
+        redisTemplate.opsForValue().set(cacheKey,JsonUtils.objectToJson(fruitsInfo));
+    }
+
 
 }

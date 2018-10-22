@@ -49,4 +49,28 @@ public interface FruitsInfoServieApi {
      */
     @RequestMapping("fruitsInfo/queryCartList")
     List<FruitsInfo> queryCartList(@RequestParam(value = "loginId") String loginId);
+
+    /*
+     *  薛长欢
+     *
+     *  删除购物车商品
+     */
+    @RequestMapping("deleteCart")
+    void deleteCart(@RequestParam("loginId") String loginId, @RequestParam("fruitsId") Integer fruitsId);
+
+    /*
+     *  薛长欢
+     *
+     *  清空购物车 根据登录id
+     */
+    @RequestMapping("deleteAllCart")
+    void deleteAllCart(@RequestParam("loginId")String loginId);
+
+    /*
+     *  薛长欢
+     *
+     *  修改购物车
+     */
+    @RequestMapping("updateCart")
+    void updateCart(@RequestParam(value = "loginId")String loginId, @RequestParam(value = "fruitsId")Integer fruitsId, @RequestParam(value = "num")Integer num);
 }
