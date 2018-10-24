@@ -1,26 +1,17 @@
 package com.jk.controller;
 
-import com.aliyuncs.utils.StringUtils;
 import com.jk.ConstantConf;
 import com.jk.model.Login;
-import com.jk.model.PetType;
-import com.jk.model.Tree;
 import com.jk.service.UserServiceApi;
 import com.jk.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-import org.apache.shiro.crypto.hash.SimpleHash;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.text.html.FormSubmitEvent;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 @Controller
 @RequestMapping("user")
