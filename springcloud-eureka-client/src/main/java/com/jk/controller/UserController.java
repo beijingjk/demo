@@ -1,31 +1,19 @@
 package com.jk.controller;
 
 import com.jk.model.Login;
-import com.jk.model.PetType;
-import com.jk.model.Tree;
-import com.jk.model.User;
-import com.jk.service.UserService;
 import com.jk.service.UserServiceApi;
-import com.jk.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
-import java.util.List;
 
 @RestController
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private UserServiceApi userService;
 
     @RequestMapping(value = "/queryUserName" ,method = RequestMethod.POST)
     public Login queryUserName(@RequestBody Login login ){
-        return userService.queryUserName(login.getUserName());
+        return userService.queryUserName(login);
     }
 
     @RequestMapping(value = "/addUser",method = RequestMethod.POST)
