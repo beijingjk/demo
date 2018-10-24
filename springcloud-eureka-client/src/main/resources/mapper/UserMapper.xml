@@ -3,30 +3,20 @@
 
 <mapper namespace="com.jk.mapper.UserMapper">
 
-<select id="queryTree" resultType="com.jk.model.Tree">
-    select * from t_tree
-</select>
+    <select id="queryUserName" parameterType="string" resultType="com.jk.model.Login">
+	    select * from t_user
+	    where userName = #{uaerName}
+    </select>
 
-    <select id="queryPetTypePage" resultType="com.jk.model.PetType">
-    select * from t_pet_type
-  </select>
-
-    <delete id="delPet">
-        delete from t_pet_type where ptid=#{ptid}
-    </delete>
-
-    <insert id="savePet">
-        insert into t_pet_type values(#{ptid},#{pttype},#{ptname})
+    <insert parameterType="com.jk.model.Login" id="addUser">
+        insert into t_user (userName,userPhone,sincerityName,userPassword)
+          values
+            (#{userName},#{userPhone},#{sincerityName},#{userPassword})
     </insert>
 
-    <select id="toeditByPid" resultType="com.jk.model.PetType">
-    select * from t_pet_type where ptid=#{ptid}
-  </select>
+    <select id="queryUserNameFP" parameterType="string" resultType="com.jk.model.Login">
+	    select * from t_user
+	    where userName = #{uaerName}
+    </select>
 
-    <update id="updatePet">
-        update t_pet_type set
-        pttype=#{pttype},
-        ptname=#{ptname}
-        where ptid=#{ptid}
-    </update>
 </mapper>
