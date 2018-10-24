@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+    <link rel="stylesheet" href="/webLoginJs/forgetJsCss/base.css"/>
+    <link rel="stylesheet" href="/webLoginJs/forgetJsCss/login.css"/>
+    <link rel="stylesheet" href="/webLoginJs/js/EasyUI/themes/icon.css"/>
+    <link rel="stylesheet" href="/webLoginJs/js/EasyUI/themes/default/easyui.css"/>
+    <link rel="stylesheet" href="/webLoginJs/js/EasyUI/themes/color.css"/>
+    <script src="/webLoginJs/js/EasyUI/jquery.min.js"></script>
+    <script src="/webLoginJs/js/EasyUI/jquery.easyui.min.js"></script>
+    <script src="/webLoginJs/js/EasyUI/locale/easyui-lang-zh_CN.js"></script>
+    <script src="/webLoginJs/js/EasyUI/util-js.js"></script>
+
+
+</head>
+<body>
+<div id="main">
+    <div id="header">
+    </div>
+    <div class="container">
+        <div class="bgPic"><img src="/webLoginJs/register/banner3.jpg" alt=""/></div>
+        <div class="register">
+            <div class="title">
+                <span>登录</span>
+                <a href="toRegister2">去注册</a>
+            </div>
+            <form autocomplete="off">
+                <div class="default">
+                    <input id="userName" placeholder="请输入用户名" name="userName" data-form="uname" type="text" />
+                </div>
+
+                <div class="default">
+                    <input id="userPassword" placeholder="请输入密码" name="userPassword" data-form="upwd" type="password"/>
+                </div>
+
+                <div class="default">
+                    <input type="text" placeholder="请输入验证码" value="" id="veriftyCode"/>
+                    <img onclick="changerVeriftyCode()" id="verificationCode" src="getVerify" style="width: 40%;height: 85%;float: left;margin: 11px 5px;"/>
+                    <a href="javascript:changerVeriftyCode();" style="float: left;line-height: 57px;">换一张</a>
+                </div>
+
+                <div class="default">
+                    <br>
+                    <br>
+                    <SPAN style="float: right;"><!--<A
+                        style="color: rgb(204, 204, 204); margin-right: 10px;" href="toRegister">忘记密码？</A>-->
+					<span style="background: rgb(0, 142, 173);cursor:pointer; padding: 6px 120px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;"
+                          id="loginBtn">登录</span> </SPAN>
+                </div>
+            </form>
+            <!--<div class="other_login">
+                <div class="log">
+                    <span>社交账号登录</span>
+                </div>
+                <div class="icon">
+                    <ul>
+                        <li data-log="icon" class="i_hover">
+                            <img data-icon="wx" src="img/register/wx.png" alt=""/>
+                            <span class="prompt" >微信登录</span>
+                        </li>
+                        <li data-log="icon" class="i_hover">
+                            <img data-icon="qq" src="img/register/qq.png" alt=""/>
+                            <span class="prompt" >QQ登录</span>
+                        </li>
+                        <li data-log="icon" class="i_hover">
+                            <img data-icon="wb" src="img/register/wb.png" alt=""/>
+                            <span class="prompt" >微博登录</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>-->
+        </div>
+    </div>
+    <div id="footer">
+    </div>
+</div>
+
+<script type="text/javascript">
+    function changerVeriftyCode(){
+        $('#verificationCode').attr('src','getVerify?t='+new Date());
+    }
+    $('#loginBtn').click(function(){
+        $.ajax({
+            url:'userLogin',
+            type:'post',
+            data:{
+                userName:$('#userName').val(),
+                userPassword:$('#userPassword').val(),
+                imgCode:$('#veriftyCode').val()
+            },
+            dataType:'json',
+            success:function(result){
+                if(result.code == 0){
+                    //window.location.href="toLayout"
+                    window.location.href="toIndex"
+                }else{
+                    $.messager.alert('提示',result.msg,'info')
+                }
+            }
+        })
+    })
+
+    $('#FastLoginBtn').click(function(){
+        window.location.href="toFastLogin"
+    })
+
+    //回车事件
+    $(document).keydown(function(event){
+        if(event.keyCode==13){            //ps：13这个数字就代表的是回车按键
+            $("#loginBtn").click();            //    ps：用的id选择器,如果按下回车按键的话就调用这个方法
+        }
+    });
+
+</script>
+
+</body>
+</html>

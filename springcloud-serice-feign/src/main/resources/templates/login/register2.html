@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <link rel="stylesheet" href="/webLoginJs/forgetJsCss/base.css"/>
+    <link rel="stylesheet" href="/webLoginJs/forgetJsCss/register.css"/>
+    <link rel="stylesheet" href="/webLoginJs/js/EasyUI/themes/icon.css"/>
+    <link rel="stylesheet" href="/webLoginJs/js/EasyUI/themes/default/easyui.css"/>
+    <link rel="stylesheet" href="/webLoginJs/js/EasyUI/themes/color.css"/>
+    <script src="/webLoginJs/js/EasyUI/jquery.min.js"></script>
+    <script src="/webLoginJs/js/EasyUI/jquery.easyui.min.js"></script>
+    <script src="/webLoginJs/js/EasyUI/locale/easyui-lang-zh_CN.js"></script>
+    <script src="/webLoginJs/js/EasyUI/util-js.js"></script>
+
+</head>
+<body>
+    <div id="main">
+        <div id="header">
+        </div>
+        <div class="container">
+            <div class="bgPic"><img src="/webLoginJs/register/f.jpg" alt=""/></div>
+            <div class="register">
+                <div class="title">
+                    <span>注册</span>
+                    <a href="toLogin2">去登录</a>
+                </div>
+                <form autocomplete="off">
+                    <div class="default">
+                        <input id="userName" placeholder="用户名由3~10个数字和英文字符组成" name="userName" data-form="uname" type="text" />
+                    </div>
+                    <div class="default">
+                        <input id="sincerityName" placeholder="请输入您的真实姓名" name="sincerityName" data-form="upwd" type="text"/>
+                    </div>
+                    <div class="default">
+                        <input id="userPassword" placeholder="密码由8~10个数字和英文字符组成" name="userPassword" data-form="upwd_2" type="password"/>
+                    </div>
+                    <div class="default">
+                        <input id="userPhone" placeholder="请输入中国大陆手机号码" name="userPhone" data-form="phone" type="text"/>
+                    </div>
+                    <div class="submit">
+                        <span class="notice">点击"注册"代表您同意遵守
+                            <a href="">用户协议</a>
+                            和
+                            <a href="">隐私条款</a>
+                        </span><br>
+
+                    <SPAN style="float: contour;"><!--<A
+                        style="color: rgb(204, 204, 204); margin-right: 10px;" href="toRegister">忘记密码？</A>-->
+					<span style="background: rgb(0, 142, 173);cursor:pointer; padding: 7px 120px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;"
+                          id="registerBtn">注册</span> </SPAN>
+                    </div>
+                </form>
+             <!--   <div class="other_login">
+                    <div class="log">
+                        <span>社交账号登录</span>
+                    </div>
+                    <div class="icon">
+                        <ul>
+                            <li data-log="icon" class="i_hover">
+                                <img data-icon="wx" src="/register/wx.png" alt=""/>
+                                <span class="prompt" >微信登录</span>
+                            </li>
+                            <li data-log="icon" class="i_hover">
+                                <img data-icon="qq" src="img/register/qq.png" alt=""/>
+                                <span class="prompt" >QQ登录</span>
+                            </li>
+                            <li data-log="icon" class="i_hover">
+                                <img data-icon="wb" src="img/register/wb.png" alt=""/>
+                                <span class="prompt" >微博登录</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+        <div id="footer">
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $('#registerBtn').click(function(){
+            $.ajax({
+                url:'addUser',
+                type:'post',
+                data:{
+                    userName:$('#userName').val(),
+                    userPhone:$('#userPhone').val(),
+                    userPassword:$('#userPassword').val(),
+                    sincerityName:$('#sincerityName').val()
+                },
+                dataType:'json',
+                success:function(result){
+                    alert(result)
+                    if(result){
+                        window.location.href="toLogin2"
+                    }else{
+                        $.messager.alert('提示',result.msg,'注册失败！！')
+                    }
+                }
+            })
+        })
+
+        //回车事件
+        $(document).keydown(function(event){
+            if(event.keyCode==13){            //ps：13这个数字就代表的是回车按键
+                $("#registerBtn").click();            //    ps：用的id选择器,如果按下回车按键的话就调用这个方法
+            }
+        });
+
+    </script>
+
+</body>
+</html>
