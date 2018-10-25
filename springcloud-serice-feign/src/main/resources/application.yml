@@ -12,3 +12,11 @@ spring:
     cache: false
     prefix: classpath:/templates/
     suffix: .html
+
+  rabbitmq:
+    host: 127.0.0.1
+    password: sunlj
+    port: 5672
+    publisher-confirms: true
+    username: sunlj
+    virtual-host: /vhost
