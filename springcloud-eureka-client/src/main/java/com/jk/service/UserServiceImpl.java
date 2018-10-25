@@ -1,10 +1,7 @@
 package com.jk.service;
 
 import com.jk.mapper.UserMapper;
-import com.jk.model.Login;
-import com.jk.model.PetType;
-import com.jk.model.Tree;
-import com.jk.model.User;
+import com.jk.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,11 +38,52 @@ public class UserServiceImpl implements UserServiceApi{
         return userMapper.getUserByUserPhone(login);
     }
 
+    @Override
+    public FruitsInfo queryInthefruit() {
+        return userMapper.queryInthefruit();
+    }
+
+    @Override
+    public FruitsInfo queryInthefruitTwo() {
+        return userMapper.queryInthefruitTwo();
+    }
+
+    @Override
+    public FruitsInfo queryInthefruitTree() {
+        return userMapper.queryInthefruitTree();
+    }
+
+    @Override
+    public FruitsInfo queryGoldenbuttonfruit() {
+        return userMapper.queryGoldenbuttonfruit();
+    }
+
+    @Override
+    public FruitsInfo queryNFCjuice() {
+        return userMapper.queryNFCjuice();
+    }
+
+    @Override
+    public FruitsInfo queryWatermelonmelons() {
+        return userMapper.queryWatermelonmelons();
+    }
+
+    @Override
+    public FruitsInfo queryApplepear() {
+        return userMapper.queryApplepear();
+    }
+
+    @Override
+    public FruitsInfo queryPortugalsmentionofjam() {
+        return userMapper.queryPortugalsmentionofjam();
+    }
+
     /*@Override
     @RequestMapping(value = "queryUserName")
     public Login queryUserName(@RequestBody Login login) {
         return userMapper.queryUserName(login.getUserName());
     }
 */
+
 
 }
