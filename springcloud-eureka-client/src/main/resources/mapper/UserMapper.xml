@@ -3,6 +3,109 @@
 
 <mapper namespace="com.jk.mapper.UserMapper">
 
+    <!--葡提果酱-->
+    <select id="queryPortugalsmentionofjam" resultType="com.jk.model.FruitsInfo">
+          SELECT t1.`id`,t1.`title`,t1.`present`,t1.`place`,t3.`img1`,t1.`norms`,t1.`num`,t1.`price`,t2.`typeName`
+
+          FROM `t_fruits_info` t1 ,`t_fruits_type` t2 ,`t_fruits_img` t3
+
+          WHERE   t1.`typeId`=t2.`id` AND t1.id=t3.`fruitsId`
+
+          AND  t1.`typeId`= 6
+
+          AND t1.`id`=8
+    </select>
+
+    <!--苹果梨子-->
+    <select id="queryApplepear" resultType="com.jk.model.FruitsInfo">
+          SELECT t1.`id`,t1.`title`,t1.`present`,t1.`place`,t3.`img1`,t1.`norms`,t1.`num`,t1.`price`,t2.`typeName`
+
+          FROM `t_fruits_info` t1 ,`t_fruits_type` t2 ,`t_fruits_img` t3
+
+          WHERE   t1.`typeId`=t2.`id` AND t1.id=t3.`fruitsId`
+
+          AND  t1.`typeId`= 5 AND t1.`id`=7
+    </select>
+
+    <!--西瓜蜜瓜-->
+    <select id="queryWatermelonmelons" resultType="com.jk.model.FruitsInfo">
+          SELECT t1.`id`,t1.`title`,t1.`present`,t1.`place`,t3.`img1`,t1.`norms`,t1.`num`,t1.`price`,t2.`typeName`
+
+          FROM `t_fruits_info` t1 ,`t_fruits_type` t2 ,`t_fruits_img` t3
+
+          WHERE   t1.`typeId`=t2.`id` AND t1.id=t3.`fruitsId`
+
+          AND  t1.`typeId`= 4
+
+          AND t1.`id`=6
+    </select>
+
+    <!--NFC果汁-->
+    <select id="queryNFCjuice" resultType="com.jk.model.FruitsInfo">
+           SELECT t1.`id`,t1.`title`,t1.`present`,t1.`place`,t3.`img1`,t1.`norms`,t1.`num`,t1.`price`,t2.`typeName`
+
+          FROM `t_fruits_info` t1 ,`t_fruits_type` t2 ,`t_fruits_img` t3
+
+          WHERE   t1.`typeId`=t2.`id` AND t1.id=t3.`fruitsId`
+
+          AND  t1.`typeId`= 3
+
+          AND t1.`id`=5
+    </select>
+
+    <!--进口水果-->
+    <select id="queryGoldenbuttonfruit" resultType="com.jk.model.FruitsInfo">
+         SELECT t1.`id`,t1.`title`,t1.`present`,t1.`place`,t3.`img1`,t1.`norms`,t1.`num`,t1.`price`,t2.`typeName`
+
+          FROM `t_fruits_info` t1 ,`t_fruits_type` t2 ,`t_fruits_img` t3
+
+          WHERE   t1.`typeId`=t2.`id` AND t1.id=t3.`fruitsId`
+
+          AND  t1.`typeId`= 2
+
+          AND t1.`id`=4
+    </select>
+
+    <!--当季水果第三个查询-->
+    <select id="queryInthefruitTree" resultType="com.jk.model.FruitsInfo">
+          SELECT t1.`id`,t1.`title`,t1.`present`,t1.`place`,t3.`img1`,t1.`norms`,t1.`num`,t1.`price`,t2.`typeName`
+
+          FROM `t_fruits_info` t1 ,`t_fruits_type` t2 ,`t_fruits_img` t3
+
+          WHERE   t1.`typeId`=t2.`id` AND t1.id=t3.`fruitsId`
+
+          AND  t1.`typeId`= 1
+
+          AND t1.`id`=3
+  </select>
+
+    <!--当季水果第一个查询-->
+    <select id="queryInthefruitTwo" resultType="com.jk.model.FruitsInfo">
+         SELECT t1.`id`,t1.`title`,t1.`present`,t1.`place`,t3.`img1`,t1.`norms`,t1.`num`,t1.`price`,t2.`typeName`
+
+          FROM `t_fruits_info` t1 ,`t_fruits_type` t2 ,`t_fruits_img` t3
+
+          WHERE   t1.`typeId`=t2.`id` AND t1.id=t3.`fruitsId`
+
+          AND  t1.`typeId`= 1
+
+          AND t1.`id`=2
+  </select>
+
+
+    <!--当季水果第一个查询-->
+    <select id="queryInthefruit" resultType="com.jk.model.FruitsInfo">
+         SELECT t1.`id`,t1.`title`,t1.`present`,t1.`place`,t3.`img1`,t1.`norms`,t1.`num`,t1.`price`,t2.`typeName`
+
+          FROM `t_fruits_info` t1 ,`t_fruits_type` t2 ,`t_fruits_img` t3
+
+          WHERE   t1.`typeId`=t2.`id` AND t1.id=t3.`fruitsId`
+
+          AND  t1.`typeId`= 1
+
+          AND t1.`id`=1
+  </select>
+
     <select id="queryUserName" parameterType="string" resultType="com.jk.model.Login">
 	    select * from t_user
 	    where userName = #{uaerName}
