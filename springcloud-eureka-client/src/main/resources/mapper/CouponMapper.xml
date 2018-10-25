@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.jk.mapper.Coupon.CouponMapper">
+
+    <select id="queryCouponYxList" resultType="com.jk.model.Coupon">
+              select * from t_coupon where status like '待领取'
+    </select>
+
+
+    <select id="getUsedCouponList" resultType="com.jk.model.Coupon">
+              select * from t_coupon where status like '未使用'
+    </select>
+
+    <select id="toExpiredList" resultType="com.jk.model.Coupon">
+              select * from t_coupon where status like '已过期'
+    </select>
+
+    <update id="updateStatus">
+               update t_coupon set status = '已过期' where status='未使用'  and endDate &lt;= now()
+   </update>
+
+    <update id="updateCouponBi">
+              update t_coupon set userId= #{userId},status ='未使用' where id = #{id}
+    </update>
+
+
+
+</mapper>
