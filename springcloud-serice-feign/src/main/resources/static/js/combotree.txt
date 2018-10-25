@@ -1,0 +1,43 @@
+1.combotree   基于combo    tree
+
+2.展示的数据 对应的实体类的属性要求 
+	id：标识   主键
+	text：节点文本    班级名称
+	clapid：父级节点id  配合封装方法使用
+3.页面中
+	a.引用工具js文件
+		更改combotree的封装方法
+	b.html代码
+		input标签
+		<input id="cc" value="">
+	c. js代码 构建combotree 
+	$(function(){
+		$('#cc').combotree({    
+		    url: '<%=basePath%>/cla/queryAll.do',    
+		    parentField:'clapid',
+		    onSelect:function(node){
+		    //叶子节点：无子节点的
+			
+			var t = $('#cc').combotree('tree');	// 获取树对象
+
+			//判断当前选中的节点是否是叶子节点
+		    	if(!(t.tree('isLeaf', node.target))){
+// 		    		提示
+					$.messager.show({
+						title:'我的消息',
+						msg:'请选择具体的班级',
+						timeout:1000,
+						showType:'slide'
+					});		
+// 		    		清空选中的值
+					$('#cc').combotree('clear');
+		    	}
+		    }
+		 })
+	})
+		
+4.方法提示
+	a. 获取combotree中被选中的选中值   
+		$('#cc').combotree('getValue');
+	b. 设置 combotree默认被选中的值
+		<input id="cc" value="节点对象的id值">
