@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+<form id="editUser_formid" method="post">
+    <!--<input type="hidden" name="levelId" />-->
+    <table align="center">
+        <input type="hidden" name="ptid" th:value="${petType.ptid}"/>
+        <tr>
+            <td>宠物种类：</td>
+            <td><input name="pttype" class="easyui-textbox" data-options="required:true" th:value="${petType.pttype}" /></td>
+        </tr>
+        <tr>
+            <td>宠物名称：</td>
+            <td><input name="ptname" class="easyui-textbox" data-options="required:true" th:value="${petType.ptname}"/></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
