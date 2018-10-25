@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.jk.mapper.settlement.SetelementMapper">
+        
+    <!--查询省-->
+    <select id="queryArea" resultType="com.jk.model.Area">
+          select ta.id,ta.name from t_area ta where ta.parent is null
+    </select>
+    <!--查询市/区-->
+    <select id="queryAreaByPid" resultType="com.jk.model.Area" parameterType="Integer">
+        select ta.id,ta.name from t_area ta where ta.parent = #{value}
+    </select>
+    <!--添加地址-->
+    <insert id="addAddress" parameterType="com.jk.model.Area">
+        insert into t_address(name,phone,province,city,area,detailed,userId) values(#{name},#{phone},#{province},
+        #{city},#{area},#{detailed},#{userId})
+    </insert>
+    <!--查询详细地址-->
+    <select id="queryAreaByUserId" parameterType="String" resultType="com.jk.model.Area">
+        select ta.*,tar.name provinceName,tara.name areaName,tare.name cityName from t_address ta
+            left join t_area tar on ta.province = tar.id
+            left join t_area tare on ta.city = tare.id
+            left join t_area tara on ta.area = tara.id
+        where ta.userId = #{value}
+    </select>
+    <!--订单表-->
+    <insert id="insertOrder" parameterType="com.jk.model.OrderInfo">
+        insert into tb_order(order_id, payment,post_fee, status, create_time,
+          update_time, user_id,buyer_nick, buyer_rate)
+          values(#{orderId},#{payment},0,#{status},#{createTime},
+          #{updateTime},#{userId},#{buyerNick},1)
+    </insert>
+    <!--向订单商品表插入数据-->
+    <insert id="insertOrderItem" parameterType="list">
+        insert into tb_order_item(item_id, order_id,num, title, price, total_fee, pic_path)values
+        <foreach collection="list" index="index" item="item" separator=",">
+            (#{item.itemId},#{item.orderId},#{item.num},#{item.title},#{item.price},#{item.totalFee},#{item.picPath})
+        </foreach>
+    </insert>
+    <!--向订单物流表插入数据-->
+    <insert id="insertOrderShipping" parameterType="com.jk.model.OrderShipping">
+        insert into tb_order_shipping values(#{orderId},#{receiverName},#{receiverMobile},#{receiverState},
+        #{receiverCity},#{receiverDistrict},#{receiverAddress},#{created},#{updated})
+    </insert>
+</mapper>

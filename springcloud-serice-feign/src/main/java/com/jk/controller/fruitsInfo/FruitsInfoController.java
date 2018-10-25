@@ -97,6 +97,7 @@ public class FruitsInfoController {
      *  删除购物车商品
      */
     @RequestMapping("deleteCart")
+    @ResponseBody
     public Boolean deleteCart(Integer fruitsId,HttpServletRequest request){
         try{
             //Login login = (Login) request.getSession().getAttribute(request.getSession().getId());
@@ -115,6 +116,7 @@ public class FruitsInfoController {
      *  清空购物车 根据登录id
      */
     @RequestMapping("deleteAllCart")
+    @ResponseBody
     public Boolean deleteAllCart(){
         try{
             //Login login = (Login) request.getSession().getAttribute(request.getSession().getId());
@@ -133,6 +135,7 @@ public class FruitsInfoController {
      *  修改购物车
      */
     @RequestMapping("updateCart")
+    @ResponseBody
     public Boolean updateCart(Integer fruitsId,Integer num){
         try{
             //Login login = (Login) request.getSession().getAttribute(request.getSession().getId());
