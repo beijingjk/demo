@@ -1,5 +1,6 @@
 package com.jk.mapper;
 
+import com.jk.model.Login;
 import com.jk.model.PetType;
 import com.jk.model.Tree;
 import org.apache.ibatis.annotations.Mapper;
@@ -14,16 +15,12 @@ import java.util.List;
 @Repository
 public interface UserMapper {
 
+    Login queryUserName(String userName);
 
-    List<Tree> queryTree();
+    void addUser(Login login);
 
-    List<PetType> queryPetTypePage();
+    Login queryUserNameFP(String userName);
 
-    void delPet(@Param("ptid") String ptid);
-
-    void savePet(@RequestBody PetType petType);
-
-    PetType toeditByPid(@Param("ptid") String ptid);
-
-    void updatePet(@RequestBody PetType petType);
+    @Select(" select * from t_user where userPhone=#{userPhone} ")
+    Login getUserByUserPhone(Login login);
 }
