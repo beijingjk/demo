@@ -1,6 +1,7 @@
 package com.jk.controller;
 
 import com.jk.ConstantConf;
+import com.jk.model.FruitsInfo;
 import com.jk.model.Login;
 import com.jk.service.UserServiceApi;
 import com.jk.util.*;
@@ -20,6 +21,104 @@ public class UserController {
     @Autowired
     private UserServiceApi userService;
 
+
+    //葡提果酱
+    @RequestMapping("queryPortugalsmentionofjam")
+    @ResponseBody
+    public FruitsInfo queryPortugalsmentionofjam(){
+        FruitsInfo Portugalsmentionofjam =userService.queryPortugalsmentionofjam();
+        return Portugalsmentionofjam;
+    }
+
+    //苹果梨子
+    @RequestMapping("queryApplepear")
+    @ResponseBody
+    public FruitsInfo queryApplepear(){
+        FruitsInfo apple =userService.queryApplepear();
+        return apple;
+    }
+
+    //西瓜蜜瓜
+    @RequestMapping("queryWatermelonmelons")
+    @ResponseBody
+    public FruitsInfo queryWatermelonmelons(){
+        FruitsInfo Watermel =userService.queryWatermelonmelons();
+        return Watermel;
+    }
+
+    //NFC果汁查询
+    @RequestMapping("queryNFCjuice")
+    @ResponseBody
+    public FruitsInfo queryNFCjuice(){
+        FruitsInfo importfruit =userService.queryNFCjuice();
+        return importfruit;
+    }
+
+    //进口水果查询
+    @RequestMapping("queryGoldenbuttonfruit")
+    @ResponseBody
+    public FruitsInfo queryGoldenbuttonfruit(){
+        FruitsInfo importfruit =userService.queryGoldenbuttonfruit();
+        return importfruit;
+    }
+
+
+    //当季水果第三个查询
+    @RequestMapping("queryInthefruitTree")
+    @ResponseBody
+    public FruitsInfo queryInthefruitTree(){
+        FruitsInfo three =userService.queryInthefruitTree();
+        return three;
+    }
+
+
+    //当季水果第二个查询
+    @RequestMapping("queryInthefruitTwo")
+    @ResponseBody
+    public FruitsInfo queryInthefruitTwo(){
+        FruitsInfo two=userService.queryInthefruitTwo();
+        return two;
+    }
+
+
+    //当季水果第一个查询
+    @RequestMapping("queryInthefruit")
+    @ResponseBody
+    public FruitsInfo queryInthefruit(){
+        FruitsInfo put=userService.queryInthefruit();
+        return put;
+    }
+
+    //新品上市页面跳转
+    @RequestMapping("toXin")
+    public String toXin(){
+        return "newArrival";
+    }
+
+    //限时折扣页面跳转
+    @RequestMapping("toxianShi")
+    public String toxianShi(){
+        return "secakill";
+    }
+
+    //人气果王页面跳转
+    @RequestMapping("toRen")
+    public String toRen(){
+        return "moods";
+    }
+
+    //商品详情页面跳转
+    @RequestMapping("toXiangQing")
+    public String toXiangQing(){
+        return "savedResource";
+    }
+
+    //select.html
+    @RequestMapping("toSelect")
+    public String toSelect(){
+        return "select";
+    }
+
     //@Autowired
     //private RedisTemplate<String, String> redisTmeplate;
 
@@ -38,12 +137,12 @@ public class UserController {
 
     @RequestMapping("toLogin2")
     public String toLogin2(){
-        return "login/demo";
+        return "demo";
     }
 
     @RequestMapping("toRegister2")
     public String toRegister2(){
-        return "login/register2";
+        return "register2";
     }
 
     //跳转忘记密码页面
