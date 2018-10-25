@@ -1,5 +1,6 @@
 package com.jk.mapper;
 
+import com.jk.model.FruitsInfo;
 import com.jk.model.Login;
 import com.jk.model.PetType;
 import com.jk.model.Tree;
@@ -23,4 +24,20 @@ public interface UserMapper {
 
     @Select(" select * from t_user where userPhone=#{userPhone} ")
     Login getUserByUserPhone(Login login);
+
+    FruitsInfo queryInthefruit();
+
+    FruitsInfo queryInthefruitTwo();
+
+    FruitsInfo queryInthefruitTree();
+
+    FruitsInfo queryGoldenbuttonfruit();
+
+    FruitsInfo queryNFCjuice();
+
+    FruitsInfo queryWatermelonmelons();
+
+    FruitsInfo queryApplepear();
+
+    FruitsInfo queryPortugalsmentionofjam();
 }
