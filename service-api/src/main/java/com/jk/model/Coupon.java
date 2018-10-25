@@ -7,26 +7,31 @@ import java.util.Date;
 
 public class Coupon implements Serializable {
 
-     private String  id;
+    private String  id;
 
-     private String userId;       //登陆人ID
+    private String userId;       //登陆人ID
 
-     private String faceValue;     //面值
+    private String faceValue;     //面值
 
-     private String name;        //优惠券名称
+    private String name;        //优惠券名称
 
-     private String maxPrice;   //满多少元可以使用
+    private String maxPrice;   //满多少元可以使用
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private String startDate;   //优惠券初始时间
 
-     private String startDate;   //优惠券初始时间
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private String endDate;   //优惠券结束时间
 
+    private String status;       //优惠券状态(1:使用2:已使用3:过期)
 
-     private String endDate;   //优惠券结束时间
+    private String cnumber;   //优惠券代码
 
-     private String status;       //优惠券状态(1:使用2:已使用3:过期)
-
-     private String cnumber;   //优惠券代码
-
+    private Integer ccount;    //优惠券个数
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date sdqDate;  //查到期时间临时字段
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date edqDate;  //查到期时间临时字段
 
     public String getId() {
         return id;
@@ -100,6 +105,30 @@ public class Coupon implements Serializable {
         this.cnumber = cnumber;
     }
 
+    public Integer getCcount() {
+        return ccount;
+    }
+
+    public void setCcount(Integer ccount) {
+        this.ccount = ccount;
+    }
+
+    public Date getSdqDate() {
+        return sdqDate;
+    }
+
+    public void setSdqDate(Date sdqDate) {
+        this.sdqDate = sdqDate;
+    }
+
+    public Date getEdqDate() {
+        return edqDate;
+    }
+
+    public void setEdqDate(Date edqDate) {
+        this.edqDate = edqDate;
+    }
+
     @Override
     public String toString() {
         return "Coupon{" +
@@ -112,6 +141,9 @@ public class Coupon implements Serializable {
                 ", endDate='" + endDate + '\'' +
                 ", status='" + status + '\'' +
                 ", cnumber='" + cnumber + '\'' +
+                ", ccount=" + ccount +
+                ", sdqDate=" + sdqDate +
+                ", edqDate=" + edqDate +
                 '}';
     }
 }
