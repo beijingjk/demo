@@ -108,6 +108,7 @@ public class SettlementController {
      *  生成订单/之set数据
      */
     @RequestMapping("createOrder")
+    @ResponseBody
     public Map<String,Object> createOrder(String receiverAddress,OrderInfo orderInfo,HttpServletRequest request){
         //Login login = (Login) request.getSession().getAttribute(request.getSession().getId());
         //String loginId = login.getLoginId();

@@ -71,7 +71,7 @@ public class ShoppingController {
         //付款金额，必填
         String total_amount = monay;
         //订单名称，必填
-        String subject = "";
+        String subject = "果先生";
         //商品描述，可空
         String body = info;
 

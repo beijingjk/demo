@@ -361,4 +361,21 @@ public class UserController {
         return "login/main";
     }
 
+
+   @RequestMapping("已使用.html")
+    public String toLayout1(){
+        return "yx/toGetUsed";
+    }
+
+
+    @RequestMapping("首页.html")
+    public String toLayout2(){
+        return "index";
+    }
+
+    @RequestMapping("优惠券-未使用.html")
+    public String toLayout3(){
+        return "yx/Coupon";
+    }
+
 }
