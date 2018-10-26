@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link href="../setelementjs/stylenew.css" type="text/css" rel="stylesheet"/>
+    <link href="../setelementjs/layui/css/layui.css" type="text/css" rel="stylesheet"/>
+    <script src="../setelementjs/jquery-1.7.1.min.js"></script>
+    <script src="../setelementjs/layui/layui.js"></script>
+    <script src="../setelementjs/layui/lay/modules/form.js"></script>
+</head>
+<body>
+<!-- 新增收货地址 -->
+    <div style="padding: 50px;">
+        <form id="addressForm" class="layui-form" method="post">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <input type="text" name="name" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-inline">
+                    <input type="text" name="phone" placeholder="请输入手机号" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 120px">
+                    <select name="province" lay-filter="province" id="province">
+                        <option value=""></option>
+                    </select>
+                </div>
+                <div class="layui-inline" style="width: 120px">
+                    <select name="city" lay-filter="city" id="city">
+                        <option value=""></option>
+                    </select>
+                </div>
+                <div class="layui-inline" id="hides" style="width: 120px">
+                    <select name="area" lay-filter="area" id="area">
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                        <input type="text" name="detailed" style="width: 400px" placeholder="请输入详细地址" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <a href="javascript:addAddress()" class="layui-btn layui-btn-primary layui-btn-lg" style="width: 150px;background-color: #4a4a4a;color: white">确定</a>
+            <a href="javascript:reloads()" class="layui-btn layui-btn-primary layui-btn-lg" style="width: 150px">取消</a>
+        </form>
+    </div>
+    <script>
+        $(function(){
+            layui.use('form', function(){
+                var form = layui.form;
+                $.ajax({
+                    url:'../setelement/queryArea',
+                    type:'post',
+                    data:{},
+                    success:function(result){
+                        //console.info(result);
+                        var html = "";
+                        result.forEach(function(i){
+                            html += "<option value='"+i.id+"'>"+i.name+"</option>";
+                        })
+                       // console.info(html);
+                        $("#province").append(html);
+                        form.render('select');
+                        form.on('select(province)', function(data){
+                            $("select[name=city]").html('<option value="">请选择</option>');
+                            $("select[name=area]").html('<option value="">请选择</option>')
+                            $.ajax({
+                                url:'../setelement/queryAreaByPid',
+                                type:'post',
+                                data:{pid:data.value},
+                                success:function(city){
+                                    console.info(city)
+                                    var html1 = "";
+                                    city.forEach(function(i){
+                                        html1 += "<option value='"+i.id+"'>"+i.name+"</option>";
+                                    })
+                                    $("#city").append(html1);
+                                    form.render('select');
+                                    form.on('select(city)', function(cityData){
+                                        console.info(cityData.value)
+                                        $("select[name=area]").html('<option value="">请选择</option>');
+                                        $.ajax({
+                                            url:'../setelement/queryAreaByPid',
+                                            type:'post',
+                                            data:{pid:cityData.value},
+                                            success:function(area){
+                                                //console.info(area.length)
+                                                if(area.length>0){
+                                                    $("#hides").show();
+                                                    var html2 = "";
+                                                    area.forEach(function(i){
+                                                        html2 += "<option value='"+i.id+"'>"+i.name+"</option>";
+                                                    })
+                                                    $("#area").append(html2);
+                                                    form.render('select');
+                                                }else{
+                                                    $("#hides").hide();
+                                                }
+                                            }
+                                        })
+                                    });
+                                }
+                            })
+                        });
+                    }
+                })
+            });
+        })
+        function addAddress(){
+            //alert($("#addressForm").serialize());
+            //console.info($("#addressForm").serialize())
+            $.ajax({
+                url:'../setelement/addAddress',
+                type:'post',
+                data:$("#addressForm").serialize(),
+                success:function(result){
+                    window.parent.location.reload();
+                }
+            })
+        }
+        function reloads(){
+            window.parent.location.reload();
+        }
+    </script>
+</body>
+</html>

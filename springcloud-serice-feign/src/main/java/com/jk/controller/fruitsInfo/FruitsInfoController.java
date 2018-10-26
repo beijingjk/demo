@@ -89,6 +89,15 @@ public class FruitsInfoController {
         map.put("flag",flag);
         map.put("fruitsInfo",fruitsInfo);
         return "shopping/shopping";
+
+        if(fruitsInfo == null){
+            flag = "";
+        }else{
+            flag = "fruitsInfo";
+        }
+        map.put("flag",flag);
+        map.put("fruitsInfo",fruitsInfo);
+        return "shopping/shopping";
     }
 
     /*
@@ -116,7 +125,6 @@ public class FruitsInfoController {
      *  清空购物车 根据登录id
      */
     @RequestMapping("deleteAllCart")
-    @ResponseBody
     public Boolean deleteAllCart(){
         try{
             //Login login = (Login) request.getSession().getAttribute(request.getSession().getId());
