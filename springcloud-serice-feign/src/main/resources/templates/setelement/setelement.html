@@ -604,7 +604,20 @@
         var a = $("input[name='u2398']:checked").next("span").text();
         var b = a.replace(/\s+/g,",");
         console.info(b);
-        location.href="../setelement/createOrder?receiverAddress="+b;
+        //location.href="../setelement/createOrder?receiverAddress="+b;
+        $.ajax({
+            url:'../setelement/createOrder',
+            type:'post',
+            data:{receiverAddress:b},
+            dataType:'json',
+            success:function(reuslt){
+                console.info(reuslt)
+                var id = reuslt.orderId;
+                var money = reuslt.payment;
+                var info = "";
+                location.href="../shopping/payOrder?id="+id+"&monay="+money+"&info="+info+"";
+            }
+        })
     })
 </script>
 </html>

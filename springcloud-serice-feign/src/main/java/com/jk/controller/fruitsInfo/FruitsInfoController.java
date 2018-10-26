@@ -89,15 +89,6 @@ public class FruitsInfoController {
         map.put("flag",flag);
         map.put("fruitsInfo",fruitsInfo);
         return "shopping/shopping";
-
-        if(fruitsInfo == null){
-            flag = "";
-        }else{
-            flag = "fruitsInfo";
-        }
-        map.put("flag",flag);
-        map.put("fruitsInfo",fruitsInfo);
-        return "shopping/shopping";
     }
 
     /*

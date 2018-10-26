@@ -108,7 +108,7 @@ public class SettlementController {
      *  生成订单/之set数据
      */
     @RequestMapping("createOrder")
-    public void createOrder(String receiverAddress,OrderInfo orderInfo,HttpServletRequest request){
+    public Map<String,Object> createOrder(String receiverAddress,OrderInfo orderInfo,HttpServletRequest request){
         //Login login = (Login) request.getSession().getAttribute(request.getSession().getId());
         //String loginId = login.getLoginId();
         String loginId = "1";
@@ -155,12 +155,14 @@ public class SettlementController {
         System.out.println(df.format(num-30));
         orderInfo.setOrderItems(orderItems);
         orderInfo.setPayment(df.format(num-30));
-        createOrders(orderInfo);
+        Map<String, Object> orders = createOrders(orderInfo);
+        return orders;
     }
     //创建订单
-    private void createOrders(OrderInfo orderInfo) {
+    private Map<String,Object> createOrders(OrderInfo orderInfo) {
         Map<String,Object> result = setelementService.createOrder(orderInfo);
         System.out.println(result.get("orderId"));
         System.out.println(result.get("payment"));
+        return result;
     }
 }
