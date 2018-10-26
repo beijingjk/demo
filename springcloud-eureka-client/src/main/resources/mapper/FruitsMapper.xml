@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.jk.mapper.fruitsInfo.FruitsInfoMapper">
+    <!-- 根据商品id查询信息 -->
+    <select id="queryFruitsInfoById" parameterType="Integer" resultType="com.jk.model.FruitsInfo">
+       select fin.*,fty.typeName,fim.*,tar.name placeName from t_fruits_info fin
+            left join t_fruits_type fty on fin.typeId = fty.id
+            left join t_fruits_img fim on fim.fruitsId = fin.id
+			left join t_area tar on tar.id = fin.place
+        where fin.id = #{value}
+    </select>
+    <!-- 根据登录人id查询优惠券 -->
+    <select id="queryConponByUserId" parameterType="String" resultType="com.jk.model.Coupon">
+        select tc.* from t_coupon tc,jyf_login lo
+        where tc.userId = lo.loginId and tc.userId = 1 and tc.status = '未使用' limit 2
+    </select>
+    <!-- 随机查询三条数据 -->
+    <select id="queryFruitsInfoRandom" resultType="com.jk.model.FruitsInfo">
+        select fin.id,fin.title,fin.price,fim.img1 from t_fruits_info fin
+          left join t_fruits_type fty on fin.typeId = fty.id
+          left join t_fruits_img fim on fim.fruitsId = fin.id
+		  left join t_area tar on tar.id = fin.place
+        WHERE fin.id >= (SELECT floor(RAND() * (SELECT MAX(fin.id) FROM t_fruits_info fin))) ORDER BY fin.id LIMIT 0,3
+    </select>
+</mapper>

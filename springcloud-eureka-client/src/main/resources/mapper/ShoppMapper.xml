@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.jk.mapper.mapper.ShoppMapper">
+
+
+
+    <!--查询大家都在看-->
+    <select id="queryFruitsInfo" resultType="com.jk.model.FruitsInfo">
+      select info.price,img.img1 img1,info.id from t_fruits_info info ,t_fruits_img img where info.id = img.fruitsId order by rand() limit 7
+    </select>
+
+</mapper>
