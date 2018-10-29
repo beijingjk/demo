@@ -30,23 +30,23 @@ public class ShoppingController {
 
     @Autowired
     private ShoppingService shoppingService;
+/*@Autowired
+    private AmqpTemplate amqpTemplate;*/
 
-    @Autowired
-    private AmqpTemplate amqpTemplate;
 
     /*
      *  孙丽景
      *
      *  rabbitmq消息队列实现同时发送短信和邮件../shopping/toRabbit
      */
-    @RequestMapping("toRabbit*")
+ /*   @RequestMapping("toRabbit*")
     public String toRabbit(){
         String phone = "13603791429";
         String email = "13603791429@163.com";
         this.amqpTemplate.convertAndSend("exchage_topic","topic.info",phone);
         this.amqpTemplate.convertAndSend("exchage_topic","topic.email",email);
         return "shopping/shopping";
-    }
+    }*/
 
 
     /*

@@ -1,12 +1,15 @@
 package com.jk.controller;
 
 import com.jk.ConstantConf;
+import com.jk.model.Coupon;
 import com.jk.model.FruitsInfo;
 import com.jk.model.Login;
 import com.jk.service.UserServiceApi;
+import com.jk.service.fruitsInfo.FruitsInfoServie;
 import com.jk.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +23,9 @@ public class UserController {
 
     @Autowired
     private UserServiceApi userService;
+
+    @Autowired
+    private FruitsInfoServie fruitsInfoServie;
 
 
     //葡提果酱
@@ -376,6 +382,35 @@ public class UserController {
     @RequestMapping("优惠券-未使用.html")
     public String toLayout3(){
         return "yx/Coupon";
+    }
+
+    @RequestMapping("个人资料.html")
+    public String toLayout4(){
+        return "personal";
+    }
+    @RequestMapping("账户安全.html")
+    public String toLayout5(){
+        return "account";
+    }
+    @RequestMapping("收货地址.html")
+    public String toLayout6(){
+        return "address";
+    }
+    @RequestMapping("我的果篮.html")
+    public String toFruitsInfo(Integer fruitsId, ModelMap modelMap, HttpServletRequest request){
+        //HttpSession session = request.getSession();
+        //Login login = (Login) session.getAttribute(session.getId());
+        //根据商品id查询信息
+        FruitsInfo fruitsInfo = fruitsInfoServie.queryFruitsInfoById(fruitsId);
+        String loginId = "1";
+        //根据登录人id查询优惠券
+        List<Coupon> coupon = fruitsInfoServie.queryConponByUserId(loginId);
+        //相当于广告位/随机查询三条数据展示
+        List<FruitsInfo> fruitsInfos = fruitsInfoServie.queryFruitsInfoRandom();
+        modelMap.put("fruitsInfo",fruitsInfo);
+        modelMap.put("coupon",coupon);
+        modelMap.put("fruitsInfos",fruitsInfos);
+        return "fruitsInfo/fruitsInfo";
     }
 
 }
