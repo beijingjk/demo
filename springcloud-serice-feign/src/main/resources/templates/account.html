@@ -10,6 +10,14 @@
     <link href="../account/axure_rp_page.css" type="text/css" rel="stylesheet"/>
     <link href="../account/styles(1).css" type="text/css" rel="stylesheet"/>
     <link href="../account/styles.css" type="text/css" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="../js/layui/css/layui.css" media="all">
+
+    <script src="../js/layui/layui.js"></script>
+    <script src="../js/layui/lay/modules/laypage.js"></script>
+
+
+
     <script src="../account/jquery-1.7.1.min.js"></script>
     <script src="../account/jquery-ui-1.8.10.custom.min.js"></script>
     <script src="../account/axQuery.js"></script>
@@ -138,23 +146,6 @@
                     </div>
                 </div>
 
-                <!-- Unnamed (矩形) -->
-                <div id="u4038" class="ax_default label">
-                    <div id="u4038_div" class=""></div>
-                    <!-- Unnamed () -->
-                    <div id="u4039" class="text" style="visibility: visible;">
-                        <p><span>[登录]</span></p>
-                    </div>
-                </div>
-
-                <!-- Unnamed (矩形) -->
-                <div id="u4040" class="ax_default label">
-                    <div id="u4040_div" class=""></div>
-                    <!-- Unnamed () -->
-                    <div id="u4041" class="text" style="visibility: visible;">
-                        <p><span>[注册]</span></p>
-                    </div>
-                </div>
 
                 <!-- Unnamed (矩形) -->
                 <div id="u4042" class="ax_default box_2">
@@ -497,15 +488,15 @@
         </div>
     </div>
 
-    <!-- Unnamed (椭圆形) -->
+  <!--  &lt;!&ndash; Unnamed (椭圆形) &ndash;&gt;
     <div id="u4117" class="ax_default ellipse">
         <img id="u4117_img" class="img " src="../account/u4117.png"/>
-        <!-- Unnamed () -->
+        &lt;!&ndash; Unnamed () &ndash;&gt;
         <div id="u4118" class="text" style="visibility: visible;">
             <p><span>头像</span></p>
         </div>
     </div>
-
+-->
     <!-- Unnamed (矩形) -->
     <div id="u4119" class="ax_default label">
         <div id="u4119_div" class=""></div>
@@ -541,7 +532,7 @@
             <div id="u4126_div" class=""></div>
             <!-- Unnamed () -->
             <div id="u4127" class="text" style="visibility: visible;">
-                <p><span>修改密码</span></p>
+                <p><span onclick="updPassWord()">修改密码</span></p>
             </div>
         </div>
 
@@ -577,188 +568,57 @@
             <div id="u4134_div" class=""></div>
             <!-- Unnamed () -->
             <div id="u4135" class="text" style="visibility: visible;">
-                <p><span>修改密码</span></p>
+                <p><span onclick="updPassWord()">修改密码</span></p>
             </div>
         </div>
     </div>
 
-    <!-- Unnamed (组合) -->
-    <div id="u4136" class="ax_default">
-
-        <!-- Unnamed (占位符) -->
-        <div id="u4137" class="ax_default placeholder">
-            <img id="u4137_img" class="img " src="../account/u4124.png"/>
-            <!-- Unnamed () -->
-            <div id="u4138" class="text" style="display: none; visibility: hidden">
-                <p><span></span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (矩形) -->
-        <div id="u4139" class="ax_default label">
-            <div id="u4139_div" class=""></div>
-            <!-- Unnamed () -->
-            <div id="u4140" class="text" style="visibility: visible;">
-                <p><span>支付密码</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (矩形) -->
-        <div id="u4141" class="ax_default label">
-            <div id="u4141_div" class=""></div>
-            <!-- Unnamed () -->
-            <div id="u4142" class="text" style="visibility: visible;">
-                <p><span>使用预存款进行支付时要求输入支付密码，建议不要设置成为登录密码或与其他应用共用的密码。</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (垂直线) -->
-        <div id="u4143" class="ax_default line">
-            <img id="u4143_img" class="img " src="../account/u4130.png"/>
-            <!-- Unnamed () -->
-            <div id="u4144" class="text" style="display: none; visibility: hidden">
-                <p><span></span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (水平线) -->
-        <div id="u4145" class="ax_default line">
-            <img id="u4145_img" class="img " src="../account/u4122.png"/>
-            <!-- Unnamed () -->
-            <div id="u4146" class="text" style="display: none; visibility: hidden">
-                <p><span></span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (矩形) -->
-        <div id="u4147" class="ax_default button">
-            <div id="u4147_div" class=""></div>
-            <!-- Unnamed () -->
-            <div id="u4148" class="text" style="visibility: visible;">
-                <p><span>设置密码</span></p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Unnamed (组合) -->
-    <div id="u4149" class="ax_default">
-
-        <!-- Unnamed (占位符) -->
-        <div id="u4150" class="ax_default placeholder">
-            <img id="u4150_img" class="img " src="../account/u4124.png"/>
-            <!-- Unnamed () -->
-            <div id="u4151" class="text" style="display: none; visibility: hidden">
-                <p><span></span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (矩形) -->
-        <div id="u4152" class="ax_default label">
-            <div id="u4152_div" class=""></div>
-            <!-- Unnamed () -->
-            <div id="u4153" class="text" style="visibility: visible;">
-                <p><span>邮箱验证</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (矩形) -->
-        <div id="u4154" class="ax_default label">
-            <div id="u4154_div" class=""></div>
-            <!-- Unnamed () -->
-            <div id="u4155" class="text" style="visibility: visible;">
-                <p><span>邮箱将是您的有效身份证，在保证安全的同时还可以提供密码找回，消息推送服务</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (垂直线) -->
-        <div id="u4156" class="ax_default line">
-            <img id="u4156_img" class="img " src="../account/u4130.png"/>
-            <!-- Unnamed () -->
-            <div id="u4157" class="text" style="display: none; visibility: hidden">
-                <p><span></span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (水平线) -->
-        <div id="u4158" class="ax_default line">
-            <img id="u4158_img" class="img " src="../account/u4122.png"/>
-            <!-- Unnamed () -->
-            <div id="u4159" class="text" style="display: none; visibility: hidden">
-                <p><span></span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (矩形) -->
-        <div id="u4160" class="ax_default button">
-            <div id="u4160_div" class=""></div>
-            <!-- Unnamed () -->
-            <div id="u4161" class="text" style="visibility: visible;">
-                <p><span>邮箱验证</span></p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Unnamed (组合) -->
-    <div id="u4162" class="ax_default">
-
-        <!-- Unnamed (占位符) -->
-        <div id="u4163" class="ax_default placeholder">
-            <img id="u4163_img" class="img " src="../account/u4124.png"/>
-            <!-- Unnamed () -->
-            <div id="u4164" class="text" style="display: none; visibility: hidden">
-                <p><span></span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (矩形) -->
-        <div id="u4165" class="ax_default label">
-            <div id="u4165_div" class=""></div>
-            <!-- Unnamed () -->
-            <div id="u4166" class="text" style="visibility: visible;">
-                <p><span>手机号验证</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (矩形) -->
-        <div id="u4167" class="ax_default label">
-            <div id="u4167_div" class=""></div>
-            <!-- Unnamed () -->
-            <div id="u4168" class="text" style="visibility: visible;">
-                <p><span>验证手机后您可以收到易果推送的短信及密码找回服务</span></p><p><span>您验证的手机：181****0421</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (垂直线) -->
-        <div id="u4169" class="ax_default line">
-            <img id="u4169_img" class="img " src="../account/u4130.png"/>
-            <!-- Unnamed () -->
-            <div id="u4170" class="text" style="display: none; visibility: hidden">
-                <p><span></span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (水平线) -->
-        <div id="u4171" class="ax_default line">
-            <img id="u4171_img" class="img " src="../account/u4122.png"/>
-            <!-- Unnamed () -->
-            <div id="u4172" class="text" style="display: none; visibility: hidden">
-                <p><span></span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (矩形) -->
-        <div id="u4173" class="ax_default button">
-            <div id="u4173_div" class=""></div>
-            <!-- Unnamed () -->
-            <div id="u4174" class="text" style="visibility: visible;">
-                <p><span>修改手机号</span></p>
-            </div>
-        </div>
-    </div>
 
     <!-- 节点 (热区) -->
     <div id="u4175" class="ax_default" data-label="节点">
     </div>
 </div>
+
+
+<script>
+
+
+    layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element'], function(){
+        var laydate = layui.laydate //日期
+            ,laypage = layui.laypage //分页
+            ,layer = layui.layer //弹层
+            ,table = layui.table //表格
+            ,carousel = layui.carousel //轮播
+            ,upload = layui.upload //上传
+            ,element = layui.element //元素操作
+    });
+
+   function updPassWord(){
+       layer.open({
+           type: 2,
+           title: '修改',
+           shadeClose: false, //点击遮罩关闭
+           shade: 0.8,
+           area: ['400px', '400px'],
+           maxmin: true,
+           closeBtn: 1,
+           content: ['../personal/toUpdPassWord', 'yes'], //iframe的url，yes是否有滚动条
+           end: function () {
+               //location.reload();
+           }
+
+       });
+   }
+
+
+
+
+
+
+
+
+
+
+</script>
 </body>
 </html>

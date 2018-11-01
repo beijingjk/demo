@@ -294,7 +294,7 @@ public class UserController {
             result.put("msg", "密码错误");
             return result;
         }
-        session.setAttribute(session.getId(), userLogin);
+        session.setAttribute("login", userLogin);
         result.put("code", 0);
         result.put("msg", "登录成功");
         return result;
@@ -379,6 +379,7 @@ public class UserController {
         return "index";
     }
 
+
     @RequestMapping("优惠券-未使用.html")
     public String toLayout3(){
         return "yx/Coupon";
@@ -388,14 +389,19 @@ public class UserController {
     public String toLayout4(){
         return "personal";
     }
+
+
     @RequestMapping("账户安全.html")
     public String toLayout5(){
         return "account";
     }
+
+
     @RequestMapping("收货地址.html")
     public String toLayout6(){
         return "address";
     }
+
     @RequestMapping("我的果篮.html")
     public String toFruitsInfo(Integer fruitsId, ModelMap modelMap, HttpServletRequest request){
         //HttpSession session = request.getSession();
