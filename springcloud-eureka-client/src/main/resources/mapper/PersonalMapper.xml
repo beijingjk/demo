@@ -3,6 +3,16 @@
 
 <mapper namespace="com.jk.mapper.personal.PersonalMapper">
 
+<insert id="addUser">
+    insert into t_user(userImg,userName,sincerityName,userPhone,userEmail,userSex,userBirthday)
+    values(
+    #{userImg},#{userName},#{sincerityName},#{userPhone},#{userEmail},#{userSex},#{userBirthday}
+    )
+</insert>
 
+    <update id="updPassword">
 
+        update t_user set userPassword={login.userPassword}
+        where userId=#{id}
+    </update>
 </mapper>
