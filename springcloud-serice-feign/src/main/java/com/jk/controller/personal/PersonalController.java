@@ -1,6 +1,7 @@
 package com.jk.controller.personal;
 
 
+import com.jk.model.Login;
 import com.jk.service.personal.PersonalServiceApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -56,7 +57,25 @@ public class PersonalController {
         fos.close();
         return "upload/" + onlyFileName;
     }
+    @RequestMapping("addUser")
+    @ResponseBody
+    public void addUser(Login login){
+        personalService.addUser(login);
+    }
+    @RequestMapping("toUpdPassWord")
+    public String toUpdPassWord(){
+        return "updPassWord";
+    }
 
+    @RequestMapping("updPassword")
+    @ResponseBody
+    public void updPassword(Login login,HttpServletRequest request){
 
+        Login user= (Login) request.getSession().getAttribute("login");
+
+        String id=user.getUserId();
+
+        personalService.updPassword(login,id);
+    }
 
 }
