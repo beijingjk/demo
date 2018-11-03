@@ -1,8 +1,9 @@
 package com.jk.util;
 
+import org.apache.commons.lang.StringUtils;
+
 import java.util.regex.Pattern;
 
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * 常用的一些验证，如手机、移动号码、联通号码、电信号码、密码、座机、 邮政编码、邮箱、年龄、身份证、URL、QQ、汉字、字母、数字等

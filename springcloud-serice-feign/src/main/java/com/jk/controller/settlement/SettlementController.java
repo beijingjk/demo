@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -28,14 +29,21 @@ public class SettlementController {
 
     @RequestMapping("toSetelement")
     public String toSetelement(ModelMap modelMap,HttpServletRequest request){
-        //Login login = (Login) request.getSession().getAttribute(request.getSession().getId());
+
+
+        HttpSession session = request.getSession();
+        Login login = (Login) session.getAttribute(session.getId());
+        if(login == null){
+            modelMap.put("flag","");
+        }
+        modelMap.put("flag",login.getUserName());
+
         //String loginId = login.getLoginId();
-        String loginId = "1";
         //商品总价格
         Double num = 0.0;
         DecimalFormat df = new DecimalFormat("#.00");
         //查询购物车列表
-        List<FruitsInfo> fruitsInfos1 = fruitsInfoServie.queryCartList(loginId);
+        List<FruitsInfo> fruitsInfos1 = fruitsInfoServie.queryCartList(login.getUserId());
         for (FruitsInfo f:fruitsInfos1) {
             Integer amount = f.getAmount();
             BigDecimal price = f.getPrice();
@@ -45,9 +53,9 @@ public class SettlementController {
         }
         modelMap.put("fruitsInfo",fruitsInfos1);
         //查询优惠券
-        List<Coupon> coupons = fruitsInfoServie.queryConponByUserId(loginId);
+        List<Coupon> coupons = fruitsInfoServie.queryConponByUserId(login.getUserId());
         //查询用户地址
-        List<Area> areas = setelementService.queryAreaByUserId(loginId);
+        List<Area> areas = setelementService.queryAreaByUserId(login.getUserId());
         modelMap.put("coupon",coupons);
         modelMap.put("areas",areas);
         modelMap.put("num",df.format(num));
@@ -90,10 +98,9 @@ public class SettlementController {
     @ResponseBody
     public Boolean addAddress(Area area,HttpServletRequest request){
         try {
-            //Login login = (Login) request.getSession().getAttribute(request.getSession().getId());
+            Login login = (Login) request.getSession().getAttribute(request.getSession().getId());
             //String loginId = login.getLoginId();
-            String loginId = "1";
-            area.setUserId(Integer.parseInt(loginId));
+            area.setUserId(Integer.parseInt(login.getUserId()));
             setelementService.addAddress(area);
         }catch (Exception e){
             e.printStackTrace();
@@ -110,12 +117,10 @@ public class SettlementController {
     @RequestMapping("createOrder")
     @ResponseBody
     public Map<String,Object> createOrder(String receiverAddress,OrderInfo orderInfo,HttpServletRequest request){
-        //Login login = (Login) request.getSession().getAttribute(request.getSession().getId());
+        Login login = (Login) request.getSession().getAttribute(request.getSession().getId());
         //String loginId = login.getLoginId();
-        String loginId = "1";
-        String name = "张三";
-        orderInfo.setUserId(Integer.parseInt(loginId));
-        orderInfo.setBuyerNick(name);
+        orderInfo.setUserId(Integer.parseInt(login.getUserId()));
+        orderInfo.setBuyerNick(login.getUserName());
         //set地址
         String[] split = receiverAddress.split(",");
         OrderShipping orderShipping = new OrderShipping();
@@ -136,7 +141,7 @@ public class SettlementController {
         //商品总价格
         Double num = 0.0;
         DecimalFormat df = new DecimalFormat("#.00");
-        List<FruitsInfo> fruitsInfos = fruitsInfoServie.queryCartList(loginId);
+        List<FruitsInfo> fruitsInfos = fruitsInfoServie.queryCartList(login.getUserId());
         List<OrderItem> orderItems = new ArrayList<>();
         for (FruitsInfo fruitsInfo:fruitsInfos) {
             OrderItem orderItem = new OrderItem();

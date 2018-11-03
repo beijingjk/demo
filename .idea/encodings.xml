@@ -6,6 +6,5 @@
     <file url="file://$PROJECT_DIR$/springcloud-eureka-client" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/springcloud-eureka-server" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/springcloud-serice-feign" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/springcloud-service-ribbon" charset="UTF-8" />
   </component>
 </project>

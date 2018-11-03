@@ -6,6 +6,8 @@ import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.jk.controller.util.AlipayConfig;
 import com.jk.model.FruitsInfo;
+import com.jk.model.Login;
+import com.jk.service.fruitsInfo.FruitsInfoServie;
 import com.jk.service.shopping.ShoppingService;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /*
@@ -30,24 +33,9 @@ public class ShoppingController {
 
     @Autowired
     private ShoppingService shoppingService;
-/*@Autowired
-    private AmqpTemplate amqpTemplate;*/
 
-
-    /*
-     *  孙丽景
-     *
-     *  rabbitmq消息队列实现同时发送短信和邮件../shopping/toRabbit
-     */
- /*   @RequestMapping("toRabbit*")
-    public String toRabbit(){
-        String phone = "13603791429";
-        String email = "13603791429@163.com";
-        this.amqpTemplate.convertAndSend("exchage_topic","topic.info",phone);
-        this.amqpTemplate.convertAndSend("exchage_topic","topic.email",email);
-        return "shopping/shopping";
-    }*/
-
+    @Autowired
+    private FruitsInfoServie fruitsInfoServie;
 
     /*
      *  孙丽景
@@ -58,6 +46,8 @@ public class ShoppingController {
     @ResponseBody
     public String payOrder(String id,String monay,String info,HttpServletRequest request) throws AlipayApiException {
 
+        HttpSession session = request.getSession();
+        Login attribute = (Login) session.getAttribute(session.getId());
         //获得初始化的AlipayClient
         AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
 
@@ -92,6 +82,7 @@ public class ShoppingController {
 
         //请求
         String result = alipayClient.pageExecute(alipayRequest).getBody();
+        fruitsInfoServie.deleteAllCart(attribute.getUserId());
         return result;
     }
 

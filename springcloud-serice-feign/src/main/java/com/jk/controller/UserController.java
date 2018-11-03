@@ -7,6 +7,7 @@ import com.jk.model.Login;
 import com.jk.service.UserServiceApi;
 import com.jk.service.fruitsInfo.FruitsInfoServie;
 import com.jk.util.*;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -26,6 +27,9 @@ public class UserController {
 
     @Autowired
     private FruitsInfoServie fruitsInfoServie;
+
+    @Autowired
+    private AmqpTemplate amqpTemplate;
 
 
     //葡提果酱
@@ -128,24 +132,43 @@ public class UserController {
     //@Autowired
     //private RedisTemplate<String, String> redisTmeplate;
 
+    /*
+     *  跳转首页
+     */
     @RequestMapping("toIndex")
-    public String toIndex(){ return "index"; }
-
-    @RequestMapping("toLogin")
-    public String toLogin(){
-        return "login/login";
+    public String toIndex(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Login attribute = (Login) session.getAttribute(session.getId());
+        if(attribute == null){
+            request.setAttribute("flag","");
+        }else{
+            request.setAttribute("flag",attribute.getUserName());
+        }
+        return "index";
     }
 
-    @RequestMapping("toRegister")
-    public String toRegister(){
-        return "login/register";
+    /*
+     *  退出登陆
+     */
+    @RequestMapping("toOut")
+    public String toOut(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.removeAttribute(session.getId());
+        return "demo";
     }
 
+    /*
+     *  登陆跳转页面
+     */
     @RequestMapping("toLogin2")
     public String toLogin2(){
         return "demo";
     }
 
+
+    /*
+     *  注册跳转页面
+     */
     @RequestMapping("toRegister2")
     public String toRegister2(){
         return "register2";
@@ -294,7 +317,7 @@ public class UserController {
             result.put("msg", "密码错误");
             return result;
         }
-        session.setAttribute("login", userLogin);
+        session.setAttribute(session.getId(), userLogin);
         result.put("code", 0);
         result.put("msg", "登录成功");
         return result;
@@ -316,30 +339,18 @@ public class UserController {
             e.printStackTrace();
             return false;
         }
-        validateMsg(login.getUserPhone());
+        validateMsg(login.getUserEmail(),login.getUserPhone());
         return true;
     }
 
-    /**
-     * 忘记密码第一步
-     * @return
+    /*
+     *  孙丽景
+     *
+     *  rabbitmq消息队列实现同时发送短信和邮件../shopping/toRabbit
      */
-    private void validateMsg(String userPhone) {
-        HashMap<String, Object> param = new HashMap<>();
-        String timestamp = TimeUtil.timeFormat(new Date());
-        Random random = new Random();
-        String str  = "";
-        for (int i = 0; i < 6; i++) {
-            int nextInt = random.nextInt(10);
-            str += String.valueOf(nextInt);
-        }
-        param.put("accountSid", ConstantConf.ACCOUNT_SID);
-        param.put("templateid", ConstantConf.TEMPLATE_ID);
-        param.put("param", str);
-        param.put("to", userPhone);
-        param.put("timestamp", timestamp);
-        param.put("sig", Md5Util.getMd532(ConstantConf.ACCOUNT_SID+ConstantConf.AUTH_TOKEN+timestamp));
-        HttpClientUtil.post(ConstantConf.MSG_CODE_URL, param);
+    private void validateMsg(String email,String userPhone) {
+        this.amqpTemplate.convertAndSend("exchage_topic","topic.info",userPhone);
+        this.amqpTemplate.convertAndSend("exchage_topic","topic.email",email);
     }
 
     /*@RequestMapping("queryForgetPwd")
@@ -369,30 +380,69 @@ public class UserController {
 
 
    @RequestMapping("已使用.html")
-    public String toLayout1(){
+    public String toLayout1(HttpServletRequest request){
+       HttpSession session = request.getSession();
+       Login attribute = (Login) session.getAttribute(session.getId());
+       if(attribute == null){
+           request.setAttribute("flag","");
+       }else{
+           request.setAttribute("flag",attribute.getUserName());
+       }
         return "yx/toGetUsed";
     }
 
 
     @RequestMapping("首页.html")
-    public String toLayout2(){
+    public String toLayout2(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Login attribute = (Login) session.getAttribute(session.getId());
+        if(attribute == null){
+            request.setAttribute("flag","");
+        }else{
+            request.setAttribute("flag",attribute.getUserName());
+        }
         return "index";
     }
 
 
     @RequestMapping("优惠券-未使用.html")
-    public String toLayout3(){
+    public String toLayout3(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Login attribute = (Login) session.getAttribute(session.getId());
+        if(attribute == null){
+            request.setAttribute("flag","");
+        }else{
+            request.setAttribute("flag",attribute.getUserName());
+        }
         return "yx/Coupon";
     }
 
     @RequestMapping("个人资料.html")
-    public String toLayout4(){
+    public String toLayout4(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Login attribute = (Login) session.getAttribute(session.getId());
+        if(attribute == null){
+            request.setAttribute("flag","");
+        }else{
+            Login user = userService.queryUserById(attribute.getUserId());
+            request.setAttribute("flag",attribute.getUserName());
+            request.setAttribute("user",user);
+        }
         return "personal";
     }
 
 
     @RequestMapping("账户安全.html")
-    public String toLayout5(){
+    public String toLayout5(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Login attribute = (Login) session.getAttribute(session.getId());
+        if(attribute == null){
+            request.setAttribute("flag","");
+        }else{
+            Login user = userService.queryUserById(attribute.getUserId());
+            request.setAttribute("flag",attribute.getUserName());
+            request.setAttribute("user",user);
+        }
         return "account";
     }
 

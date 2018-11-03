@@ -26,13 +26,8 @@ public class PersonalController {
 
     @RequestMapping("updPassword")
     @ResponseBody
-    public void updPassword(Login login, HttpServletRequest request){
-
-        Login user= (Login) request.getSession().getAttribute("login");
-
-        String id=user.getUserId();
-
-        personalService.updPassword(login,id);
+    public void updPassword(@RequestBody Login login){
+        personalService.updPassword(login);
     }
 
 }

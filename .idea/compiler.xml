@@ -13,8 +13,5 @@
         <module name="springcloud-serice-feign" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="springcloud-service-ribbon" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

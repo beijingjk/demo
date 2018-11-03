@@ -4,6 +4,10 @@
 <mapper namespace="com.jk.mapper.mapper.ShoppMapper">
 
 
+    <!--更改订单状态-->
+    <update id="eidtOrderStatus" parameterType="string">
+        update tb_order set status = 2,payment_time = now(),update_time = now() where order_id = #{id}
+    </update>
 
     <!--查询大家都在看-->
     <select id="queryFruitsInfo" resultType="com.jk.model.FruitsInfo">

@@ -14,6 +14,15 @@ public class UserController {
     @Autowired
     private UserServiceApi userService;
 
+
+    //根据用户id查询用户信息
+    @RequestMapping("queryUserById")
+    @ResponseBody
+    public Login queryUserById(@RequestParam String userId){
+        return userService.queryUserById(userId);
+    }
+
+
     //葡提果酱
     @RequestMapping("queryPortugalsmentionofjam")
     @ResponseBody

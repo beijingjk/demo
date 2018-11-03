@@ -11,5 +11,6 @@ public interface PersonalMapper {
 
     void addUser(Login login);
 
-    void updPassword(Login login, String id);
+
+    void updPassword(Login login);
 }

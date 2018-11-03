@@ -1,5 +1,7 @@
 package com.jk.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class OrderShipping {
@@ -16,9 +18,9 @@ public class OrderShipping {
     private String receiverDistrict;
 
     private String receiverAddress;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date created;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date updated;
 
     public String getOrderId() {

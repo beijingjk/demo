@@ -13,10 +13,10 @@ spring:
     prefix: classpath:/templates/
     suffix: .html
 
-  #rabbitmq:
-    #host: 192.168.31.217
-    #password: sunlj
-    #port: 5672
-    #publisher-confirms: true
-    #username: sunlj
-    #virtual-host: /vhost
+  rabbitmq:
+    host: 192.168.68.1
+    password: sunlj
+    port: 5672
+    publisher-confirms: true
+    username: sunlj
+    virtual-host: /vhost

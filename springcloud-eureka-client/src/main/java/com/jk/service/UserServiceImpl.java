@@ -78,6 +78,11 @@ public class UserServiceImpl implements UserServiceApi{
         return userMapper.queryPortugalsmentionofjam();
     }
 
+    @Override
+    public Login queryUserById(String userId) {
+        return userMapper.queryUserById(userId);
+    }
+
     /*@Override
     @RequestMapping(value = "queryUserName")
     public Login queryUserName(@RequestBody Login login) {

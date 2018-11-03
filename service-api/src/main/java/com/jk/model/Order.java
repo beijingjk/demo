@@ -1,5 +1,7 @@
 package com.jk.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Order {
@@ -12,17 +14,17 @@ public class Order {
     private String postFee;
 
     private Integer status;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createTime;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date updateTime;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date paymentTime;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date consignTime;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endTime;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date closeTime;
 
     private String shippingName;
@@ -37,12 +39,17 @@ public class Order {
 
     private Integer buyerRate;
 
+    private String refundyy; //退款原因
+
+    private String refundreason; //退款补充说明
+
+
     public String getOrderId() {
         return orderId;
     }
 
     public void setOrderId(String orderId) {
-        this.orderId = orderId == null ? null : orderId.trim();
+        this.orderId = orderId;
     }
 
     public String getPayment() {
@@ -50,7 +57,7 @@ public class Order {
     }
 
     public void setPayment(String payment) {
-        this.payment = payment == null ? null : payment.trim();
+        this.payment = payment;
     }
 
     public Integer getPaymentType() {
@@ -66,7 +73,7 @@ public class Order {
     }
 
     public void setPostFee(String postFee) {
-        this.postFee = postFee == null ? null : postFee.trim();
+        this.postFee = postFee;
     }
 
     public Integer getStatus() {
@@ -130,7 +137,7 @@ public class Order {
     }
 
     public void setShippingName(String shippingName) {
-        this.shippingName = shippingName == null ? null : shippingName.trim();
+        this.shippingName = shippingName;
     }
 
     public String getShippingCode() {
@@ -138,7 +145,7 @@ public class Order {
     }
 
     public void setShippingCode(String shippingCode) {
-        this.shippingCode = shippingCode == null ? null : shippingCode.trim();
+        this.shippingCode = shippingCode;
     }
 
     public Integer getUserId() {
@@ -154,7 +161,7 @@ public class Order {
     }
 
     public void setBuyerMessage(String buyerMessage) {
-        this.buyerMessage = buyerMessage == null ? null : buyerMessage.trim();
+        this.buyerMessage = buyerMessage;
     }
 
     public String getBuyerNick() {
@@ -162,7 +169,7 @@ public class Order {
     }
 
     public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick == null ? null : buyerNick.trim();
+        this.buyerNick = buyerNick;
     }
 
     public Integer getBuyerRate() {
@@ -171,5 +178,46 @@ public class Order {
 
     public void setBuyerRate(Integer buyerRate) {
         this.buyerRate = buyerRate;
+    }
+
+    public String getRefundyy() {
+        return refundyy;
+    }
+
+    public void setRefundyy(String refundyy) {
+        this.refundyy = refundyy;
+    }
+
+    public String getRefundreason() {
+        return refundreason;
+    }
+
+    public void setRefundreason(String refundreason) {
+        this.refundreason = refundreason;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId='" + orderId + '\'' +
+                ", payment='" + payment + '\'' +
+                ", paymentType=" + paymentType +
+                ", postFee='" + postFee + '\'' +
+                ", status=" + status +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", paymentTime=" + paymentTime +
+                ", consignTime=" + consignTime +
+                ", endTime=" + endTime +
+                ", closeTime=" + closeTime +
+                ", shippingName='" + shippingName + '\'' +
+                ", shippingCode='" + shippingCode + '\'' +
+                ", userId=" + userId +
+                ", buyerMessage='" + buyerMessage + '\'' +
+                ", buyerNick='" + buyerNick + '\'' +
+                ", buyerRate=" + buyerRate +
+                ", refundyy='" + refundyy + '\'' +
+                ", refundreason='" + refundreason + '\'' +
+                '}';
     }
 }

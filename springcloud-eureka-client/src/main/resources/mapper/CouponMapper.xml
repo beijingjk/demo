@@ -24,6 +24,53 @@
               update t_coupon set userId= #{userId},status ='未使用' where id = #{id}
     </update>
 
+    <update id="editOrders">
+               update tb_order set
+               refundyy=#{o.refundyy},
+               refundreason=#{o.refundreason},
+               status = 7
+               where order_id = #{o.orderId}
+    </update>
+
+    <select id="getOrderList" resultType="com.jk.model.Order">
+              select  tbo.update_time as updateTime,tbo.close_time as closeTime,tbo.end_time as endTime,tbo.consign_time as consignTime,tbo.payment_time as paymentTime,tbo.order_id as orderId,tbo.create_time as createTime,tbo.payment,tbo.status,tos.*,toi.* from tb_order tbo
+		left join tb_order_item toi on toi.order_id = tbo.order_id
+		left join tb_order_shipping tos on tbo.order_id = tos.order_id
+		left join t_user tu on tu.userId = tbo.user_id
+		where tbo.user_id = #{userId}
+    </select>
+
+    <select id="getOrderLists" resultType="com.jk.model.Order">
+              select * from tb_order
+    </select>
+
+    <select id="getOrderList7" resultType="com.jk.model.OrderShipping">
+              select tos.receiver_name as receiverName,tos.receiver_mobile as receiverMobile,tos.receiver_state as receiverState,tos.receiver_city as receiverCity,tos.receiver_district as receiverDistrict,tbo.*,toi.* from tb_order_shipping tos
+		left join tb_order_item toi on toi.order_id = tos.order_id
+		left join tb_order tbo on tbo.order_id = toi.order_id
+		left join t_user tu on tu.userId = tbo.user_id
+    </select>
+
+    <select id="getOrderList8" resultType="com.jk.model.OrderItem">
+             select toi.pic_path as picPath,toi.title,toi.total_fee as totalFee,toi.num,toi.price,tos.*,tbo.* from tb_order_item toi
+		left join tb_order tbo on toi.order_id = tbo.order_id
+		left join tb_order_shipping tos on toi.order_id = tos.order_id
+		left join t_user tu on tu.userId = tbo.user_id
+    </select>
+
+    <select id="getOrderList9" resultType="com.jk.model.Order">
+             select tbo.shipping_name as shippingName,
+tbo.shipping_code as shippingCode,tbo.status
+
+from tb_order tbo,t_user tu
+
+		where tu.userId = tbo.user_id
+    </select>
+
+    <select id="toBackPrice" resultType="com.jk.model.Order">
+              select tbo.order_id as orderId,tbo.refundyy,tbo.refundreason from tb_order tbo
+    </select>
+
 
 
 </mapper>

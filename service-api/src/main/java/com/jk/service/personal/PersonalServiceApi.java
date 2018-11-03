@@ -12,5 +12,5 @@ public interface PersonalServiceApi {
     void addUser(@RequestBody Login login);
 
     @RequestMapping(value = "personal/updPassword",method = RequestMethod.GET)
-    void updPassword(@RequestBody Login login,@RequestParam("id") String id);
+    void updPassword(@RequestBody Login login);
 }

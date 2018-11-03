@@ -3,6 +3,8 @@ package com.jk.controller.personal;
 
 import com.jk.model.Login;
 import com.jk.service.personal.PersonalServiceApi;
+import com.jk.util.MD5Utils;
+import com.jk.util.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,10 +12,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("personal")
@@ -59,8 +64,13 @@ public class PersonalController {
     }
     @RequestMapping("addUser")
     @ResponseBody
-    public void addUser(Login login){
-        personalService.addUser(login);
+    public Boolean addUser(Login login){
+        try{
+            personalService.addUser(login);
+        }catch (Exception e){
+            return false;
+        }
+        return true;
     }
     @RequestMapping("toUpdPassWord")
     public String toUpdPassWord(){
@@ -69,13 +79,32 @@ public class PersonalController {
 
     @RequestMapping("updPassword")
     @ResponseBody
-    public void updPassword(Login login,HttpServletRequest request){
+    public Map<String,Object> updPassword(Login login,String yuanpws,String onepwd, HttpServletRequest request){
+        Map<String, Object> result = new HashMap<>();
 
-        Login user= (Login) request.getSession().getAttribute("login");
+        HttpSession session = request.getSession();
+        Login user = (Login) session.getAttribute(session.getId());
+            String userPassword = user.getUserPassword();
+            String encrypt = MD5Utils.encrypt(yuanpws);
 
-        String id=user.getUserId();
+            if(!userPassword.equals(encrypt)){
+                //原密码不正确
+                result.put("code","1");
+                return result;
+            }
+            if(!onepwd.equals(login.getUserPassword())){
+                //两次密码不一致
+                result.put("code","2");
+                return result;
+            }
 
-        personalService.updPassword(login,id);
+                String encrypt2 = MD5Utils.encrypt(login.getUserPassword());
+                login.setUserPassword(encrypt2);
+                login.setUserId(user.getUserId());
+                personalService.updPassword(login);
+                result.put("code","0");
+                return result;
+
     }
 
 }

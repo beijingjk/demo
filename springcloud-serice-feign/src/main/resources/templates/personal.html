@@ -1,12 +1,13 @@
 
 <!DOCTYPE html>
-<html>
+<html  xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>个人资料</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <link href="../personal/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../fruitsInfojs/alert/alert.css"/>
     <link href="../personal/axure_rp_page.css" type="text/css" rel="stylesheet"/>
     <link href="../personal/styles(1).css" type="text/css" rel="stylesheet"/>
     <link href="../personal/styles.css" type="text/css" rel="stylesheet"/>
@@ -14,13 +15,18 @@
     <link rel="stylesheet" href="../js/layui/css/layui.css" media="all">
     <!-- uploadify -->
     <link rel="stylesheet" href="../js/uploadify/uploadify.css" type="text/css"/>
-
+    <script src="../yx/Yhq/jquery-1.7.1.min.js"></script>
+    <script src="../yx/Yhq/jquery-ui-1.8.10.custom.min.js"></script>
 
 
     <script src="../js/jquery-1.8.0.js"></script>
     <!-- uploadify -->
     <script type="text/javascript" src="../js/uploadify/jquery.uploadify.min.js"></script>
     <script src="../js/layui/layui.js"></script>
+
+    <script src="../personal/jquery-ui-1.8.10.custom.min.js"></script>
+    <script src="../personal/axQuery.js"></script>
+    <script src="../personal/annotation.js"></script>
 
 
     <script src="../personal/jquery-ui-1.8.10.custom.min.js"></script>
@@ -56,99 +62,56 @@
     <script src="../personal/legacy.js"></script>
     <script src="../personal/viewer.js"></script>
     <script src="../personal/math.js"></script>
+    <script src="../fruitsInfojs/alert/alert.js"></script>
     <script type="text/javascript">
         $axure.utils.getTransparentGifPath = function() { return '../personal/transparent.gif'; };
         $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
         $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
     </script>
+    <style type="text/css">
+        a{
+            color: black;
+            text-decoration: none;
+        }
+        .Inpt{border:0;outline:none;/*去除蓝色边框*/}
+        .Inpt2{border:0;outline:none;/*去除蓝色边框*/}
+
+    </style>
 </head>
 <body>
 <div id="base" class="">
 
     <!-- 顶部悬浮栏 (动态面板) -->
-    <div id="u3879" class="ax_default" data-label="顶部悬浮栏">
+    <div id="u3879" class="ax_default" data-label="顶部悬浮栏" style="z-index: 1001;">
         <div id="u3879_state0" class="panel_state" data-label="全">
             <div id="u3879_state0_content" class="panel_state_content">
 
-                <!-- Unnamed (矩形) -->
-                <div id="u3880" class="ax_default label">
-                    <div id="u3880_div" class=""></div>
-                    <!-- Unnamed () -->
-                    <div id="u3881" class="text" style="visibility: visible;">
-                        <p><span>欢迎来到果鲜生！</span></p>
-                    </div>
+
+
+                <div style="width:100%;margin-left:90px;position: absolute;left: 0px;top: 2px;width: 200px;white-space: nowrap;">
+                    <span th:style="${flag}!=''?'':'display: none'">
+                        <span style="cursor:pointer;margin-left: 30px">当前用户：<font color="red"><span th:text="${flag}"></span></font></span>
+                        <span style="cursor:pointer;margin-left: 15px" onclick="toOut()">退出</span>
+                    </span>
+                </div>
+                <div style="width:100%;margin-left:700px;position: absolute;left: 0px;top: 2px;width: 500px;white-space: nowrap;">
+                    <span th:style="${flag}==''?'':'display: none'">
+                        <span style="cursor:pointer;margin-left: 30px" onclick="toLogin()"><font color="#33cc00">[登陆]</font></span>
+                        <span style="cursor:pointer;margin-left: 10px" onclick="toRegister()"><font color="#33cc00">[注册]</font></span>
+                    </span>
+
+
+                    <span th:style="${flag}!=''?'':'display: none'">
+                        <span style="cursor:pointer;margin-left: 30px">我的果仁</span>
+                    </span>
+                    <span style="cursor:pointer;margin-left: 50px" onclick="toShoppingCar()">我的果篮</span>
+                    <span th:style="${flag}!=''?'':'display: none'">
+                        <span style="cursor:pointer;margin-left: 50px" onclick="toCoupon()">优惠卷</span>
+                    </span>
+
                 </div>
 
-                <!-- Unnamed (矩形) -->
-                <div id="u3882" class="ax_default label">
-                    <div id="u3882_div" class=""></div>
-                    <!-- Unnamed () -->
-                    <div id="u3883" class="text" style="visibility: visible;">
-                        <p><span>手机下载</span></p>
-                    </div>
-                </div>
 
-                <!-- Unnamed (矩形) -->
-                <div id="u3884" class="ax_default label">
-                    <div id="u3884_div" class=""></div>
-                    <!-- Unnamed () -->
-                    <div id="u3885" class="text" style="visibility: visible;">
-                        <p><span>优惠卷</span></p>
-                    </div>
-                </div>
-
-                <!-- Unnamed (组合) -->
-                <div id="u3886" class="ax_default">
-
-                    <!-- Unnamed (矩形) -->
-                    <div id="u3887" class="ax_default label">
-                        <div id="u3887_div" class=""></div>
-                        <!-- Unnamed () -->
-                        <div id="u3888" class="text" style="visibility: visible;">
-                            <p><span>我的果仁</span></p>
-                        </div>
-                    </div>
-
-                    <!-- Unnamed (形状) -->
-                    <div id="u3889" class="ax_default icon">
-                        <img id="u3889_img" class="img " src="../personal/u589.png"/>
-                        <!-- Unnamed () -->
-                        <div id="u3890" class="text" style="display: none; visibility: hidden">
-                            <p><span></span></p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Unnamed (组合) -->
-                <div id="u3891" class="ax_default">
-
-                    <!-- Unnamed (矩形) -->
-                    <div id="u3892" class="ax_default label">
-                        <div id="u3892_div" class=""></div>
-                        <!-- Unnamed () -->
-                        <div id="u3893" class="text" style="visibility: visible;">
-                            <p><span>我的果篮</span></p>
-                        </div>
-                    </div>
-
-                    <!-- Unnamed (形状) -->
-                    <div id="u3894" class="ax_default icon">
-                        <img id="u3894_img" class="img " src="../personal/u594.png"/>
-                        <!-- Unnamed () -->
-                        <div id="u3895" class="text" style="display: none; visibility: hidden">
-                            <p><span></span></p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Unnamed (矩形) -->
-                <div id="u3896" class="ax_default label">
-                    <div id="u3896_div" class=""></div>
-                    <!-- Unnamed () -->
-                    <div id="u3897" class="text" style="visibility: visible;">
-                        <p><span>充值有礼</span></p>
-                    </div>
-                </div>
 
 
                 <!-- Unnamed (矩形) -->
@@ -173,10 +136,12 @@
                 <div id="u3906" class="ax_default">
 
                     <!-- Unnamed (矩形) -->
-                    <div id="u3907" class="ax_default box_1">
-                        <div id="u3907_div" class=""></div>
+                    <div id="u3907">
+                        <div id="u3907_div" class="">
+                            <input id="input2" onchange="cop2()" placeholder="试试 “草莓”" style="width: 490px;height: 41px;border-radius:18px;padding-left:20px;"  class="Inpt"/>
+                        </div>
                         <!-- Unnamed () -->
-                        <div id="u3908" class="text" style="visibility: visible;">
+                        <div class="text" style="visibility: visible; top: 11px; transform-origin: 277.5px 9.5px 0px;">
                             <p><span>&nbsp;&nbsp; &nbsp; 试试 “红心火龙果”</span></p>
                         </div>
                     </div>
@@ -185,8 +150,8 @@
                     <div id="u3909" class="ax_default box_1">
                         <div id="u3909_div" class=""></div>
                         <!-- Unnamed () -->
-                        <div id="u3910" class="text" style="visibility: visible;">
-                            <p><span>搜索</span></p>
+                        <div id="u3910" class="text" style="visibility: visible; top: 11px; transform-origin: 39.5px 9.5px 0px;">
+                            <p><span onclick="toSearch()" style="cursor:pointer;">搜索</span></p>
                         </div>
                     </div>
                 </div>
@@ -209,27 +174,6 @@
                     </div>
                 </div>
 
-                <!-- 地址 (组合) -->
-                <div id="u3915" class="ax_default" data-label="地址">
-
-                    <!-- Unnamed (矩形) -->
-                    <div id="u3916" class="ax_default label">
-                        <div id="u3916_div" class=""></div>
-                        <!-- Unnamed () -->
-                        <div id="u3917" class="text" style="visibility: visible;">
-                            <p><span>地址</span></p>
-                        </div>
-                    </div>
-
-                    <!-- Unnamed (形状) -->
-                    <div id="u3918" class="ax_default icon">
-                        <img id="u3918_img" class="img " src="../personal/u618.png"/>
-                        <!-- Unnamed () -->
-                        <div id="u3919" class="text" style="display: none; visibility: hidden">
-                            <p><span></span></p>
-                        </div>
-                    </div>
-                </div>
 
                 <!-- Unnamed (矩形) -->
                 <div id="u3920" class="ax_default label">
@@ -267,12 +211,10 @@
                     </div>
                 </div>
 
-                <!-- Unnamed (热区) -->
-                <div id="u3928" class="ax_default">
-                </div>
+
 
                 <!-- Unnamed (热区) -->
-                <div id="u3929" class="ax_default">
+                <div id="u3929" class="ax_default" tabindex="0" style="cursor: pointer;">
                 </div>
             </div>
         </div>
@@ -301,10 +243,12 @@
                 <div id="u3934" class="ax_default">
 
                     <!-- Unnamed (矩形) -->
-                    <div id="u3935" class="ax_default box_1">
-                        <div id="u3935_div" class=""></div>
+                    <div id="u3935">
+                        <div id="u3935_div" class="">
+                            <input id="input1" onchange="cop()" placeholder="试试 “草莓”" style="width: 490px;height: 41px;border-radius:18px;padding-left:20px;"  class="Inpt"/>
+                        </div>
                         <!-- Unnamed () -->
-                        <div id="u3936" class="text" style="visibility: visible;">
+                        <div class="text" style="visibility: visible;">
                             <p><span>&nbsp;&nbsp; &nbsp; 试试 “红心火龙果”</span></p>
                         </div>
                     </div>
@@ -314,7 +258,7 @@
                         <div id="u3937_div" class=""></div>
                         <!-- Unnamed () -->
                         <div id="u3938" class="text" style="visibility: visible;">
-                            <p><span>搜索</span></p>
+                            <p><span onclick="toSearch()" style="cursor:pointer;">搜索</span></p>
                         </div>
                     </div>
                 </div>
@@ -337,16 +281,16 @@
                     </div>
                 </div>
 
-                <!-- Unnamed (热区) -->
-                <div id="u3943" class="ax_default">
-                </div>
+
 
                 <!-- Unnamed (热区) -->
-                <div id="u3944" class="ax_default">
+                <div id="u3944" class="ax_default" tabindex="0" style="cursor: pointer;">
                 </div>
             </div>
         </div>
     </div>
+
+
 
     <!-- Unnamed (矩形) -->
     <div id="u3945" class="ax_default box_2">
@@ -358,100 +302,74 @@
     </div>
 
     <!-- Unnamed (矩形) -->
-    <div id="u3947" class="ax_default box_1">
+   <!-- <div id="u3947" class="ax_default box_1">
         <div id="u3947_div" class=""></div>
-        <!-- Unnamed () -->
+        &lt;!&ndash; Unnamed () &ndash;&gt;
         <div id="u3948" class="text" style="visibility: visible;">
             <p><span>我的订单</span></p>
         </div>
-    </div>
+    </div>-->
+
 
     <!-- Unnamed (矩形) -->
-    <div id="u3949" class="ax_default box_1">
+    <!--<div id="u3949" class="ax_default box_1">
         <div id="u3949_div" class=""></div>
-        <!-- Unnamed () -->
+        &lt;!&ndash; Unnamed () &ndash;&gt;
         <div id="u3950" class="text" style="visibility: visible;">
             <p><span>我的钱包</span></p>
         </div>
-    </div>
+    </div>-->
 
     <!-- Unnamed (矩形) -->
     <div id="u3951" class="ax_default label">
         <div id="u3951_div" class=""></div>
         <!-- Unnamed () -->
         <div id="u3952" class="text" style="visibility: visible;">
-            <p><span>交易信息</span></p>
-        </div>
-    </div>
-
-    <!-- Unnamed (矩形) -->
-    <div id="u3953" class="ax_default label">
-        <div id="u3953_div" class=""></div>
-        <!-- Unnamed () -->
-        <div id="u3954" class="text" style="visibility: visible;">
             <p><span>账号信息</span></p>
         </div>
+
+        <div style="cursor:pointer;width: 117px;height: 42px;border: solid 1px rgba(228, 228, 228, 1);margin-left: -20px;margin-top: 26px;text-align: center;padding-top: 12px">
+            <span><font size="2px" onclick="myOrder()">我的订单</font></span>
+        </div>
+        <div style="cursor:pointer;width: 117px;height: 42px;border: solid 1px rgba(228, 228, 228, 1);margin-left: -20px;text-align: center;padding-top: 12px">
+            <span onclick="toCoupon()"><font size="2px" >优惠券</font></span>
+        </div>
+        <div style="cursor:pointer;width: 117px;height: 42px;border: solid 1px rgba(228, 228, 228, 1);margin-left: -20px;text-align: center;padding-top: 12px">
+            <span onclick="toUser()"><font size="2px">个人资料</font></span>
+        </div>
+        <div style="cursor:pointer;width: 117px;height: 42px;border: solid 1px rgba(228, 228, 228, 1);margin-left: -20px;text-align: center;padding-top: 12px">
+            <span onclick="anquan()"><font size="2px">账号安全</font></span>
+        </div>
     </div>
 
-    <!-- Unnamed (矩形) -->
+
+
+    <!--&lt;!&ndash; Unnamed (矩形) &ndash;&gt;
     <div id="u3955" class="ax_default box_1">
         <div id="u3955_div" class=""></div>
-        <!-- Unnamed () -->
+        &lt;!&ndash; Unnamed () &ndash;&gt;
         <div id="u3956" class="text" style="visibility: visible;">
             <p><span>个人资料</span></p>
         </div>
     </div>
 
-    <!-- Unnamed (矩形) -->
+    &lt;!&ndash; Unnamed (矩形) &ndash;&gt;
     <div id="u3957" class="ax_default box_1">
         <div id="u3957_div" class=""></div>
-        <!-- Unnamed () -->
+        &lt;!&ndash; Unnamed () &ndash;&gt;
         <div id="u3958" class="text" style="visibility: visible;">
             <p><span>账号安全</span></p>
         </div>
-    </div>
+    </div>-->
 
-    <!-- Unnamed (矩形) -->
-    <div id="u3959" class="ax_default box_1">
-        <div id="u3959_div" class=""></div>
-        <!-- Unnamed () -->
-        <div id="u3960" class="text" style="visibility: visible;">
-            <p><span>收货地址</span></p>
-        </div>
-    </div>
 
-    <!-- Unnamed (矩形) -->
-    <div id="u3961" class="ax_default box_1">
-        <div id="u3961_div" class=""></div>
-        <!-- Unnamed () -->
-        <div id="u3962" class="text" style="visibility: visible;">
-            <p><span>新品上市</span></p>
-        </div>
-    </div>
 
-    <!-- Unnamed (矩形) -->
-    <div id="u3963" class="ax_default box_1">
-        <div id="u3963_div" class=""></div>
-        <!-- Unnamed () -->
-        <div id="u3964" class="text" style="visibility: visible;">
-            <p><span>人气果王</span></p>
-        </div>
-    </div>
-
-    <!-- Unnamed (矩形) -->
-    <div id="u3965" class="ax_default box_1">
-        <div id="u3965_div" class=""></div>
-        <!-- Unnamed () -->
-        <div id="u3966" class="text" style="visibility: visible;">
-            <p><span>限时折扣</span></p>
-        </div>
-    </div>
 
     <!-- Unnamed (矩形) -->
     <div id="u3967" class="ax_default box_1">
         <div id="u3967_div" class=""></div>
         <!-- Unnamed () -->
-        <div id="u3968" class="text" style="visibility: visible;">
+        <div id="u3968" class="text" style="visibility: visible;cursor:pointer;">
             <p><span>首页</span></p>
         </div>
     </div>
@@ -493,13 +411,13 @@
     </div>
 
     <!-- Unnamed (矩形) -->
-    <div id="u3977" class="ax_default box_1">
+   <!-- <div id="u3977" class="ax_default box_1">
         <div id="u3977_div" class=""></div>
-        <!-- Unnamed () -->
+        &lt;!&ndash; Unnamed () &ndash;&gt;
         <div id="u3978" class="text" style="visibility: visible;">
             <p><span>优惠券</span></p>
         </div>
-    </div>
+    </div>-->
 
     <!-- Unnamed (矩形) -->
     <div id="u3979" class="ax_default label">
@@ -530,7 +448,7 @@
     <div id="u3983" class="ax_default label">
         <div id="u3983_div" class=""></div>
         <div id="u3984" class="text" style="visibility: visible;">
-            <p><span>姓&nbsp; &nbsp;&nbsp; 名：&nbsp; &nbsp;&nbsp;&nbsp;<input id="sincerityNameId" name="sincerityName" style="width:297px;height:25px;border-radius:10px;"/></span></p>
+            <p><span>姓&nbsp; &nbsp;&nbsp; 名：&nbsp; &nbsp;&nbsp;&nbsp;<input th:value="${user.sincerityName}" id="sincerityNameId" name="sincerityName" style="padding-left:20px;width:297px;height:25px;border-radius:10px;border: solid 1px black" class="Inpt2"/></span></p>
         </div>
 
     </div>
@@ -547,7 +465,9 @@
         <div id="u3989_div" class=""></div>
         <!--&lt;!&ndash; Unnamed () &ndash;&gt;-->
         <div id="u3990" class="text" style="visibility: visible;">
-            <p><span>用 户 名：&nbsp; &nbsp;&nbsp;&nbsp;<input id="userNameId" name="userName" style="width:297px;height:25px;border-radius:10px;"/> </span></p>
+            <p><span>用 户 名：&nbsp; &nbsp;&nbsp;
+                <input id="userNameId" name="userName" th:value="${user.userName}" style="padding-left:20px;width:297px;height:25px;border-radius:10px;border: solid 1px black" class="Inpt2" disabled/>
+            </span></p>
         </div>
     </div>
 
@@ -556,7 +476,9 @@
         <div id="u3991_div" class=""></div>
         <!-- Unnamed () -->
         <div id="u3992" class="text" style="visibility: visible;">
-            <p><span>手 机 号：&nbsp; &nbsp;&nbsp; <input id="userPhoneId" name="userPhone" style="width:297px;height:25px;border-radius:10px;"/></span></p>
+            <p><span>手 机 号：&nbsp; &nbsp;&nbsp;
+                <input id="userPhoneId" name="userPhone" th:value="${user.userPhone}" style="padding-left:20px;width:297px;height:25px;border-radius:10px;border: solid 1px black" class="Inpt2" />
+            </span></p>
         </div>
     </div>
 
@@ -566,7 +488,9 @@
         <div id="u3995_div" class=""></div>
         <!-- Unnamed () -->
         <div id="u3996" class="text" style="visibility: visible;">
-            <p><span>邮&nbsp; &nbsp;&nbsp; 箱：&nbsp; &nbsp;&nbsp;&nbsp;<input id="userEmailId" name="userEmail" style="width:297px;height:25px;border-radius:10px;"/> </span></p>
+            <p><span>邮&nbsp; &nbsp;&nbsp; 箱：&nbsp; &nbsp;&nbsp;&nbsp;
+                <input id="userEmailId" name="userEmail" th:value="${user.userEmail}" style="padding-left:20px;width:297px;height:25px;border-radius:10px;border: solid 1px black" class="Inpt2"/>
+            </span></p>
         </div>
     </div>
 
@@ -593,20 +517,22 @@
         <label for="u4001_input">
             <!-- Unnamed () -->
             <div id="u4002" class="text" style="visibility: visible;">
-                <p><span><input type="radio"  name="userSex">&nbsp; 男</span></p>
+                <input type="radio"  name="userSex" value="1" th:checked="${user.userSex}==1"/>男
+                &nbsp;&nbsp;
+                <input type="radio"  name="userSex" value="2" th:checked="${user.userSex}==2"/>女
             </div>
-        </label>
+        </label><!--th:field="*{user.userSex}"-->
         <!--
                 <input id="u4001_input" type="radio" value="radio" name="u4001" checked/>
         -->
     </div>
+
 
     <!-- Unnamed (单选按钮) -->
     <div id="u4003" class="ax_default radio_button">
         <label for="u4003_input">
             <!-- Unnamed () -->
             <div id="u4004" class="text" style="visibility: visible;">
-                <p><span><input type="radio"  name="userSex">&nbsp; 女</span></p>
             </div>
         </label>
         <!--
@@ -628,22 +554,24 @@
         <div id="u4007_div" class=""></div>
         <!-- Unnamed () -->
         <div id="u4008" class="text" style="visibility: visible;">
-            <p><span>生&nbsp;&nbsp; 日：&nbsp;&nbsp;&nbsp;&nbsp;<input type="date" id="userBirthdayId" name="userBirthday" style="border-radius:10px;"></span></p>
+            <p><span>生&nbsp;&nbsp; 日：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="date" id="userBirthdayId" th:value="${user.userBirthday}" name="userBirthday" style="padding-left:20px;width:160px;border-radius:10px;border: solid 1px black" class="Inpt2">
+            </span></p>
         </div>
     </div>
 
 
 
 
-    <!--&lt;!&ndash; Unnamed (文本框) &ndash;&gt;
-    <div id="u4009" class="ax_default text_field">
-        <input id="u4009_input" type="date" value=""/>
+    <!-- Unnamed (文本框) -->
+    <!--<div id="u4009" class="ax_default text_field">
+        <input type="date" value="" style="width: 160px;color: rgb(153, 153, 153);"/>
     </div>-->
     <!-- Unnamed (矩形) -->
     <div id="u4010" class="ax_default button">
         <div id="u4010_div" class=""></div>
         <!-- Unnamed () -->
-        <div id="u4011" class="text" style="visibility: visible;">
+        <div id="u4011" class="text" style="visibility: visible;cursor:pointer;">
             <p><span onclick="addUser()"><!--<a href="addUser()">-->保存<!--</a>--></span></p>
         </div>
     </div>
@@ -694,8 +622,10 @@
     </div>
 </div>
 
+<input type="hidden" id="userId" th:value="${user.userId}"/>
 
 <script>
+
 
     $(function(){
         //文件域的id
@@ -734,13 +664,13 @@
     })
 
 function addUser(){
-        alert("1")
+
     $.ajax({
         url:"../personal/addUser",
         type:"post",
         data:{
+            userId:$('#userId').val(),
             userImg:$('#userImgId').val(),
-            userName:$('#userNameId').val(),
             sincerityName:$('#sincerityNameId').val(),
             userPhone:$('#userPhoneId').val(),
             userEmail:$('#userEmailId').val(),
@@ -749,12 +679,75 @@ function addUser(){
         },
         success:function(data){
             //jqueryAlert({'content' : '保存成功'})
-            location.reload()
+            jqueryAlert({
+                'content' : '保存成功！'
+            })
         }
     })
 }
 
 
+    //将文本框1的内容同步到文本框2
+    function cop(){
+        var input1 = $('#input1').val();
+        $('#input2').val(input1);
+    }
+
+    //将文本框2的内容同步到文本框1
+    function cop2(){
+        var input2 = $('#input2').val();
+        $('#input1').val(input2);
+    }
+
+    //跳转solr搜索页面
+    function toSearch(){
+        var input = $('.Inpt').val();
+        location.href="../searchFruits/toSearchFruits?input="+input;
+    }
+
+    //跳转登陆页面
+    function toLogin(){
+        location.href="../user/toLogin2";
+    }
+
+    //跳转注册页面
+    function toRegister(){
+        location.href="../user/toRegister2";
+    }
+
+    //退出
+    function toOut(){
+        location.href="../user/toOut";
+    }
+
+    //跳转到优惠券页面
+    function toCoupon(){
+        location.href="../user/优惠券-未使用.html";
+    }
+
+    //跳转到购物车页面
+    function toShoppingCar(){
+        location.href="../fruitsInfo/toShoppingCar?code=1";
+    }
+
+    $('#u3968').click(function(){
+        location.href="../user/toIndex";
+    })
+
+    //账号安全
+    function anquan(){
+        location.href="../user/账户安全.html";
+    }
+
+    //跳转我的果仁
+    function toUser(){
+        location.href="../user/个人资料.html";
+    }
+
+    //跳转我的订单页面
+    function myOrder(){
+        location.href="../yx/toMyOrder";
+    }
 </script>
 
 

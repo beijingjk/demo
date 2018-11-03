@@ -62,7 +62,7 @@ public class SetelementServiceImpl implements SetelementServiceApi{
         //补全orderInfo的属性
         orderInfo.setOrderId(orderId);
         //1、未付款，2、已付款，3、未发货，4、已发货，5、交易成功，6、交易关闭
-        orderInfo.setStatus(1);
+        orderInfo.setStatus(2);
         orderInfo.setCreateTime(new Date());
         orderInfo.setUpdateTime(new Date());
         //向订单表插入数据

@@ -18,4 +18,9 @@ public class ShoppServiceImpl implements ShoppingServiceApi {
         return fruitsInfos;
     }
 
+    @Override
+    public void eidtOrderStatus(String id) {
+        shoppMapper.eidtOrderStatus(id);
+    }
+
 }

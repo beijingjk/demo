@@ -57,6 +57,11 @@
         $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
         $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
     </script>
+    <style type="text/css">
+
+        .Inpt{border:0;outline:none;/*去除蓝色边框*/}
+
+    </style>
 </head>
 <body>
 <div id="base" class="">
@@ -66,85 +71,36 @@
         <div id="u4019_state0" class="panel_state" data-label="全">
             <div id="u4019_state0_content" class="panel_state_content">
 
-                <!-- Unnamed (矩形) -->
-                <div id="u4020" class="ax_default label">
-                    <div id="u4020_div" class=""></div>
-                    <!-- Unnamed () -->
-                    <div id="u4021" class="text" style="visibility: visible;">
-                        <p><span>欢迎来到果鲜生！</span></p>
-                    </div>
+
+
+
+                <div style="width:100%;margin-left:90px;position: absolute;left: 0px;top: 2px;width: 200px;white-space: nowrap;">
+                    <span th:style="${flag}!=''?'':'display: none'">
+                        <span style="cursor:pointer;margin-left: 30px">当前用户：<font color="red"><span th:text="${flag}"></span></font></span>
+                        <span style="cursor:pointer;margin-left: 15px" onclick="toOut()">退出</span>
+                    </span>
+                </div>
+                <div style="width:100%;margin-left:700px;position: absolute;left: 0px;top: 2px;width: 500px;white-space: nowrap;">
+                    <span th:style="${flag}==''?'':'display: none'">
+                        <span style="cursor:pointer;margin-left: 30px" onclick="toLogin()"><font color="#33cc00">[登陆]</font></span>
+                        <span style="cursor:pointer;margin-left: 10px" onclick="toRegister()"><font color="#33cc00">[注册]</font></span>
+                    </span>
+
+
+                    <span th:style="${flag}!=''?'':'display: none'">
+                        <span style="cursor:pointer;margin-left: 30px">我的果仁</span>
+                    </span>
+                    <span style="cursor:pointer;margin-left: 50px" onclick="toShoppingCar()">我的果篮</span>
+                    <span th:style="${flag}!=''?'':'display: none'">
+                        <span style="cursor:pointer;margin-left: 50px" onclick="toCoupon()">优惠卷</span>
+                    </span>
+
                 </div>
 
-                <!-- Unnamed (矩形) -->
-                <div id="u4022" class="ax_default label">
-                    <div id="u4022_div" class=""></div>
-                    <!-- Unnamed () -->
-                    <div id="u4023" class="text" style="visibility: visible;">
-                        <p><span>手机下载</span></p>
-                    </div>
-                </div>
 
-                <!-- Unnamed (矩形) -->
-                <div id="u4024" class="ax_default label">
-                    <div id="u4024_div" class=""></div>
-                    <!-- Unnamed () -->
-                    <div id="u4025" class="text" style="visibility: visible;">
-                        <p><span>优惠卷</span></p>
-                    </div>
-                </div>
 
-                <!-- Unnamed (组合) -->
-                <div id="u4026" class="ax_default">
 
-                    <!-- Unnamed (矩形) -->
-                    <div id="u4027" class="ax_default label">
-                        <div id="u4027_div" class=""></div>
-                        <!-- Unnamed () -->
-                        <div id="u4028" class="text" style="visibility: visible;">
-                            <p><span>我的果仁</span></p>
-                        </div>
-                    </div>
 
-                    <!-- Unnamed (形状) -->
-                    <div id="u4029" class="ax_default icon">
-                        <img id="u4029_img" class="img " src="../personal/u589.png"/>
-                        <!-- Unnamed () -->
-                        <div id="u4030" class="text" style="display: none; visibility: hidden">
-                            <p><span></span></p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Unnamed (组合) -->
-                <div id="u4031" class="ax_default">
-
-                    <!-- Unnamed (矩形) -->
-                    <div id="u4032" class="ax_default label">
-                        <div id="u4032_div" class=""></div>
-                        <!-- Unnamed () -->
-                        <div id="u4033" class="text" style="visibility: visible;">
-                            <p><span>我的果篮</span></p>
-                        </div>
-                    </div>
-
-                    <!-- Unnamed (形状) -->
-                    <div id="u4034" class="ax_default icon">
-                        <img id="u4034_img" class="img " src="../personal/u594.png"/>
-                        <!-- Unnamed () -->
-                        <div id="u4035" class="text" style="display: none; visibility: hidden">
-                            <p><span></span></p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Unnamed (矩形) -->
-                <div id="u4036" class="ax_default label">
-                    <div id="u4036_div" class=""></div>
-                    <!-- Unnamed () -->
-                    <div id="u4037" class="text" style="visibility: visible;">
-                        <p><span>充值有礼</span></p>
-                    </div>
-                </div>
 
 
                 <!-- Unnamed (矩形) -->
@@ -169,10 +125,12 @@
                 <div id="u4046" class="ax_default">
 
                     <!-- Unnamed (矩形) -->
-                    <div id="u4047" class="ax_default box_1">
-                        <div id="u4047_div" class=""></div>
+                    <div id="u4047" >
+                        <div id="u4047_div" class="">
+                            <input id="input2" onchange="cop2()" placeholder="试试 “草莓”" style="width: 490px;height: 41px;border-radius:18px;padding-left:20px;"  class="Inpt"/>
+                        </div>
                         <!-- Unnamed () -->
-                        <div id="u4048" class="text" style="visibility: visible;">
+                        <div  class="text" style="visibility: visible;">
                             <p><span>&nbsp;&nbsp; &nbsp; 试试 “红心火龙果”</span></p>
                         </div>
                     </div>
@@ -182,8 +140,7 @@
                         <div id="u4049_div" class=""></div>
                         <!-- Unnamed () -->
                         <div id="u4050" class="text" style="visibility: visible;">
-                            <p><span>搜索</span></p>
-                        </div>
+                            <p><span onclick="toSearch()" style="cursor:pointer;">搜索</span></p>                        </div>
                     </div>
                 </div>
 
@@ -205,27 +162,6 @@
                     </div>
                 </div>
 
-                <!-- 地址 (组合) -->
-                <div id="u4055" class="ax_default" data-label="地址">
-
-                    <!-- Unnamed (矩形) -->
-                    <div id="u4056" class="ax_default label">
-                        <div id="u4056_div" class=""></div>
-                        <!-- Unnamed () -->
-                        <div id="u4057" class="text" style="visibility: visible;">
-                            <p><span>地址</span></p>
-                        </div>
-                    </div>
-
-                    <!-- Unnamed (形状) -->
-                    <div id="u4058" class="ax_default icon">
-                        <img id="u4058_img" class="img " src="../personal/u618.png"/>
-                        <!-- Unnamed () -->
-                        <div id="u4059" class="text" style="display: none; visibility: hidden">
-                            <p><span></span></p>
-                        </div>
-                    </div>
-                </div>
 
                 <!-- Unnamed (矩形) -->
                 <div id="u4060" class="ax_default label">
@@ -263,9 +199,7 @@
                     </div>
                 </div>
 
-                <!-- Unnamed (热区) -->
-                <div id="u4068" class="ax_default">
-                </div>
+
 
                 <!-- Unnamed (热区) -->
                 <div id="u4069" class="ax_default">
@@ -297,10 +231,12 @@
                 <div id="u4074" class="ax_default">
 
                     <!-- Unnamed (矩形) -->
-                    <div id="u4075" class="ax_default box_1">
-                        <div id="u4075_div" class=""></div>
+                    <div id="u4075">
+                        <div id="u4075_div" class="">
+                            <input id="input1" onchange="cop()" placeholder="试试 “草莓”" style="width: 490px;height: 41px;border-radius:18px;padding-left:20px;"  class="Inpt"/>
+                        </div>
                         <!-- Unnamed () -->
-                        <div id="u4076" class="text" style="visibility: visible;">
+                        <div  class="text" style="visibility: visible;">
                             <p><span>&nbsp;&nbsp; &nbsp; 试试 “红心火龙果”</span></p>
                         </div>
                     </div>
@@ -310,7 +246,7 @@
                         <div id="u4077_div" class=""></div>
                         <!-- Unnamed () -->
                         <div id="u4078" class="text" style="visibility: visible;">
-                            <p><span>搜索</span></p>
+                            <p><span onclick="toSearch()" style="cursor:pointer;">搜索</span></p>
                         </div>
                     </div>
                 </div>
@@ -333,9 +269,7 @@
                     </div>
                 </div>
 
-                <!-- Unnamed (热区) -->
-                <div id="u4083" class="ax_default">
-                </div>
+
 
                 <!-- Unnamed (热区) -->
                 <div id="u4084" class="ax_default">
@@ -354,94 +288,67 @@
     </div>
 
     <!-- Unnamed (矩形) -->
-    <div id="u4087" class="ax_default box_1">
-        <div id="u4087_div" class=""></div>
-        <!-- Unnamed () -->
-        <div id="u4088" class="text" style="visibility: visible;">
-            <p><span>我的订单</span></p>
-        </div>
-    </div>
+    <!--<div id="u4087" class="ax_default box_1">-->
+        <!--<div id="u4087_div" class=""></div>-->
+        <!--&lt;!&ndash; Unnamed () &ndash;&gt;-->
+        <!--<div id="u4088" class="text" style="visibility: visible;">-->
+            <!--<p><span>我的订单</span></p>-->
+        <!--</div>-->
+    <!--</div>-->
 
-    <!-- Unnamed (矩形) -->
-    <div id="u4089" class="ax_default box_1">
-        <div id="u4089_div" class=""></div>
-        <!-- Unnamed () -->
-        <div id="u4090" class="text" style="visibility: visible;">
-            <p><span>我的钱包</span></p>
-        </div>
-    </div>
+
 
     <!-- Unnamed (矩形) -->
     <div id="u4091" class="ax_default label">
         <div id="u4091_div" class=""></div>
         <!-- Unnamed () -->
         <div id="u4092" class="text" style="visibility: visible;">
-            <p><span>交易信息</span></p>
-        </div>
-    </div>
-
-    <!-- Unnamed (矩形) -->
-    <div id="u4093" class="ax_default label">
-        <div id="u4093_div" class=""></div>
-        <!-- Unnamed () -->
-        <div id="u4094" class="text" style="visibility: visible;">
             <p><span>账号信息</span></p>
         </div>
+
+        <div style="cursor:pointer;width: 117px;height: 42px;border: solid 1px rgba(228, 228, 228, 1);margin-left: -20px;margin-top: 26px;text-align: center;padding-top: 12px">
+            <span><font size="2px" onclick="myOrder()">我的订单</font></span>
+        </div>
+        <div style="cursor:pointer;width: 117px;height: 42px;border: solid 1px rgba(228, 228, 228, 1);margin-left: -20px;text-align: center;padding-top: 12px">
+            <span onclick="toCoupon()"><font size="2px" >优惠券</font></span>
+        </div>
+        <div style="cursor:pointer;width: 117px;height: 42px;border: solid 1px rgba(228, 228, 228, 1);margin-left: -20px;text-align: center;padding-top: 12px">
+            <span onclick="toUser()"><font size="2px">个人资料</font></span>
+        </div>
+        <div style="cursor:pointer;width: 117px;height: 42px;border: solid 1px rgba(228, 228, 228, 1);margin-left: -20px;text-align: center;padding-top: 12px">
+            <span onclick="anquan()"><font size="2px">账号安全</font></span>
+        </div>
     </div>
 
+
+
     <!-- Unnamed (矩形) -->
-    <div id="u4095" class="ax_default box_1">
+   <!-- <div id="u4095" class="ax_default box_1">
         <div id="u4095_div" class=""></div>
-        <!-- Unnamed () -->
+        &lt;!&ndash; Unnamed () &ndash;&gt;
         <div id="u4096" class="text" style="visibility: visible;">
             <p><span>个人资料</span></p>
         </div>
-    </div>
+    </div>-->
 
     <!-- Unnamed (矩形) -->
-    <div id="u4097" class="ax_default box_1">
+    <!--<div id="u4097" class="ax_default box_1">
         <div id="u4097_div" class=""></div>
-        <!-- Unnamed () -->
+        &lt;!&ndash; Unnamed () &ndash;&gt;
         <div id="u4098" class="text" style="visibility: visible;">
             <p><span>账号安全</span></p>
         </div>
-    </div>
+    </div>-->
 
     <!-- Unnamed (矩形) -->
-    <div id="u4099" class="ax_default box_1">
+   <!-- <div id="u4099" class="ax_default box_1">
         <div id="u4099_div" class=""></div>
-        <!-- Unnamed () -->
+        &lt;!&ndash; Unnamed () &ndash;&gt;
         <div id="u4100" class="text" style="visibility: visible;">
             <p><span>收货地址</span></p>
         </div>
     </div>
-
-    <!-- Unnamed (矩形) -->
-    <div id="u4101" class="ax_default box_1">
-        <div id="u4101_div" class=""></div>
-        <!-- Unnamed () -->
-        <div id="u4102" class="text" style="visibility: visible;">
-            <p><span>新品上市</span></p>
-        </div>
-    </div>
-
-    <!-- Unnamed (矩形) -->
-    <div id="u4103" class="ax_default box_1">
-        <div id="u4103_div" class=""></div>
-        <!-- Unnamed () -->
-        <div id="u4104" class="text" style="visibility: visible;">
-            <p><span>人气果王</span></p>
-        </div>
-    </div>
-
-    <!-- Unnamed (矩形) -->
-    <div id="u4105" class="ax_default box_1">
-        <div id="u4105_div" class=""></div>
-        <!-- Unnamed () -->
-        <div id="u4106" class="text" style="visibility: visible;">
-            <p><span>限时折扣</span></p>
-        </div>
-    </div>
+-->
 
     <!-- Unnamed (矩形) -->
     <div id="u4107" class="ax_default box_1">
@@ -461,14 +368,7 @@
         </div>
     </div>
 
-    <!-- Unnamed (矩形) -->
-    <div id="u4111" class="ax_default label">
-        <div id="u4111_div" class=""></div>
-        <!-- Unnamed () -->
-        <div id="u4112" class="text" style="visibility: visible;">
-            <p><span>账户安全</span></p>
-        </div>
-    </div>
+
 
     <!-- Unnamed (矩形) -->
     <div id="u4113" class="ax_default box_2">
@@ -480,13 +380,13 @@
     </div>
 
     <!-- Unnamed (矩形) -->
-    <div id="u4115" class="ax_default box_1">
+    <!--<div id="u4115" class="ax_default box_1">
         <div id="u4115_div" class=""></div>
-        <!-- Unnamed () -->
+        &lt;!&ndash; Unnamed () &ndash;&gt;
         <div id="u4116" class="text" style="visibility: visible;">
             <p><span>优惠券</span></p>
         </div>
-    </div>
+    </div>-->
 
   <!--  &lt;!&ndash; Unnamed (椭圆形) &ndash;&gt;
     <div id="u4117" class="ax_default ellipse">
@@ -529,10 +429,10 @@
 
         <!-- Unnamed (矩形) -->
         <div id="u4126" class="ax_default label">
-            <div id="u4126_div" class=""></div>
+            <div id="u4126_div" class="" ></div>
             <!-- Unnamed () -->
             <div id="u4127" class="text" style="visibility: visible;">
-                <p><span onclick="updPassWord()">修改密码</span></p>
+                <p><span >修改密码</span></p>
             </div>
         </div>
 
@@ -564,10 +464,10 @@
         </div>
 
         <!-- Unnamed (矩形) -->
-        <div id="u4134" class="ax_default button">
+        <div id="u4134" class="ax_default button" style="cursor:pointer;">
             <div id="u4134_div" class=""></div>
             <!-- Unnamed () -->
-            <div id="u4135" class="text" style="visibility: visible;">
+            <div id="u4135" class="text" style="visibility: visible;cursor:pointer;">
                 <p><span onclick="updPassWord()">修改密码</span></p>
             </div>
         </div>
@@ -581,33 +481,110 @@
 
 
 <script>
+    //跳转我的订单页面
+    function myOrder(){
+        location.href="../yx/toMyOrder";
+    }
 
 
-    layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element'], function(){
-        var laydate = layui.laydate //日期
-            ,laypage = layui.laypage //分页
-            ,layer = layui.layer //弹层
-            ,table = layui.table //表格
-            ,carousel = layui.carousel //轮播
-            ,upload = layui.upload //上传
-            ,element = layui.element //元素操作
-    });
+    //将文本框1的内容同步到文本框2
+    function cop(){
+        var input1 = $('#input1').val();
+        $('#input2').val(input1);
+    }
+
+    //将文本框2的内容同步到文本框1
+    function cop2(){
+        var input2 = $('#input2').val();
+        $('#input1').val(input2);
+    }
+
+    //跳转solr搜索页面
+    function toSearch(){
+        var input = $('.Inpt').val();
+        location.href="../searchFruits/toSearchFruits?input="+input;
+    }
+
+    //跳转登陆页面
+    function toLogin(){
+        location.href="../user/toLogin2";
+    }
+
+    //跳转注册页面
+    function toRegister(){
+        location.href="../user/toRegister2";
+    }
+
+    //退出
+    function toOut(){
+        location.href="../user/toOut";
+    }
+
+    //跳转到优惠券页面
+    function toCoupon(){
+        location.href="../user/优惠券-未使用.html";
+    }
+
+    //跳转到购物车页面
+    function toShoppingCar(){
+        location.href="../fruitsInfo/toShoppingCar?code=1";
+    }
+
+    $('#u3968').click(function(){
+        location.href="../user/toIndex";
+    })
+
+    //账号安全
+    function anquan(){
+        location.href="../user/账户安全.html";
+    }
+
+    //跳转我的果仁
+    function toUser(){
+        location.href="../user/个人资料.html";
+    }
+
+
+
 
    function updPassWord(){
-       layer.open({
+
+
+
+       layui.use('layer', function(){
+           var layer = layui.layer;
+           //页面层
+           layer.open({
+               type: 2,
+               title: '修改',
+               shadeClose: false, //点击遮罩关闭
+               shade: 0.8,
+               area: ['580px', '360px'],
+               maxmin: true,
+               closeBtn: 1,
+               content: ['../personal/toUpdPassWord', 'yes'], //iframe的url，yes是否有滚动条
+           });
+       });
+
+
+
+      /* layer.open({
            type: 2,
            title: '修改',
            shadeClose: false, //点击遮罩关闭
            shade: 0.8,
-           area: ['400px', '400px'],
+           area: ['580px', '360px'],
            maxmin: true,
            closeBtn: 1,
            content: ['../personal/toUpdPassWord', 'yes'], //iframe的url，yes是否有滚动条
+           yes:function(index,data){
+               location.reload();
+           },
            end: function () {
-               //location.reload();
+               location.reload();
            }
 
-       });
+       });*/
    }
 
 

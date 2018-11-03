@@ -43,4 +43,7 @@ public interface UserServiceApi {
 
     @RequestMapping(value = "user/queryPortugalsmentionofjam",method = RequestMethod.GET)
     FruitsInfo queryPortugalsmentionofjam();
+
+    @RequestMapping(value = "user/queryUserById")
+    Login queryUserById(@RequestParam(value = "userId") String userId);
 }

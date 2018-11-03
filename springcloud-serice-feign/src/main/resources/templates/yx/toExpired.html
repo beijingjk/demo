@@ -684,7 +684,48 @@
     }
 
 
+    //将文本框1的内容同步到文本框2
+    function cop(){
+        var input1 = $('#input1').val();
+        $('#input2').val(input1);
+    }
 
+    //将文本框2的内容同步到文本框1
+    function cop2(){
+        var input2 = $('#input2').val();
+        $('#input1').val(input2);
+    }
+
+    //跳转solr搜索页面
+    function toSearch(){
+        var input = $('.Inpt').val();
+        location.href="../searchFruits/toSearchFruits?input="+input;
+    }
+
+    //跳转登陆页面
+    function toLogin(){
+        location.href="../user/toLogin2";
+    }
+
+    //跳转注册页面
+    function toRegister(){
+        location.href="../user/toRegister2";
+    }
+
+    //退出
+    function toOut(){
+        location.href="../user/toOut";
+    }
+
+    //跳转到优惠券页面
+    function toCoupon(){
+        location.href="../user/优惠券-未使用.html";
+    }
+
+    //跳转到购物车页面
+    function toShoppingCar(){
+        location.href="../fruitsInfo/toShoppingCar?code=1";
+    }
 
 
 </script>

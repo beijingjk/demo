@@ -17,6 +17,10 @@ public class ShoppController {
     @Autowired
     private ShoppingServiceApi shoppingServiceApi;
 
+    @RequestMapping("eidtOrderStatus")
+    public void eidtOrderStatus(String id){
+        shoppingServiceApi.eidtOrderStatus(id);
+    }
 
 
     @RequestMapping("queryFruitsInfo")

@@ -1,0 +1,1287 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>订单详情</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="../yx/orderDetails/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
+    <link href="../yx/orderDetails/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="../yx/orderDetails/styles(1).css" type="text/css" rel="stylesheet"/>
+    <link href="../yx/orderDetails/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="../yx/orderDetails/jquery-1.7.1.min.js"></script>
+    <script src="../yx/orderDetails/jquery-ui-1.8.10.custom.min.js"></script>
+    <script src="../yx/orderDetails/axQuery.js"></script>
+    <script src="../yx/orderDetails/globals.js"></script>
+    <script src="../yx/orderDetails/axutils.js"></script>
+    <script src="../yx/orderDetails/annotation.js"></script>
+    <script src="../yx/orderDetails/axQuery.std.js"></script>
+    <script src="../yx/orderDetails/doc.js"></script>
+    <script src="../yx/orderDetails/document.js"></script>
+
+    <script src="../yx/orderDetails/messagecenter.js"></script>
+    <script src="../yx/orderDetails/events.js"></script>
+    <script src="../yx/orderDetails/recording.js"></script>
+    <script src="../yx/orderDetails/action.js"></script>
+    <script src="../yx/orderDetails/expr.js"></script>
+    <script src="../yx/orderDetails/geometry.js"></script>
+    <script src="../yx/orderDetails/flyout.js"></script>
+    <script src="../yx/orderDetails/ie.js"></script>
+    <script src="../yx/orderDetails/model.js"></script>
+    <script src="../yx/orderDetails/repeater.js"></script>
+    <script src="../yx/orderDetails/sto.js"></script>
+    <script src="../yx/orderDetails/utils.temp.js"></script>
+    <script src="../yx/orderDetails/variables.js"></script>
+    <script src="../yx/orderDetails/drag.js"></script>
+    <script src="../yx/orderDetails/move.js"></script>
+    <script src="../yx/orderDetails/visibility.js"></script>
+    <script src="../yx/orderDetails/style.js"></script>
+    <script src="../yx/orderDetails/adaptive.js"></script>
+    <script src="../yx/orderDetails/tree.js"></script>
+    <script src="../yx/orderDetails/init.temp.js"></script>
+    <script src="../yx/orderDetails/data.js"></script>
+    <script src="../yx/orderDetails/legacy.js"></script>
+    <script src="../yx/orderDetails/viewer.js"></script>
+    <script src="../yx/orderDetails/math.js"></script>
+    <script type="text/javascript">
+        $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+        $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+        $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+    <style type="text/css">
+
+        .Inpt{border:0;outline:none;/*去除蓝色边框*/}
+
+    </style>
+</head>
+<body>
+<div id="base" class="">
+
+    <!-- 顶部悬浮栏 (动态面板) -->
+    <div id="u2971" class="ax_default" data-label="顶部悬浮栏">
+        <div id="u2971_state0" class="panel_state" data-label="全">
+            <div id="u2971_state0_content" class="panel_state_content">
+
+
+
+
+                <div style="width:100%;margin-left:90px;position: absolute;left: 0px;top: 2px;width: 200px;white-space: nowrap;">
+                    <span th:style="${flag}!=''?'':'display: none'">
+                        <span style="cursor:pointer;margin-left: 30px">当前用户：<font color="red"><span th:text="${flag}"></span></font></span>
+                        <span style="cursor:pointer;margin-left: 15px" onclick="toOut()">退出</span>
+                    </span>
+                </div>
+                <div style="width:100%;margin-left:700px;position: absolute;left: 0px;top: 2px;width: 500px;white-space: nowrap;">
+                    <span th:style="${flag}==''?'':'display: none'">
+                        <span style="cursor:pointer;margin-left: 30px" onclick="toLogin()"><font color="#33cc00">[登陆]</font></span>
+                        <span style="cursor:pointer;margin-left: 10px" onclick="toRegister()"><font color="#33cc00">[注册]</font></span>
+                    </span>
+
+
+                    <span th:style="${flag}!=''?'':'display: none'">
+                        <span style="cursor:pointer;margin-left: 30px" onclick="toUser()">我的果仁</span>
+                    </span>
+                    <span style="cursor:pointer;margin-left: 50px" onclick="toShoppingCar()">我的果篮</span>
+                    <span th:style="${flag}!=''?'':'display: none'">
+                        <span style="cursor:pointer;margin-left: 50px" onclick="toCoupon()">优惠卷</span>
+                    </span>
+
+                </div>
+
+
+
+
+                <!-- Unnamed (矩形) -->
+                <div id="u2994" class="ax_default box_2">
+                    <div id="u2994_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u2995" class="text" style="display: none; visibility: hidden">
+                        <p><span></span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u2996" class="ax_default _二级标题">
+                    <div id="u2996_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u2997" class="text" style="visibility: visible;">
+                        <p><span>LOGO 果鲜生</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (组合) -->
+                <div id="u2998" class="ax_default">
+
+                    <!-- Unnamed (矩形) -->
+                    <div id="u2999" >
+                        <div id="u2999_div" class="">
+                            <input id="input2" onchange="cop2()" placeholder="试试 “草莓”" style="width: 490px;height: 41px;border-radius:18px;padding-left:20px;"  class="Inpt"/>
+                        </div>
+                        <!-- Unnamed () -->
+                        <div  class="text" style="visibility: visible;">
+                            <p><span>&nbsp;&nbsp; &nbsp; 试试 “红心火龙果”</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Unnamed (矩形) -->
+                    <div id="u3001" class="ax_default box_1">
+                        <div id="u3001_div" class=""></div>
+                        <!-- Unnamed () -->
+                        <div id="u3002" class="text" style="visibility: visible;">
+                            <p><span onclick="toSearch()" style="cursor:pointer;">搜索</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u3003" class="ax_default _二级标题">
+                    <div id="u3003_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u3004" class="text" style="visibility: visible;">
+                        <p><span>59分钟内送达</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u3005" class="ax_default _二级标题">
+                    <div id="u3005_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u3006" class="text" style="visibility: visible;">
+                        <p><span>全球直采</span></p>
+                    </div>
+                </div>
+
+
+                <!-- Unnamed (矩形) -->
+                <div id="u3012" class="ax_default label">
+                    <div id="u3012_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u3013" class="text" style="visibility: visible;">
+                        <p><span>江西脐橙</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u3014" class="ax_default label">
+                    <div id="u3014_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u3015" class="text" style="visibility: visible;">
+                        <p><span>哈密瓜</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u3016" class="ax_default label">
+                    <div id="u3016_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u3017" class="text" style="visibility: visible;">
+                        <p><span>草莓</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u3018" class="ax_default label">
+                    <div id="u3018_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u3019" class="text" style="visibility: visible;">
+                        <p><span>猕猴桃</span></p>
+                    </div>
+                </div>
+
+
+
+                <!-- Unnamed (热区) -->
+                <div id="u3021" class="ax_default">
+                </div>
+            </div>
+        </div>
+        <div id="u2971_state1" class="panel_state" data-label="精简" style="display: none; visibility: hidden;">
+            <div id="u2971_state1_content" class="panel_state_content">
+
+                <!-- Unnamed (矩形) -->
+                <div id="u3022" class="ax_default box_2">
+                    <div id="u3022_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u3023" class="text" style="display: none; visibility: hidden">
+                        <p><span></span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u3024" class="ax_default _二级标题">
+                    <div id="u3024_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u3025" class="text" style="visibility: visible;">
+                        <p><span>LOGO 果鲜生</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (组合) -->
+                <div id="u3026" class="ax_default">
+
+                    <!-- Unnamed (矩形) -->
+                    <div id="u3027" >
+                        <div id="u3027_div" class="">
+                            <input id="input1" onchange="cop()" placeholder="试试 “草莓”" style="width: 490px;height: 41px;border-radius:18px;padding-left:20px;"  class="Inpt"/>
+                        </div>
+                        <!-- Unnamed () -->
+                        <div class="text" style="visibility: visible;">
+                            <p><span>&nbsp;&nbsp; &nbsp; 试试 “红心火龙果”</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Unnamed (矩形) -->
+                    <div id="u3029" class="ax_default box_1">
+                        <div id="u3029_div" class=""></div>
+                        <!-- Unnamed () -->
+                        <div id="u3030" class="text" style="visibility: visible;">
+                            <p><span onclick="toSearch()" style="cursor:pointer;">搜索</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u3031" class="ax_default _二级标题">
+                    <div id="u3031_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u3032" class="text" style="visibility: visible;">
+                        <p><span>59分钟内送达</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u3033" class="ax_default _二级标题">
+                    <div id="u3033_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u3034" class="text" style="visibility: visible;">
+                        <p><span>全球直采</span></p>
+                    </div>
+                </div>
+
+
+
+                <!-- Unnamed (热区) -->
+                <div id="u3036" class="ax_default">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Unnamed (矩形) -->
+    <div id="u3037" class="ax_default box_2">
+        <div id="u3037_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u3038" class="text" style="visibility: visible;">
+            <p><span>我的果仁</span></p>
+        </div>
+    </div>
+
+    <!-- Unnamed (矩形) -->
+    <div id="u3039" class="ax_default box_2">
+        <div id="u3039_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u3040" class="text" style="display: none; visibility: hidden">
+            <p><span></span></p>
+        </div>
+    </div>
+
+
+    <!-- Unnamed (矩形) -->
+    <div id="u3043" class="ax_default label">
+        <div id="u3043_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u3044" class="text" style="visibility: visible;">
+            <p><span>账号信息</span></p>
+        </div>
+
+        <div style="cursor:pointer;width: 117px;height: 42px;border: solid 1px rgba(228, 228, 228, 1);margin-left: -20px;margin-top: 26px;text-align: center;padding-top: 12px">
+            <span><font size="2px" onclick="myOrder()">我的订单</font></span>
+        </div>
+        <div style="cursor:pointer;width: 117px;height: 42px;border: solid 1px rgba(228, 228, 228, 1);margin-left: -20px;text-align: center;padding-top: 12px">
+            <span onclick="toCoupon()"><font size="2px" >优惠券</font></span>
+        </div>
+        <div style="cursor:pointer;width: 117px;height: 42px;border: solid 1px rgba(228, 228, 228, 1);margin-left: -20px;text-align: center;padding-top: 12px">
+            <span onclick="toUser()"><font size="2px">个人资料</font></span>
+        </div>
+        <div style="cursor:pointer;width: 117px;height: 42px;border: solid 1px rgba(228, 228, 228, 1);margin-left: -20px;text-align: center;padding-top: 12px">
+            <span onclick="anquan()"><font size="2px">账号安全</font></span>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- Unnamed (矩形) -->
+    <div id="u3055" class="ax_default label">
+        <div id="u3055_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u3056" class="text" style="visibility: visible;">
+            <p><a id="u3057" class="link"><span style="color:black" onclick="wddd()">我的订单</span></a><span> &gt; 订单详情</span></p>
+        </div>
+    </div>
+
+    <!-- Unnamed (矩形) -->
+    <div id="u3058" class="ax_default box_1">
+        <div id="u3058_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u3059" class="text" style="display: none; visibility: hidden">
+            <p><span></span></p>
+        </div>
+    </div>
+
+    <!-- Unnamed (矩形) -->
+    <div id="u3060" class="ax_default label">
+
+    </div>
+
+    <!-- 上面时间 -->
+    <div id="u3062" class="ax_default label">
+
+    </div>
+
+    <!-- 图片展示订单状态 -->
+    <!-- Unnamed (图片) -->
+
+
+    <!-- Unnamed (水平线) -->
+    <div id="u3066" class="ax_default line">
+        <img id="u3066_img" class="img " src="../yx/orderDetails/u2817.png"/>
+        <!-- Unnamed () -->
+        <div id="u3067" class="text" style="display: none; visibility: hidden">
+            <p><span></span></p>
+        </div>
+    </div>
+
+    <!-- Unnamed (矩形) -->
+    <div id="u3068" class="ax_default label">
+        <div id="u3068_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u3069" class="text" style="visibility: visible;">
+            <p><span>订单跟踪：</span></p>
+        </div>
+    </div>
+
+    <!--&lt;!&ndash; Unnamed (矩形) &ndash;&gt;
+    <div id="u3070" class="ax_default _文本段落">
+        <div id="u3070_div" class=""></div>
+        &lt;!&ndash; Unnamed () &ndash;&gt;
+        <div id="u3071" class="text" style="visibility: visible;">
+            <p><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus </span></p>
+        </div>
+    </div>-->
+
+
+    <div id="ddzz" class="ax_default">
+
+
+
+    </div>
+
+    <!-- Unnamed (水平线) -->
+    <div id="u3086" class="ax_default line">
+        <img id="u3086_img" class="img " src="../yx/orderDetails/u2817.png"/>
+        <!-- Unnamed () -->
+        <div id="u3087" class="text" style="display: none; visibility: hidden">
+            <p><span></span></p>
+        </div>
+    </div>
+
+    <!-- Unnamed (矩形) -->
+    <div id="u3088" class="ax_default label">
+        <div id="u3088_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u3089" class="text" style="visibility: visible;">
+            <p><span>订单信息：</span></p>
+        </div>
+    </div>
+
+    <div id="zhongjian" class="ax_default label">
+
+    </div>
+    <div id="zhongjian1" class="ax_default label">
+
+    </div>
+
+    <!-- Unnamed (水平线) -->
+    <div id="u3094" class="ax_default line">
+        <img id="u3094_img" class="img " src="../yx/orderDetails/u2817.png"/>
+        <!-- Unnamed () -->
+        <div id="u3095" class="text" style="display: none; visibility: hidden">
+            <p><span></span></p>
+        </div>
+    </div>
+
+
+    <!-- Unnamed (矩形) -->
+    <div id="u3109" class="ax_default label">
+        <div id="u3109_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u3110" class="text" style="visibility: visible;">
+            <p><span>商品清单：</span></p>
+        </div>
+    </div>
+
+
+    <!-- 循环数据 -->
+    <!-- idhaha -->
+
+    <div id="haha" class="ax_default">
+
+
+
+
+
+
+    </div>
+
+
+    <!-- Unnamed (水平线) -->
+    <div id="u3137" class="ax_default line">
+        <img id="u3137_img" class="img " src="../yx/orderDetails/u2817.png"/>
+        <!-- Unnamed () -->
+        <div id="u3138" class="text" style="display: none; visibility: hidden">
+            <p><span></span></p>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+
+    <div id="dibu" class="ax_default label">
+
+
+
+
+    </div>
+
+
+
+    <!-- Unnamed (矩形) -->
+    <div id="u3155" class="ax_default box_1">
+        <div id="u3155_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u3156" class="text" style="visibility: visible;">
+            <p><span>首页</span></p>
+        </div>
+    </div>
+
+
+
+    <!-- 节点 (热区) -->
+    <div id="u3159" class="ax_default" data-label="节点">
+    </div>
+</div>
+</body>
+
+<script>
+
+    function wddd(){
+        location.href="/yx/我的订单.html";
+    }
+
+    $(function(){
+        getOrder2List();
+        getddh();
+        getdate();
+        dibu();
+        zhongjian();
+        ddzz();
+        psfs();
+    })
+
+    //订单状态
+    function ddzz(){
+        $.ajax({
+            url:'/yx/getOrderList',
+            type:'get',
+            success:function(result){
+                var x = "";
+                var a = result[0].createTime;
+                var b = a.substring(0,10);
+
+                for(var i=0;i<result.length;i++){
+                    if (result[0].status==1){
+                         x+=
+
+                    '<div id="u3070" class="ax_default _文本段落">'+
+                            '<div id="u3070_div" class="">'+'</div>'+
+
+                            '<div id="u3071" class="text" style="visibility: visible;">'+
+                            '<p>'+'<span>'+'<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">等待付款</font>'+'</span>'+'</p>'+
+                        '</div>'+
+                        '</div>'+
+
+                    '<div id="u3072" class="ax_default label">'+
+                            '<div id="u3072_div" class="">'+'</div>'+
+
+                            '<div id="u3073" class="text" style="visibility: visible;">'+
+                            '<p>'+'<span>处理时间</span>'+'</p>'+
+                        '</div>'+
+                        '</div>'+
+
+
+                        '<div id="u3074" class="ax_default label">'+
+                            '<div id="u3074_div" class="">'+'</div>'+
+
+                            '<div id="u3075" class="text" style="visibility: visible;">'+
+                            '<p>'+'<span>处理信息</span>'+'</p>'+
+                        '</div>'+
+                        '</div>'+
+
+
+                        '<div id="u3076" class="ax_default label">'+
+                            '<div id="u3076_div" class="">'+'</div>'+
+
+                            '<div id="u3077" class="text" style="visibility: visible;">'+
+                            '<p>'+'<span>'+b+'</span>'+'</p>'+
+                        '</div>'+
+                        '</div>'+
+
+
+                             '<div id="u3064" class="ax_default _图片">'+
+                            '<font size="5px" color="green">请点击下方提交订单完成支付</font>'+
+                            '<div id="u3065" class="text" style="display: none; visibility: hidden">'+
+                            '<p>'+'<span>'+'</span>'+'</p>'+
+                        '</div>'+
+                        '</div>'+
+
+
+
+                             '<div id="u3064" class="ax_default _图片">'+
+                            '<img id="u3064_img" class="img " src="../yx/img/提交订单.jpg"/>'+
+
+                            '<div id="u3065" class="text" style="display: none; visibility: hidden">'+
+                            '<p>'+'<span>'+'</span>'+'</p>'+
+                        '</div>'+
+                        '</div>'
+
+
+                    }if (result[0].status==2 | result[0].status==3) {
+                        var mibao = result[0].paymentTime;
+                        var hama = mibao.substring(0,10);
+                        x +=
+
+                            '<div id="u3070" class="ax_default _文本段落">'+
+                            '<div id="u3070_div" class="">'+'</div>'+
+
+                            '<div id="u3071" class="text" style="visibility: visible;">'+
+                            '<p>'+'<span>'+'<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">已付款,店家正在发货中,请耐心等待。</font>'+'</span>'+'</p>'+
+                            '</div>'+
+                            '</div>'+
+
+                            '<div id="u3072" class="ax_default label">'+
+                            '<div id="u3072_div" class="">'+'</div>'+
+
+                            '<div id="u3073" class="text" style="visibility: visible;">'+
+                            '<p>'+'<span>处理时间</span>'+'</p>'+
+                            '</div>' +
+                            '</div>' +
+
+
+                            '<div id="u3074" class="ax_default label">'+
+                            '<div id="u3074_div" class="">'+'</div>'+
+
+                            '<div id="u3075" class="text" style="visibility: visible;">'+
+                            '<p>'+'<span>处理信息</span>'+'</p>'+
+                            '</div>' +
+                            '</div>' +
+
+
+                            '<div id="u3076" class="ax_default label">'+
+                            '<div id="u3076_div" class="">'+'</div>'+
+
+                            '<div id="u3077" class="text" style="visibility: visible;">'+
+                            '<p>'+'<span>'+hama+'</span>'+'</p>'+
+                            '</div>' +
+                            '</div>' +
+
+
+                            '<div id="u3064" class="ax_default _图片">' +
+                            '<font size="5px" color="green">请点击下方提交订单完成支付</font>' +
+                            '<div id="u3065" class="text" style="display: none; visibility: hidden">' +
+                            '<p>'+'<span>'+'</span>'+'</p>'+
+                            '</div>' +
+                            '</div>' +
+
+
+                            '<div id="u3064" class="ax_default _图片">'+
+                            '<img id="u3064_img" class="img " src="../yx/img/已付款.jpg"/>'+
+
+                            '<div id="u3065" class="text" style="display: none; visibility: hidden">'+
+                            '<p>'+'<span>'+'</span>'+'</p>'+
+                            '</div>'+
+                            '</div>'
+
+                    }if (result[0].status == 4) {
+                        var io = result[0].consignTime;
+                        var oo = io.substring(0,10);
+                        x +=
+
+                            '<div id="u3070" class="ax_default _文本段落">'+
+                            '<div id="u3070_div" class="">'+'</div>'+
+
+                            '<div id="u3071" class="text" style="visibility: visible;">'+
+                            '<p>'+'<span>'+'<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">已发货</font>'+'</span>'+'</p>'+
+                            '</div>'+
+                            '</div>'+
+
+                            '<div id="u3072" class="ax_default label">'+
+                            '<div id="u3072_div" class="">'+'</div>'+
+
+                            '<div id="u3073" class="text" style="visibility: visible;">'+
+                            '<p>'+'<span>处理时间</span>'+'</p>'+
+                            '</div>' +
+                            '</div>' +
+
+
+                            '<div id="u3074" class="ax_default label">'+
+                            '<div id="u3074_div" class="">'+'</div>'+
+
+                            '<div id="u3075" class="text" style="visibility: visible;">'+
+                            '<p>'+'<span>处理信息</span>'+'</p>'+
+                            '</div>' +
+                            '</div>' +
+
+
+                            '<div id="u3076" class="ax_default label">'+
+                            '<div id="u3076_div" class="">'+'</div>'+
+
+                            '<div id="u3077" class="text" style="visibility: visible;">'+
+                            '<p>'+'<span>'+oo+'</span>'+'</p>'+
+                            '</div>' +
+                            '</div>' +
+
+
+                            '<div id="u3064" class="ax_default _图片">' +
+                            '<font size="5px" color="green">请点击下方提交订单完成支付</font>' +
+                            '<div id="u3065" class="text" style="display: none; visibility: hidden">' +
+                            '<p>'+'<span>'+'</span>'+'</p>'+
+                            '</div>' +
+                            '</div>' +
+
+
+                            '<div id="u3064" class="ax_default _图片">'+
+                            '<img id="u3064_img" class="img " src="../yx/img/配送中.jpg"/>'+
+
+                            '<div id="u3065" class="text" style="display: none; visibility: hidden">'+
+                            '<p>'+'<span>'+'</span>'+'</p>'+
+                            '</div>'+
+                            '</div>'
+
+                    }if (result[0].status == 5) {
+                        var p = result[0].endTime;
+                        var m = p.substring(0,10);
+                        x +=
+
+                            '<div id="u3070" class="ax_default _文本段落">'+
+                            '<div id="u3070_div" class="">'+'</div>'+
+
+                            '<div id="u3071" class="text" style="visibility: visible;">'+
+                            '<p>'+'<span>'+'<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">已收货</font>'+'</span>'+'</p>'+
+                            '</div>'+
+                            '</div>'+
+
+                            '<div id="u3072" class="ax_default label">'+
+                            '<div id="u3072_div" class="">'+'</div>'+
+
+                            '<div id="u3073" class="text" style="visibility: visible;">'+
+                            '<p>'+'<span>处理时间</span>'+'</p>'+
+                            '</div>' +
+                            '</div>' +
+
+
+                            '<div id="u3074" class="ax_default label">'+
+                            '<div id="u3074_div" class="">'+'</div>'+
+
+                            '<div id="u3075" class="text" style="visibility: visible;">'+
+                            '<p>'+'<span>处理信息</span>'+'</p>'+
+                            '</div>' +
+                            '</div>' +
+
+
+                            '<div id="u3076" class="ax_default label">'+
+                            '<div id="u3076_div" class="">'+'</div>'+
+
+                            '<div id="u3077" class="text" style="visibility: visible;">'+
+                            '<p>'+'<span>'+m+'</span>'+'</p>'+
+                            '</div>' +
+                            '</div>' +
+
+
+                            '<div id="u3064" class="ax_default _图片">' +
+                            '<font size="5px" color="green">请点击下方提交订单完成支付</font>' +
+                            '<div id="u3065" class="text" style="display: none; visibility: hidden">' +
+                            '<p>'+'<span>'+'</span>'+'</p>'+
+                            '</div>' +
+                            '</div>' +
+
+
+                            '<div id="u3064" class="ax_default _图片">'+
+                            '<img id="u3064_img" class="img " src="../yx/img/已收货.jpg"/>'+
+
+                            '<div id="u3065" class="text" style="display: none; visibility: hidden">'+
+                            '<p>'+'<span>'+'</span>'+'</p>'+
+                            '</div>'+
+                            '</div>'
+
+                    }if (result[0].status == 6) {
+                        var t = result[0].closeTime;
+                        var h = t.substring(0,10);
+                        x +=
+
+                            '<div id="u3070" class="ax_default _文本段落">'+
+                            '<div id="u3070_div" class="">'+'</div>'+
+
+                            '<div id="u3071" class="text" style="visibility: visible;">'+
+                            '<p>'+'<span>'+'<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">交易完成</font>'+'</span>'+'</p>'+
+                            '</div>'+
+                            '</div>'+
+
+                            '<div id="u3072" class="ax_default label">'+
+                            '<div id="u3072_div" class="">'+'</div>'+
+
+                            '<div id="u3073" class="text" style="visibility: visible;">'+
+                            '<p>'+'<span>处理时间</span>'+'</p>'+
+                            '</div>' +
+                            '</div>' +
+
+
+                            '<div id="u3074" class="ax_default label">'+
+                            '<div id="u3074_div" class="">'+'</div>'+
+
+                            '<div id="u3075" class="text" style="visibility: visible;">'+
+                            '<p>'+'<span>处理信息</span>'+'</p>'+
+                            '</div>' +
+                            '</div>' +
+
+
+                            '<div id="u3076" class="ax_default label">'+
+                            '<div id="u3076_div" class="">'+'</div>'+
+
+                            '<div id="u3077" class="text" style="visibility: visible;">'+
+                            '<p>'+'<span>'+h+'</span>'+'</p>'+
+                            '</div>' +
+                            '</div>' +
+
+
+                            '<div id="u3064" class="ax_default _图片">' +
+                            '<font size="5px" color="green">请点击下方提交订单完成支付</font>' +
+                            '<div id="u3065" class="text" style="display: none; visibility: hidden">' +
+                            '<p>'+'<span>'+'</span>'+'</p>'+
+                            '</div>' +
+                            '</div>' +
+
+
+                            '<div id="u3064" class="ax_default _图片">'+
+                            '<img id="u3064_img" class="img " src="../yx/img/已收货.jpg"/>'+
+
+                            '<div id="u3065" class="text" style="display: none; visibility: hidden">'+
+                            '<p>'+'<span>'+'</span>'+'</p>'+
+                            '</div>'+
+                            '</div>'
+
+                    }if (result[0].status == 7) {
+                        var t = result[0].updateTime;
+                        var h = t.substring(0,10);
+                        x +=
+
+                            '<div id="u3070" class="ax_default _文本段落">'+
+                            '<div id="u3070_div" class="">'+'</div>'+
+
+                            '<div id="u3071" class="text" style="visibility: visible;">'+
+                            '<p>'+'<span>'+'<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">卖家正在使劲处理中...</font>'+'</span>'+'</p>'+
+                            '</div>'+
+                            '</div>'+
+
+                            '<div id="u3072" class="ax_default label">'+
+                            '<div id="u3072_div" class="">'+'</div>'+
+
+                            '<div id="u3073" class="text" style="visibility: visible;">'+
+                            '<p>'+'<span>处理时间</span>'+'</p>'+
+                            '</div>' +
+                            '</div>' +
+
+
+                            '<div id="u3074" class="ax_default label">'+
+                            '<div id="u3074_div" class="">'+'</div>'+
+
+                            '<div id="u3075" class="text" style="visibility: visible;">'+
+                            '<p>'+'<span>处理信息</span>'+'</p>'+
+                            '</div>' +
+                            '</div>' +
+
+
+                            '<div id="u3076" class="ax_default label">'+
+                            '<div id="u3076_div" class="">'+'</div>'+
+
+                            '<div id="u3077" class="text" style="visibility: visible;">'+
+                            '<p>'+'<span>'+h+'</span>'+'</p>'+
+                            '</div>' +
+                            '</div>' +
+
+
+                            '<div id="u3064" class="ax_default _图片">' +
+                            '<font size="5px" color="green">退款正在处理中,请稍后...</font>' +
+                            '<div id="u3065" class="text" style="display: none; visibility: hidden">' +
+                            '<p>'+'<span>'+'</span>'+'</p>'+
+                            '</div>' +
+                            '</div>'
+
+
+
+
+                    }
+
+                }
+                    $('#ddzz').html(x);
+
+
+
+            }
+        })
+    }
+
+
+
+    //中间  收货人信息
+    function zhongjian(){
+        $.ajax({
+            url:'/yx/getOrderList7',
+            type:'get',
+            success:function(result){
+                var x = "";
+                for(var i=0;i<result.length;i++){
+                    x+=
+                '<div id="u3090" class="ax_default _文本段落">'+
+                        '<div id="u3090_div" class="">'+'</div>'+
+
+                        '<div id="u3091" class="text" style="visibility: visible;">'+
+                        '<p>'+'<span>收货人信息</span>'+'</p>'+'<p>'+'<span>'+'<br>'+'</span>'+'</p>'+'<p>'+'<span>'+'&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;'+'收货人：'+result[0].receiverName+'</span>'+'</p>'+'<p>'+'<span>'+'&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;'+'地'+'&nbsp; &nbsp;'+'址：'+result[0].receiverState+'-'+result[0].receiverCity+'-'+result[0].receiverDistrict+'</span>'+'</p>'+'<p>'+'<span>'+'&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;'+'手机号：'+result[0].receiverMobile+'</span>'+'</p>'+
+                    '</div>'+
+                    '</div>'
+
+
+
+
+                }
+                $('#zhongjian').html(x);
+            }
+        })
+    }
+
+//配送方式
+    function psfs(){
+        $.ajax({
+            url:'/yx/getOrderList9',
+            type:'get',
+            success:function(result){
+                var x = "";
+                for(var i=0;i<result.length;i++){
+
+                    if(result[0].status==4 |result[0].status==5 |result[0].status==6 ){
+                    x+=
+
+
+
+                        '<div id="u3092" class="ax_default _文本段落">'+
+                        '<div id="u3092_div" class="">'+'</div>'+
+
+                        '<div id="u3093" class="text" style="visibility: visible;">'+
+                        '<p>'+'<span>'+'配送方式-'+result[0].shippingName+'</span>'+'</p>'+'<p>'+'<span>'+'<br>'+'</span>'+'</p>'+'<p>'+'<span>&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 运&nbsp; &nbsp; &nbsp;&nbsp; 费：￥0.00</span>'+'</p>'+'<p>'+'<span>'+'&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;物流单号:'+result[0].shippingCode+'</span>'+'</p>'+
+                        '</div>'+
+                        '</div>'
+
+                }
+                }
+                $('#zhongjian1').html(x);
+            }
+        })
+    }
+
+
+
+    //底部
+   function dibu(){
+        $.ajax({
+            url:'/yx/getOrderLists',
+            type:'get',
+            success:function(result){
+                var x = "";
+                for(var i=0;i<result.length;i++){
+                    if (result[i].status==1){
+                    x+=
+
+                '<div id="u3139" class="ax_default label">'+
+                        '<div id="u3139_div" class="">'+'</div>'+
+
+                        '<div id="u3140" class="text" style="visibility: visible;">'+
+                        '<p>'+'<span>商品金额：</span>'+'<span>'+result[0].payment+'</span>'+'</p>'+
+                    '</div>'+
+                    '</div>'+
+
+
+                    '<div id="u3141" class="ax_default label">'+
+                        '<div id="u3141_div" class="">'+'</div>'+
+
+                        '<div id="u3142" class="text" style="visibility: visible;">'+
+                        '<p style="font-size:16px;">'+'<span style="font-size:14px;">运费：</span>'+'<span>'+'￥0'+'</span>'+'</p>'+
+                    '</div>'+
+                    '</div>'+
+
+
+                    '<div id="u3143" class="ax_default label">'+
+                        '<div id="u3143_div" class="">'+'</div>'+
+
+                        '<div id="u3144" class="text" style="visibility: visible;">'+
+                        '<p style="font-size:20px;">'+'<span style="font-family:"Arial Normal", "Arial";font-weight:400;font-size:16px;">合计：</span>'+'<span style="font-family:"Arial Negreta", "Arial Normal", "Arial";font-weight:700;color:#FF0000;">'+'￥'+result[0].payment+'</span>'+'</p>'+
+                    '</div>'+
+                    '</div>'+
+
+
+                    '<div id="u3145" class="ax_default label">'+
+                        '<div id="u3145_div" class="">'+'</div>'+
+
+                        '<div id="u3146" class="text" style="visibility: visible;">'+
+                        '<p>'+'<span>优惠：￥0</span>'+'</p>'+
+                    '</div>'+
+                    '</div>'+
+
+
+                    '<div id="u3147" class="ax_default button">'+
+                        '<div id="u3147_div" class="">'+'</div>'+
+
+                        '<div id="u3148" class="text"  style="cursor:pointer;visibility: visible;">'+
+                        '<p>'+'<span onclick="zhifu('+result[0].orderId+',\''+result[0].payment+'\')">提交订单</span>'+'</p>'+
+                    '</div>'+
+                    '</div>'
+                    }
+
+               }
+                $('#dibu').html(x);
+            }
+        })
+    }
+
+
+
+    //获取时间
+    function getdate(){
+        $.ajax({
+            url:'/yx/getOrderList',
+            type:'get',
+            success:function(result){
+                var x = "";
+                var cc = result[0].createTime;
+                var bb = cc.substring(0,10);
+                for(var i=0;i<result.length;i++){
+                    x+=
+                '<div id="u3062_div" class="">'+'</div>'+
+
+                        '<div id="u3063" class="text" style="visibility: visible;">'+
+                        '<p>'+'<span>'+bb+'</span>'+'</p>'+
+                    '</div>'
+                }
+                $('#u3062').html(x);
+            }
+        })
+    }
+
+
+
+    function getddh(){
+        $.ajax({
+            url:'/yx/getOrderList',
+            type:'get',
+            success:function(result){
+                var x = "";
+                for(var i=0;i<result.length;i++){
+                      x+=
+                '<div id="u3060_div" class="">'+'</div>'+
+
+                        '<div id="u3061" class="text" style="visibility: visible;">'+
+                        '<p>'+'<span >'+'订单号:<span id="orderId">'+result[0].orderId+'</span></span>'+'</p>'+
+                    '</div>'
+                }
+                $('#u3060').html(x);
+            }
+        })
+    }
+
+
+
+    function getOrder2List(){
+
+              $.ajax({
+                      url:'/yx/getOrderList8',
+                      type:'get',
+                      success:function(result){
+                           var x= "";
+                           var a1 = result[0].picPath;
+                           var a2 = result[1].picPath;
+                           var a3 = result[2].picPath;
+
+                          for(var i=0;i<result.length;i++){
+                              x+=
+
+
+                          '<div id="u3096" class="ax_default" data-label="11">'+
+
+
+                                  '<div id="u3099" class="ax_default placeholder">'+
+                                  '<img id="u3099_img" class="img " src="'+a1+'" />'+
+
+                                  '<div id="u3100" class="text" style="display: none; visibility: hidden">'+
+                                  '<p>'+'<span>'+'</span>'+'</p>'+
+                              '</div>'+
+                              '</div>'+
+
+
+
+
+                              '<div id="u3097" class="ax_default label">'+
+                                  '<div id="u3097_div" class="">'+'</div>'+
+
+                                  '<div id="u3098" class="text" style="visibility: visible;">'+
+                                  '<p>'+'<span>'+result[0].title+'</span>'+'</p>'+
+                              '</div>'+
+                              '</div>'+
+
+
+
+
+
+                              '<div id="u3101" class="ax_default label">'+
+                                  '<div id="u3101_div" class="">'+'</div>'+
+
+                                  '<div id="u3102" class="text" style="visibility: visible;">'+
+                                  '<p>'+'<span>'+'￥'+result[0].totalFee+'</span>'+'</p>'+
+                              '</div>'+
+                              '</div>'+
+
+
+
+
+
+                              '<div id="u3105" class="ax_default label">'+
+                                  '<div id="u3105_div" class="">'+'</div>'+
+
+                                  '<div id="u3106" class="text" style="visibility: visible;">'+
+                              '<p>'+'<span>'+result[0].num+'</span>'+'</p>'+
+                              '</div>'+
+                              '</div>'+
+
+
+                              '<div id="u3107" class="ax_default label">'+
+                                  '<div id="u3107_div" class="">'+'</div>'+
+
+                                  '<div id="u3108" class="text" style="visibility: visible;">'+
+
+                                  '<p>'+'<span>'+'￥'+result[0].price+'</span>'+'</p>'+
+                              '</div>'+
+                              '</div>'+
+                              '</div>'+
+
+
+
+
+
+
+
+
+                              '<div id="u3111" class="ax_default" data-label="11">'+
+
+                                  '<div id="u3114" class="ax_default placeholder">'+
+                                  '<img id="u3114_img" class="img " src="'+a2+'"/>'+
+
+                                  '<div id="u3115" class="text" style="display: none; visibility: hidden">'+
+                                  '<p>'+'<span>'+'</span>'+'</p>'+
+                              '</div>'+
+                              '</div>'+
+
+
+                              '<div id="u3112" class="ax_default label">'+
+                                  '<div id="u3112_div" class="">'+'</div>'+
+
+                                  '<div id="u3113" class="text" style="visibility: visible;">'+
+                                  '<p>'+'<span>'+result[1].title+'</span>'+'</p>'+
+                              '</div>'+
+                              '</div>'+
+
+
+
+
+
+                              '<div id="u3116" class="ax_default label">'+
+                                  '<div id="u3116_div" class="">'+'</div>'+
+
+                                  '<div id="u3117" class="text" style="visibility: visible;">'+
+                                  '<p>'+'<span>'+'￥'+result[1].totalFee+'</span>'+'</p>'+
+                              '</div>'+
+                              '</div>'+
+
+
+
+
+
+                              '<div id="u3120" class="ax_default label">'+
+                                  '<div id="u3120_div" class="">'+'</div>'+
+
+                                  '<div id="u3121" class="text" style="visibility: visible;">'+
+                                  '<p>'+'<span>'+result[1].num+'</span>'+'</p>'+
+                              '</div>'+
+                              '</div>'+
+
+
+                              '<div id="u3122" class="ax_default label">'+
+                                  '<div id="u3122_div" class="">'+'</div>'+
+
+                                  '<div id="u3123" class="text" style="visibility: visible;">'+
+
+                                  '<p>'+'<span>'+'￥'+result[1].price+'</span>'+'</p>'+
+                              '</div>'+
+                              '</div>'+
+                              '</div>'+
+
+
+                              '<div id="u3124" class="ax_default" data-label="11">'+
+
+
+                                  '<div id="u3127" class="ax_default placeholder">'+
+                                  '<img id="u3127_img" class="img " src="'+a3+'"/>'+
+
+                                  '<div id="u3128" class="text" style="display: none; visibility: hidden">'+
+                                  '<p>'+'<span>'+'</span>'+'</p>'+
+                              '</div>'+
+                              '</div>'+
+
+
+
+                              '<div id="u3125" class="ax_default label">'+
+                                  '<div id="u3125_div" class="">'+'</div>'+
+
+                                  '<div id="u3126" class="text" style="visibility: visible;">'+
+                                  '<p>'+'<span>'+result[2].title+'</span>'+'</p>'+
+                              '</div>'+
+                              '</div>'+
+
+
+
+
+
+                              '<div id="u3129" class="ax_default label">'+
+                                  '<div id="u3129_div" class="">'+'</div>'+
+
+                                  '<div id="u3130" class="text" style="visibility: visible;">'+
+                                  '<p>'+'<span>'+'￥'+result[2].totalFee+'</span>'+'</p>'+
+                              '</div>'+
+                              '</div>'+
+
+
+
+
+
+                              '<div id="u3133" class="ax_default label">'+
+                                  '<div id="u3133_div" class="">'+'</div>'+
+
+                                  '<div id="u3134" class="text" style="visibility: visible;">'+
+                                  '<p>'+'<span>'+result[2].num+'</span>'+'</p>'+
+                              '</div>'+
+                              '</div>'+
+
+
+                              '<div id="u3135" class="ax_default label">'+
+                                  '<div id="u3135_div" class="">'+'</div>'+
+
+                                  '<div id="u3136" class="text" style="visibility: visible;">'+
+
+                                  '<p>'+'<span>'+'￥'+result[2].price+'</span>'+'</p>'+
+                              '</div>'+
+                              '</div>'+
+                              '</div>'
+                          }
+                          $('#haha').html(x);
+                      }
+              })
+
+    }
+
+
+
+    //将文本框1的内容同步到文本框2
+    function cop(){
+        var input1 = $('#input1').val();
+        $('#input2').val(input1);
+    }
+
+    //将文本框2的内容同步到文本框1
+    function cop2(){
+        var input2 = $('#input2').val();
+        $('#input1').val(input2);
+    }
+
+    //跳转solr搜索页面
+    function toSearch(){
+        var input = $('.Inpt').val();
+        location.href="../searchFruits/toSearchFruits?input="+input;
+    }
+
+    //跳转登陆页面
+    function toLogin(){
+        location.href="../user/toLogin2";
+    }
+
+    //跳转注册页面
+    function toRegister(){
+        location.href="../user/toRegister2";
+    }
+
+    //退出
+    function toOut(){
+        location.href="../user/toOut";
+    }
+
+    //跳转到优惠券页面
+    function toCoupon(){
+        location.href="../user/优惠券-未使用.html";
+    }
+
+    //跳转到购物车页面
+    function toShoppingCar(){
+        location.href="../fruitsInfo/toShoppingCar?code=1";
+    }
+
+    $('#u3968').click(function(){
+        location.href="../user/toIndex";
+    })
+
+    //账号安全
+    function anquan(){
+        location.href="../user/账户安全.html";
+    }
+
+    //跳转我的果仁
+    function toUser(){
+        location.href="../user/个人资料.html";
+    }
+
+    //跳转我的订单页面
+    function myOrder(){
+        location.href="../yx/toMyOrder";
+    }
+
+
+    //立即支付
+    function zhifu(id,payment){
+        var orderId = $('#orderId').text();
+        /*alert(orderId)
+        alert(payment)*/
+        var info = "";
+        location.href="../shopping/payOrder?id="+orderId+"&monay="+payment+"&info="+info+"";
+    }
+
+</script>
+
+
+</html>

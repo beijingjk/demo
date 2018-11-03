@@ -19,8 +19,8 @@ public class PersonalServiceImpl implements PersonalServiceApi{
     }
 
     @Override
-    public void updPassword(Login login,String id) {
+    public void updPassword(Login login) {
 
-        personalMapper.updPassword(login,id);
+        personalMapper.updPassword(login);
     }
 }

@@ -38,6 +38,9 @@
                     <div class="default">
                         <input id="userPhone" placeholder="请输入中国大陆手机号码" name="userPhone" data-form="phone" type="text"/>
                     </div>
+                    <div class="default">
+                        <input id="userEmail" placeholder="请输入邮箱号码" name="userPhone" data-form="phone" type="text"/>
+                    </div>
                     <div class="submit">
                         <span class="notice">点击"注册"代表您同意遵守
                             <a href="">用户协议</a>
@@ -87,11 +90,11 @@
                     userName:$('#userName').val(),
                     userPhone:$('#userPhone').val(),
                     userPassword:$('#userPassword').val(),
-                    sincerityName:$('#sincerityName').val()
+                    sincerityName:$('#sincerityName').val(),
+                    userEmail:$('#userEmail').val()
                 },
                 dataType:'json',
                 success:function(result){
-                    alert(result)
                     if(result){
                         window.location.href="toLogin2"
                     }else{

@@ -4,6 +4,11 @@ server:
 spring:
   application:
     name: service-hi
+  data:
+    solr:
+      repositories:
+        enabled: true
+      zk-host: 127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183
   datasource:
       url: jdbc:mysql://192.168.31.146:3306/1802a?useUnicode=true&characterEncoding=utf-8
       driver-class-name: com.mysql.jdbc.Driver
@@ -11,7 +16,7 @@ spring:
       password: root
   redis:
     database: 0 # Redis数据库索引（默认为0）
-    host: 192.168.31.103  #Redis服务器地址
+    host: 192.168.31.124  #Redis服务器地址
     port: 6379 # Redis服务器连接端口
     password: # Redis服务器连接密码（默认为空）
     pool:

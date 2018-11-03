@@ -27,9 +27,9 @@
     <!--订单表-->
     <insert id="insertOrder" parameterType="com.jk.model.OrderInfo">
         insert into tb_order(order_id, payment,post_fee, status, create_time,
-          update_time, user_id,buyer_nick, buyer_rate)
+          update_time, user_id,buyer_nick, buyer_rate,payment_time)
           values(#{orderId},#{payment},0,#{status},#{createTime},
-          #{updateTime},#{userId},#{buyerNick},1)
+          #{updateTime},#{userId},#{buyerNick},1,now())
     </insert>
     <!--向订单商品表插入数据-->
     <insert id="insertOrderItem" parameterType="list">

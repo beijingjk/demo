@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.jnlp.IntegrationService;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,22 @@ public class FruitsInfoController {
 
     @Autowired
     private FruitsInfoServie fruitsInfoServie;
+
+
+    @RequestMapping("首页.html")
+    public String toLayout2(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Login attribute = (Login) session.getAttribute(session.getId());
+        if(attribute == null){
+            request.setAttribute("flag","");
+        }else{
+            request.setAttribute("flag",attribute.getUserName());
+        }
+        return "index";
+    }
+
+
+
     /*
      *  薛长欢
      *
@@ -30,18 +47,25 @@ public class FruitsInfoController {
      */
     @RequestMapping("toFruitsInfo")
     public String toFruitsInfo(Integer fruitsId, ModelMap modelMap, HttpServletRequest request){
-        //HttpSession session = request.getSession();
-        //Login login = (Login) session.getAttribute(session.getId());
+
+        HttpSession session = request.getSession();
+        Login attribute = (Login) session.getAttribute(session.getId());
+        if(attribute == null){
+            modelMap.put("flag","");
+        }
+
+
+
         //根据商品id查询信息
         FruitsInfo fruitsInfo = fruitsInfoServie.queryFruitsInfoById(fruitsId);
-        String loginId = "1";
         //根据登录人id查询优惠券
-        List<Coupon> coupon = fruitsInfoServie.queryConponByUserId(loginId);
+        List<Coupon> coupon = fruitsInfoServie.queryConponByUserId(attribute.getUserId());
         //相当于广告位/随机查询三条数据展示
         List<FruitsInfo> fruitsInfos = fruitsInfoServie.queryFruitsInfoRandom();
         modelMap.put("fruitsInfo",fruitsInfo);
         modelMap.put("coupon",coupon);
         modelMap.put("fruitsInfos",fruitsInfos);
+        modelMap.put("flag",attribute.getUserName());
         return "fruitsInfo/fruitsInfo";
     }
 
@@ -54,12 +78,11 @@ public class FruitsInfoController {
     @ResponseBody
     public Map<String,Object> addCart(HttpServletRequest request,Integer fruitsId,Integer num){
         Map<String,Object> result = new HashMap<>();
-        //Login login = (Login) request.getSession().getAttribute(request.getSession().getId());
-        String login = "1";
+        Login login = (Login) request.getSession().getAttribute(request.getSession().getId());
         //flag为标识符  1 用户未登录 2 为商品信息存在数量加或减 3 商品不存在添加redis然后返回
         String flag = "1";
         if(login != null){
-            result  = fruitsInfoServie.addCart(login,fruitsId,num);
+            result  = fruitsInfoServie.addCart(login.getUserId(),fruitsId,num);
             flag = (String) result.get("flag");
         }
         System.out.println(flag);
@@ -73,21 +96,31 @@ public class FruitsInfoController {
      *  从redis查询购物车
      */
     @RequestMapping("toShoppingCar")
-    public String queryCartList(HttpServletRequest request,ModelMap map){
-        //Login login = (Login) request.getSession().getAttribute(request.getSession().getId());
-        //用户id
-        String loginId = "1";
+    public String queryCartList(String code,HttpServletRequest request,ModelMap map){
+        Login login = (Login) request.getSession().getAttribute(request.getSession().getId());
+
         //判断购物车是否为空
         String flag = "";
-        List<FruitsInfo> fruitsInfo = fruitsInfoServie.queryCartList(loginId);
-
-        if(fruitsInfo.size() == 0){
+        if(login == null){
             flag = "";
-        }else{
-            flag = "fruitsInfo";
+            map.put("flag",flag);
+            map.put("flag2","");
+            return "shopping/shopping";
         }
-        map.put("flag",flag);
-        map.put("fruitsInfo",fruitsInfo);
+            List<FruitsInfo> fruitsInfo = fruitsInfoServie.queryCartList(login.getUserId());
+            if(fruitsInfo.size() == 0){
+                flag = "";
+                map.put("flag2",login.getUserName());
+            }else{
+                map.put("flag2",login.getUserName());
+                flag = "fruitsInfo";
+            }
+            map.put("flag",flag);
+            map.put("fruitsInfo",fruitsInfo);
+
+
+
+
         return "shopping/shopping";
     }
 
@@ -100,9 +133,8 @@ public class FruitsInfoController {
     @ResponseBody
     public Boolean deleteCart(Integer fruitsId,HttpServletRequest request){
         try{
-            //Login login = (Login) request.getSession().getAttribute(request.getSession().getId());
-            String loginId = "1";
-            fruitsInfoServie.deleteCart(loginId,fruitsId);
+            Login login = (Login) request.getSession().getAttribute(request.getSession().getId());
+            fruitsInfoServie.deleteCart(login.getUserId(),fruitsId);
         }catch (Exception e){
             e.printStackTrace();
             return false;
@@ -116,11 +148,10 @@ public class FruitsInfoController {
      *  清空购物车 根据登录id
      */
     @RequestMapping("deleteAllCart")
-    public Boolean deleteAllCart(){
+    public Boolean deleteAllCart(HttpServletRequest request){
         try{
-            //Login login = (Login) request.getSession().getAttribute(request.getSession().getId());
-            String loginId = "1";
-            fruitsInfoServie.deleteAllCart(loginId);
+            Login login = (Login) request.getSession().getAttribute(request.getSession().getId());
+            fruitsInfoServie.deleteAllCart(login.getUserId());
         }catch (Exception e){
             e.printStackTrace();
             return false;
@@ -135,11 +166,10 @@ public class FruitsInfoController {
      */
     @RequestMapping("updateCart")
     @ResponseBody
-    public Boolean updateCart(Integer fruitsId,Integer num){
+    public Boolean updateCart(Integer fruitsId,Integer num,HttpServletRequest request){
         try{
-            //Login login = (Login) request.getSession().getAttribute(request.getSession().getId());
-            String loginId = "1";
-            fruitsInfoServie.updateCart(loginId,fruitsId,num);
+            Login login = (Login) request.getSession().getAttribute(request.getSession().getId());
+            fruitsInfoServie.updateCart(login.getUserId(),fruitsId,num);
         }catch (Exception e){
             e.printStackTrace();
             return false;

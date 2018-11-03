@@ -40,4 +40,6 @@ public interface UserMapper {
     FruitsInfo queryApplepear();
 
     FruitsInfo queryPortugalsmentionofjam();
+
+    Login queryUserById(String userId);
 }

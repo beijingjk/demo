@@ -112,14 +112,18 @@
     </select>
 
     <insert parameterType="com.jk.model.Login" id="addUser">
-        insert into t_user (userName,userPhone,sincerityName,userPassword)
+        insert into t_user (userName,userPhone,sincerityName,userPassword,userEmail,userSex,userBirthday)
           values
-            (#{userName},#{userPhone},#{sincerityName},#{userPassword})
+            (#{userName},#{userPhone},#{sincerityName},#{userPassword},#{userEmail},1,now())
     </insert>
 
     <select id="queryUserNameFP" parameterType="string" resultType="com.jk.model.Login">
 	    select * from t_user
 	    where userName = #{uaerName}
+    </select>
+    
+    <select id="queryUserById" parameterType="string" resultType="com.jk.model.Login">
+        select * from t_user where userId = #{value}
     </select>
 
 </mapper>

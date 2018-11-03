@@ -7,5 +7,5 @@ public interface ShoppMapper {
 
     List<FruitsInfo> queryFruitsInfo();
 
-
+    void eidtOrderStatus(String id);
 }
